@@ -1,5 +1,8 @@
 package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model;
 
+import androidx.room.Entity;
+
+@Entity
 public class User {
     private int id;
     private String nama;
