@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_food"
+        android:name="com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.FoodFragment"
+        android:label="Menu"
+        tools:layout="@layout/fragment_food" />
+
+    <fragment
+        android:id="@+id/navigation_cart"
+        android:name="com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.CartFragment"
+        android:label="Cart"
+        tools:layout="@layout/fragment_cart" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.ProfilFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profil" />
+</navigation>
