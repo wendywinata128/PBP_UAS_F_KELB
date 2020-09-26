@@ -4,4 +4,5 @@
     <string name="menu">Menu</string>
     <string name="cart">Cart</string>
     <string name="profile">Profile</string>
+    <string name="hello">Hello</string>
 </resources>
