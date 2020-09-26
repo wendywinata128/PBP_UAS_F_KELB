@@ -11,7 +11,6 @@ public class Menu {
     private String harga;
     private String jenis;
 
-
     public int getId() {
         return id;
     }
