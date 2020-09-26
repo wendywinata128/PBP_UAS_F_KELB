@@ -5,4 +5,6 @@
     <string name="cart">Cart</string>
     <string name="profile">Profile</string>
     <string name="hello">Hello</string>
+    <string name="logo_restoku">Logo_Restoku</string>
+    <string name="slogan">Quality Over Quantity</string>
 </resources>

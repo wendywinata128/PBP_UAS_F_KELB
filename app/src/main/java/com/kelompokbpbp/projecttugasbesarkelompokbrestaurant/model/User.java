@@ -1,9 +1,11 @@
 package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model;
 
 import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 @Entity
 public class User {
+    @PrimaryKey
     private int id;
     private String nama;
     private String nohp;
