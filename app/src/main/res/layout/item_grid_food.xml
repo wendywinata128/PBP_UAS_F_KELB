@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -11,12 +10,13 @@
     </data>
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/img_menu_photo"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginHorizontal="16dp"
         android:layout_marginVertical="8dp"
-        android:scaleType="centerCrop">
+        android:scaleType="centerCrop"
+        tools:context=".GridFoodAdapter"
+        android:id="@+id/gridFoodAdapter">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,19 +27,21 @@
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:background="@color/colorAccent"/>
+                android:loadImg="@{menu.fotoMenu}"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:src="@{menu.nama}"/>
+                android:textAlignment="center"
+                android:text="@{menu.nama}"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:src="@{menu.harga}"/>
+                android:layout_marginTop="8dp"
+                android:textAlignment="center"
+                android:text="@{menu.harga}"/>
 
         </LinearLayout>
 

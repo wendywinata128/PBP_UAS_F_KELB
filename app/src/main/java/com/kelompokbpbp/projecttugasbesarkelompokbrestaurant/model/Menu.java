@@ -1,7 +1,14 @@
 package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model;
 
+import android.widget.ImageView;
+
+import androidx.databinding.BindingAdapter;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
 
 @Entity
 public class Menu {
@@ -10,6 +17,14 @@ public class Menu {
     private String nama;
     private String harga;
     private String jenis;
+    private String fotoMenu;
+
+    public Menu(String nama, String harga, String jenis, String fotoMenu) {
+        this.nama = nama;
+        this.harga = harga;
+        this.jenis = jenis;
+        this.fotoMenu = fotoMenu;
+    }
 
     public int getId() {
         return id;
@@ -43,9 +58,15 @@ public class Menu {
         this.jenis = jenis;
     }
 
-    public Menu(String nama, String harga , String jenis) {
-        this.nama = nama;
-        this.harga = harga;
-        this.jenis = jenis;
+    public String getFotoMenu() {
+        return fotoMenu;
+    }
+
+    @BindingAdapter({"android:loadImg"})
+    public void setFotoMenu(ImageView imageView, String fotoMenu) {
+        Glide.with(imageView.getContext())
+                .load(fotoMenu)
+                .apply(new RequestOptions().error(R.drawable.ic_baseline_image_24))
+                .into(imageView);
     }
 }
