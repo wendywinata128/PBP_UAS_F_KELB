@@ -63,10 +63,9 @@ public class Menu {
     }
 
     @BindingAdapter({"android:loadImg"})
-    public void setFotoMenu(ImageView imageView, String fotoMenu) {
+    public static void setFotoMenu(ImageView imageView, String fotoMenu) {
         Glide.with(imageView.getContext())
                 .load(fotoMenu)
-                .apply(new RequestOptions().error(R.drawable.ic_baseline_image_24))
                 .into(imageView);
     }
 }
