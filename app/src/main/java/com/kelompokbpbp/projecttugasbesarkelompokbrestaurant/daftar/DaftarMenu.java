@@ -13,26 +13,26 @@ public class DaftarMenu {
         MENU.add(FRIED_NOODLES);
         MENU.add(FRIED_CHICKEN);
         MENU.add(SPAGHETTI_MEAT_SAUCE);
-        MENU.add(VEGETABLE_SOUP);
-        MENU.add(MEATBALL);
+        MENU.add(CHICKEN_SOUP);
+        MENU.add(ROASTED_CHICKEN);
     }
 
     public static final Menu FRIED_RICE = new Menu("Fried Rice", "Rp 20.000,-", "Makanan",
             "https://joyfoodsunshine.com/wp-content/uploads/2020/04/vegetable-fried-rice-recipe-1-720x720.jpg");
 
     public static final Menu FRIED_NOODLES = new Menu("Fried Noodles", "Rp 15.000,-", "Makanan",
-            "https://omnivorescookbook.com/wp-content/uploads/2015/12/1512_15-Minute-Fried-Noodles_003-1.jpg");
+            "https://www.aheadofthyme.com/wp-content/uploads/2016/01/shanghai-fried-noodles-in-10-minutes-2.jpg");
 
     public static final Menu FRIED_CHICKEN = new Menu("Fried Chicken", "Rp 40.000,-", "Makanan",
-            "http://food.fnr.sndimg.com/content/dam/images/food/fullset/2012/11/2/0/DV1510H_fried-chicken-recipe-10_s4x3.jpg.rend.hgtvcom.826.620.suffix/1568222255998.jpeg");
+            "https://gcs.thesouthafrican.com/2020/04/b25c2198-kfc-1200x858.jpeg");
 
     public static final Menu SPAGHETTI_MEAT_SAUCE = new Menu("Spaghetti Meat Sauce", "Rp 35.000,-", "Makanan",
-            "https://www.spendwithpennies.com/wp-content/uploads/2019/04/Spaghetti-Meat-Sauce-SpendWithPennies-4.jpg");
+            "https://images8.alphacoders.com/826/thumb-1920-826205.jpg");
 
-    public static final Menu VEGETABLE_SOUP = new Menu("Vegetable Soup", "Rp 15.000,-", "Makanan",
-            "https://www.inspiredtaste.net/wp-content/uploads/2018/10/Homemade-Vegetable-Soup-Recipe-2-1200.jpg");
+    public static final Menu CHICKEN_SOUP = new Menu("Chicken Soup", "Rp 25.000,-", "Makanan",
+            "https://229hkg2lw84tezus91ay33k2-wpengine.netdna-ssl.com/wp-content/uploads/2012/03/homemade-chicken-soup-1302x904.jpg");
 
-    public static final Menu MEATBALL = new Menu("Meatball", "Rp 25.000,-", "Makanan",
-            "https://akcdn.detik.net.id/community/media/visual/2020/03/11/c96a8045-b186-4edd-a961-f7a37fa7475c_169.jpeg?w=700&q=90");
+    public static final Menu ROASTED_CHICKEN = new Menu("Roasted Chicken", "Rp 50.000,-", "Makanan",
+            "https://ehonami.blob.core.windows.net/media/2015/01/kitchen-kelley-roasted-chicken-800x600.jpg");
 
 }

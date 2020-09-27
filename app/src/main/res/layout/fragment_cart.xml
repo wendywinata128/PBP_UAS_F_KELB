@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CartListActivity">
+    tools:context=".CartFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
@@ -52,25 +52,25 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Total Cost"
+                    android:text="@string/total_cost"
                     android:textSize="30sp"
                     android:layout_weight="4"/>
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/txt_final_price"
-                    android:text="0"
-                    android:gravity="right"
+                    android:text="@string/cost_number"
+                    android:gravity="end"
                     android:textSize="30sp"
                     android:layout_weight="4"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btn_checkOut"
-            android:text="CheckOut"
+            android:text="@string/checkout"
             android:textColor="@android:color/white"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"

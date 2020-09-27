@@ -7,4 +7,9 @@
     <string name="hello">Hello</string>
     <string name="logo_restoku">Logo_Restoku</string>
     <string name="slogan">Quality Over Quantity</string>
+    <string name="menu_restoku">Menu Restoku</string>
+    <string name="total_cost">Total Cost</string>
+    <string name="cost_number">0</string>
+    <string name="checkout">CheckOut</string>
+    <string name="order">Order</string>
 </resources>
