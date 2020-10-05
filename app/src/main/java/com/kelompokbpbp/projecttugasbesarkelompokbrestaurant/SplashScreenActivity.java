@@ -3,9 +3,12 @@ package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.AppPreference;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -19,9 +22,17 @@ public class SplashScreenActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashScreenActivity.this,MainActivity.class);
-                startActivity(intent);
-                finish();
+                AppPreference appPreference = new AppPreference(SplashScreenActivity.this);
+
+                if(appPreference.getFirstRun()){
+                    Intent intent = new Intent(SplashScreenActivity.this,MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }else{
+                    Intent intent = new Intent(SplashScreenActivity.this,MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         },3000);
     }

@@ -9,7 +9,7 @@
 
 
     <pl.droidsonroids.gif.GifImageView
-        android:layout_width="388dp"
+        android:layout_width="0dp"
         android:layout_height="308dp"
         android:layout_marginTop="64dp"
         android:background="@android:color/transparent"
@@ -20,8 +20,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:layout_width="match_parent"
