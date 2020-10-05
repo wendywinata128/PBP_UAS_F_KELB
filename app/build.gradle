@@ -59,4 +59,6 @@ dependencies {
 
     //ElegantButton
     implementation'com.cepheuen.elegant-number-button:lib:1.0.2'
+
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.17'
 }
