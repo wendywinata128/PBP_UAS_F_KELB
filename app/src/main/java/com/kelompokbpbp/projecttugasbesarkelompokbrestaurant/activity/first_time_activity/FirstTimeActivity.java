@@ -27,6 +27,6 @@ public class FirstTimeActivity extends AppCompatActivity implements Fragment_Fir
 
     @Override
     public void onContinueClicked() {
-        viewPager.setCurrentItem(viewPager.getCurrentItem()+1,true);
+        viewPager.setCurrentItem(viewPager.getCurrentItem()+1);
     }
 }

@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#FEE8CB"
     tools:context=".Fragment_FirstActivity_First">
-
+    
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
@@ -22,7 +22,7 @@
             android:layout_height="200dp"
             android:layout_gravity="center"
             android:layout_marginBottom="32dp"
-            android:src="@drawable/logo_restoku" />
+            android:src="@drawable/hello" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -33,20 +33,9 @@
             android:gravity="center"
             android:letterSpacing="0.1"
             android:lineSpacingExtra="5dp"
-            android:lines="3"
+            android:lines="5"
             android:text="Hello , Since its your first time open Restoku We Want to Setting Our App To Match Your Comfort"
             android:textSize="16sp" />
     </LinearLayout>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnContinue"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="CONTINUE"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
