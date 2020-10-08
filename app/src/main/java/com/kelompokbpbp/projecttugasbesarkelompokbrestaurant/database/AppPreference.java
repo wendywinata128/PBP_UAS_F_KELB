@@ -18,7 +18,7 @@ public class AppPreference {
         boolean firstRun = pref.getBoolean(PREFERENCE_RUN,true);
 
         if(firstRun){
-            pref.edit().putBoolean(PREFERENCE_RUN,false);
+            pref.edit().putBoolean(PREFERENCE_RUN,false).apply();
             return true;
         }
 

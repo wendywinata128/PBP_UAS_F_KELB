@@ -1,13 +1,14 @@
-package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant;
+package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.splash_screen_activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.first_time_activity.FirstTimeActivity;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.AppPreference;
 
 public class SplashScreenActivity extends AppCompatActivity {
@@ -25,7 +26,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 AppPreference appPreference = new AppPreference(SplashScreenActivity.this);
 
                 if(appPreference.getFirstRun()){
-                    Intent intent = new Intent(SplashScreenActivity.this,MainActivity.class);
+                    Intent intent = new Intent(SplashScreenActivity.this, FirstTimeActivity.class);
                     startActivity(intent);
                     finish();
                 }else{

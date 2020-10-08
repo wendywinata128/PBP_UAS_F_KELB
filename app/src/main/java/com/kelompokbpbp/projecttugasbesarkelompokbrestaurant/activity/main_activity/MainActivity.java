@@ -1,4 +1,4 @@
-package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant;
+package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.main_activity;
 //Kelompok PBP B , Wendy , Elvina , Wenny
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +11,8 @@ import android.os.Bundle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.databinding.DataBindingUtil;
+
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,36 +7,24 @@
     android:layout_height="match_parent"
     android:background="#FEE8CB">
 
-
-    <pl.droidsonroids.gif.GifImageView
-        android:layout_width="0dp"
-        android:layout_height="308dp"
-        android:layout_marginTop="64dp"
-        android:background="@android:color/transparent"
-        android:backgroundTint="@android:color/transparent"
-        android:foreground="@android:color/transparent"
-        android:foregroundTint="@android:color/transparent"
-        android:src="@drawable/testgifhello"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    
+    <com.rd.PageIndicatorView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:fontFamily="@font/poppins_medium"
-        android:gravity="center"
-        android:lineHeight="35dp"
-        android:text="Hello , Since its your first time open Restoku We Want to Setting Our App To Match Your Comfort"
-        android:textSize="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.629" />
+        app:piv_viewPager="@id/viewPager"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="48dp"
+        app:piv_padding="12dp"
+        app:piv_radius="8dp"
+        app:piv_selectedColor="#A60F0F"
+        app:piv_unselectedColor="#FFFFFFE1"
+        app:piv_dynamicCount="true"
+        app:piv_animationType="slide"
+        />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

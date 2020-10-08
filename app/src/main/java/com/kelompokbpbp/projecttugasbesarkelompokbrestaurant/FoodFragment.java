@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.adapter.GridFoodAdapter;
-import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.daftar.DaftarMenu;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.object.DaftarMenu;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.databinding.FragmentFoodBinding;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.Menu;
 

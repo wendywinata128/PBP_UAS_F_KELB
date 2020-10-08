@@ -1,4 +1,4 @@
-package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.daftar;
+package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.object;
 
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.Menu;
 
