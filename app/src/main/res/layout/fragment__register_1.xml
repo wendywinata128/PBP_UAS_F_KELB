@@ -84,6 +84,7 @@
             android:text="@string/i_already_have_account"
             android:layout_marginTop="15dp"
             android:textColor="#A60F0F" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

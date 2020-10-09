@@ -26,6 +26,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="16dp"
+            app:queryHint="Search for Food Name"
             app:iconifiedByDefault="false"
             android:queryHint="Search by name"
             android:layout_below="@id/menu_title_tv"/>
