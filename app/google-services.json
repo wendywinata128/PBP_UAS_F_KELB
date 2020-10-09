@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "157582677093",
+    "firebase_url": "https://restoku-tubes-pbp.firebaseio.com",
+    "project_id": "restoku-tubes-pbp",
+    "storage_bucket": "restoku-tubes-pbp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:157582677093:android:b8d6bc4004caf96dcba28c",
+        "android_client_info": {
+          "package_name": "com.kelompokbpbp.projecttugasbesarkelompokbrestaurant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "157582677093-8l1bn0rkvi54f7roga00nbup9dn3c9db.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kelompokbpbp.projecttugasbesarkelompokbrestaurant",
+            "certificate_hash": "f410468d756326cf7c00a1b33a1f11eab538ecc0"
+          }
+        },
+        {
+          "client_id": "157582677093-vgkglfa3gah9ttgbkkqc4669o5bh8l5c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQKNU8qJOfbiAjFYjwtnKa3mOzbaquMP0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "157582677093-vgkglfa3gah9ttgbkkqc4669o5bh8l5c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
