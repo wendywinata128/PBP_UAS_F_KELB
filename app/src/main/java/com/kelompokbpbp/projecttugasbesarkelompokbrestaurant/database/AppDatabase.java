@@ -8,4 +8,5 @@ import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.User;
 
 @Database(entities = {User.class, Keranjang.class},version = 1)
 public abstract class AppDatabase extends RoomDatabase {
+    public abstract UserDAO userDao();
 }

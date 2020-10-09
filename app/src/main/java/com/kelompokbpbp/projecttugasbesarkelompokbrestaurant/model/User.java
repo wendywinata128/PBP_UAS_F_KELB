@@ -1,15 +1,24 @@
 package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
 public class User {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int id;
+
+    @ColumnInfo(name = "full_name")
     private String nama;
+
+    @ColumnInfo(name = "handphone_number")
     private String nohp;
+
+    @ColumnInfo(name = "username")
     private String username;
+
+    @ColumnInfo(name="password")
     private String password;
 
     public User(String nama , String nohp , String username , String password){

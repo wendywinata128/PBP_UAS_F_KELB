@@ -14,17 +14,11 @@ import android.view.ViewGroup;
 import com.google.android.material.button.MaterialButton;
 
 public class Fragment_FirstActivity_First extends Fragment {
-    private OnChangeListener onChangeListener;
+
     private MaterialButton btnContinue;
 
     public Fragment_FirstActivity_First() {
         // Required empty public constructor
-    }
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        onChangeListener = (OnChangeListener) getActivity();
     }
 
     @Override
@@ -41,7 +35,5 @@ public class Fragment_FirstActivity_First extends Fragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
-    public interface OnChangeListener{
-        void onContinueClicked();
-    }
+
 }

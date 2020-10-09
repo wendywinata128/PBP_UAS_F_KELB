@@ -28,4 +28,8 @@
     <string name="password">Password</string>
     <string name="register">Register</string>
     <string name="i_already_have_account">I already have account</string>
+    <string name="full_name">Full Name</string>
+    <string name="handphone_number">Handphone Number</string>
+    <string name="continue_hint">Continue</string>
+    <string name="match_password">Match Password</string>
 </resources>
