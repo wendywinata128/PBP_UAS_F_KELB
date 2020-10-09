@@ -1,5 +1,6 @@
 package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,11 +14,17 @@ import android.view.ViewGroup;
 import com.google.android.material.button.MaterialButton;
 
 public class Fragment_Register_1 extends Fragment {
-
+    private OnActivityChanged onActivityChanged;
     private MaterialButton btnContinue;
 
     public Fragment_Register_1() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        onActivityChanged = (OnActivityChanged) getActivity();
     }
 
     @Override
@@ -36,8 +43,12 @@ public class Fragment_Register_1 extends Fragment {
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getFragmentManager().beginTransaction().replace(R.id.viewPager,new Fragment_register_2()).addToBackStack(null).commit();
+                onActivityChanged.onContinueRegisterClicked();
             }
         });
+    }
+
+    public interface OnActivityChanged{
+        void onContinueRegisterClicked();
     }
 }

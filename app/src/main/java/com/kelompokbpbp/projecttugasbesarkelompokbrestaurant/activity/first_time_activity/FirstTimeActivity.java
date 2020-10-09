@@ -10,11 +10,12 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.Fragment_FirstActivity_First;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.Fragment_FirstActivity_Setting;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.Fragment_Register_1;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.adapter.ViewPagerAdapterFirstActivity;
 import com.rd.PageIndicatorView;
 
-public class FirstTimeActivity extends AppCompatActivity implements Fragment_FirstActivity_Setting.OnChangeListener, ViewPager.OnPageChangeListener {
+public class FirstTimeActivity extends AppCompatActivity implements Fragment_FirstActivity_Setting.OnChangeListener, ViewPager.OnPageChangeListener , Fragment_Register_1.OnActivityChanged {
     private ViewPager viewPager;
     private PageIndicatorView dotsPager;
     private Boolean checkedItem = false;
@@ -66,4 +67,8 @@ public class FirstTimeActivity extends AppCompatActivity implements Fragment_Fir
     }
 
 
+    @Override
+    public void onContinueRegisterClicked() {
+        viewPager.setCurrentItem(3);
+    }
 }

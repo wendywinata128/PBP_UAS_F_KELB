@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.Fragment_FirstActivity_First;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.Fragment_FirstActivity_Setting;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.Fragment_Register_1;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.Fragment_register_2;
 
 public class ViewPagerAdapterFirstActivity extends FragmentPagerAdapter {
     public ViewPagerAdapterFirstActivity(@NonNull FragmentManager fm) {
@@ -29,6 +30,9 @@ public class ViewPagerAdapterFirstActivity extends FragmentPagerAdapter {
             case 2 :
                 fragment = new Fragment_Register_1();
                 break;
+            case 3 :
+                fragment = new Fragment_register_2();
+                break;
         }
 
         assert fragment != null;
@@ -37,6 +41,6 @@ public class ViewPagerAdapterFirstActivity extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return 4;
     }
 }
