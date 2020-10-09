@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#FEE8CB"
-    tools:context=".Fragment_FirstActivity_First">
+    tools:context=".activity.first_time_activity.Fragment_FirstActivity_First">
     
     <LinearLayout
         android:id="@+id/linearLayout"

@@ -10,8 +10,8 @@ import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.User;
 
 @Dao
 public interface UserDAO {
-    @Query("SELECT * From user where username = :usernamefound")
-    User getUser(String usernamefound);
+    @Query("SELECT * From user where username = :usernamefound AND password = :password")
+    User getUser(String usernamefound,String password);
 
     @Insert
     void insert(User user);

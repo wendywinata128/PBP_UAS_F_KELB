@@ -1,4 +1,4 @@
-package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant;
+package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.first_time_activity;
 
 import android.Manifest;
 import android.content.Context;
@@ -19,9 +19,8 @@ import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.register_activity.RegisterActivity;
-
-import java.util.Objects;
 
 public class Fragment_FirstActivity_Setting extends Fragment implements CompoundButton.OnCheckedChangeListener {
     private CheckBox cbNotification, cbLocation, cbCamera;

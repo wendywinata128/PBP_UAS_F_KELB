@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.Fragment_Register_1;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
 
 public class RegisterActivity extends AppCompatActivity {

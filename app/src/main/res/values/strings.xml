@@ -34,4 +34,7 @@
     <string name="match_password">Match Password</string>
     <string name="check_all">Check All</string>
     <string name="logo_register_account">Logo Register Account</string>
+    <string name="login">LOGIN</string>
+    <string name="login_account">Login Account</string>
+    <string name="gambar_logo_login">Gambar Logo Login</string>
 </resources>

@@ -1,6 +1,7 @@
-package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant;
+package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.register_activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,9 +14,11 @@ import android.view.ViewGroup;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.login_activity.LoginActivity;
 
 public class Fragment_Register_1 extends Fragment {
-    private MaterialButton btnContinue;
+    private MaterialButton btnContinue,btnLogin;
     private TextInputLayout tvFullName,tvPhoneNumber;
 
     public Fragment_Register_1() {
@@ -35,6 +38,7 @@ public class Fragment_Register_1 extends Fragment {
         btnContinue = view.findViewById(R.id.btnContinue);
         tvFullName = view.findViewById(R.id.textInputFullName);
         tvPhoneNumber = view.findViewById(R.id.textInputNumber);
+        btnLogin = view.findViewById(R.id.btnMoveLogin);
         return view;
     }
 
@@ -54,6 +58,12 @@ public class Fragment_Register_1 extends Fragment {
                     getActivity().getSupportFragmentManager().beginTransaction().
                             replace(R.id.register_container,fragment).addToBackStack(null).commit();
                 }
+            }
+        });
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Fragment_Register_1.this.getContext(), LoginActivity.class));
             }
         });
     }

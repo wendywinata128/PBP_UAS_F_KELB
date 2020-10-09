@@ -1,4 +1,4 @@
-package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant;
+package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.register_activity;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.main_activity.MainActivity;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.DatabaseClient;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.User;
@@ -89,8 +90,6 @@ public class Fragment_register_2 extends Fragment {
                 User data = new User(fullName, phoneNumber, tvUsername.getEditText().getText().toString(),
                         tvPassword.getEditText().getText().toString());
 
-
-
                 DatabaseClient.getInstance(getActivity().getApplicationContext())
                         .getAppDatabase()
                         .userDao()
@@ -104,6 +103,7 @@ public class Fragment_register_2 extends Fragment {
                 super.onPostExecute(aVoid);
                 Toast.makeText(Fragment_register_2.this.getContext(), "User Registered Success", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(Fragment_register_2.this.getContext(), MainActivity.class));
+                getActivity().finishAndRemoveTask();
             }
         }
         RegisterUser registerUser = new RegisterUser();

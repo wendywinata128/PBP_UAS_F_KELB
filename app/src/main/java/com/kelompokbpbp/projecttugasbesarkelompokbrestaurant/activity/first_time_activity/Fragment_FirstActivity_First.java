@@ -1,4 +1,4 @@
-package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant;
+package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.first_time_activity;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.material.button.MaterialButton;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
 
 public class Fragment_FirstActivity_First extends Fragment {
 

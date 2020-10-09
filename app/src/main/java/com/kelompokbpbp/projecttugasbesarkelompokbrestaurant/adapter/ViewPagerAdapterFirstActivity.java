@@ -5,10 +5,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.Fragment_FirstActivity_First;
-import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.Fragment_FirstActivity_Setting;
-import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.Fragment_Register_1;
-import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.Fragment_register_2;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.first_time_activity.Fragment_FirstActivity_First;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.first_time_activity.Fragment_FirstActivity_Setting;
 
 public class ViewPagerAdapterFirstActivity extends FragmentPagerAdapter {
     public ViewPagerAdapterFirstActivity(@NonNull FragmentManager fm) {

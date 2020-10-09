@@ -4,13 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
-import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.Fragment_FirstActivity_First;
-import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.Fragment_FirstActivity_Setting;
-import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.Fragment_Register_1;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.adapter.ViewPagerAdapterFirstActivity;
 import com.rd.PageIndicatorView;
