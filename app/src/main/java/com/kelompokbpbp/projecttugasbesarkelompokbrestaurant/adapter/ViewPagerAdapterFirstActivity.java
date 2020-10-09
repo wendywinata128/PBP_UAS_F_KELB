@@ -27,12 +27,6 @@ public class ViewPagerAdapterFirstActivity extends FragmentPagerAdapter {
             case 1 :
                 fragment = new Fragment_FirstActivity_Setting();
                 break;
-            case 2 :
-                fragment = new Fragment_Register_1();
-                break;
-            case 3 :
-                fragment = new Fragment_register_2();
-                break;
         }
 
         assert fragment != null;
@@ -41,6 +35,6 @@ public class ViewPagerAdapterFirstActivity extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 4;
+        return 2;
     }
 }

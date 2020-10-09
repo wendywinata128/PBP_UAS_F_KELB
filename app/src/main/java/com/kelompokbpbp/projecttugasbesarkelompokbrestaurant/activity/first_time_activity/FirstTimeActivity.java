@@ -15,7 +15,7 @@ import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.adapter.ViewPagerAdapterFirstActivity;
 import com.rd.PageIndicatorView;
 
-public class FirstTimeActivity extends AppCompatActivity implements Fragment_FirstActivity_Setting.OnChangeListener, ViewPager.OnPageChangeListener , Fragment_Register_1.OnActivityChanged {
+public class FirstTimeActivity extends AppCompatActivity  {
     private ViewPager viewPager;
     private PageIndicatorView dotsPager;
     private Boolean checkedItem = false;
@@ -30,45 +30,6 @@ public class FirstTimeActivity extends AppCompatActivity implements Fragment_Fir
         dotsPager = findViewById(R.id.dotsPager);
         viewPager.setAdapter(new ViewPagerAdapterFirstActivity(getSupportFragmentManager()));
 
-        viewPager.addOnPageChangeListener(this);
     }
 
-    @Override
-    public void onContinueClicked(boolean data) {
-        checkedItem = data;
-    }
-
-    @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-        if(position == 2){
-            if(!checkedItem){
-                viewPager.setCurrentItem(position - 1);
-                dotsPager.setSelected(position - 1);
-                Toast.makeText(this,"You must Filled the Required CheckBox First!",Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-    @Override
-    public void onPageSelected(int position) {
-        if(position == 2){
-            if(!checkedItem){
-
-                viewPager.setCurrentItem(position - 1);
-                dotsPager.setSelected(position - 1);
-                Toast.makeText(this,"You must Filled the Required CheckBox First!",Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-    @Override
-    public void onPageScrollStateChanged(int state) {
-
-    }
-
-
-    @Override
-    public void onContinueRegisterClicked() {
-        viewPager.setCurrentItem(3);
-    }
 }

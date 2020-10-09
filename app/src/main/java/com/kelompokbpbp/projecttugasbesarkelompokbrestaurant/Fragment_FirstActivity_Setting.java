@@ -2,6 +2,7 @@ package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
@@ -17,13 +18,13 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
 import com.google.android.material.button.MaterialButton;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.register_activity.RegisterActivity;
 
 import java.util.Objects;
 
 public class Fragment_FirstActivity_Setting extends Fragment implements CompoundButton.OnCheckedChangeListener {
-    private OnChangeListener onChangeListener;
     private CheckBox cbNotification, cbLocation, cbCamera;
-    private MaterialButton btnCheckAll;
+    private MaterialButton btnCheckAll,btnContinue;
 
     private static final int REQ_LOCATION = 1001;
     private static final int REQ_CAMERA = 1002;
@@ -42,7 +43,7 @@ public class Fragment_FirstActivity_Setting extends Fragment implements Compound
         cbCamera = view.findViewById(R.id.cbCamera);
         cbLocation = view.findViewById(R.id.cbLocation);
         btnCheckAll = view.findViewById(R.id.btnCheckAll);
-
+        btnContinue = view.findViewById(R.id.btnContinue);
         return view;
     }
 
@@ -61,13 +62,19 @@ public class Fragment_FirstActivity_Setting extends Fragment implements Compound
                 cbNotification.setChecked(true);
             }
         });
+        btnContinue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(),RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        onChangeListener = (OnChangeListener) getActivity();
     }
 
 
@@ -96,15 +103,6 @@ public class Fragment_FirstActivity_Setting extends Fragment implements Compound
 
                 break;
         }
-
-        if (cbCamera.isChecked() && cbLocation.isChecked()) {
-            onChangeListener.onContinueClicked(true);
-        }else{
-            onChangeListener.onContinueClicked(false);
-        }
     }
 
-    public interface OnChangeListener {
-        void onContinueClicked(boolean data);
-    }
 }
