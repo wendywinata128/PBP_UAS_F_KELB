@@ -81,7 +81,7 @@ public class Fragment_FirstActivity_Setting extends Fragment implements Compound
         switch (compoundButton.getId()){
             case R.id.cbCamera:
                 if (ActivityCompat.checkSelfPermission(getActivity(),
-                        Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                     requestPermissions(new String[]{Manifest.permission.CAMERA}, REQ_CAMERA);
                 }
                 break;
