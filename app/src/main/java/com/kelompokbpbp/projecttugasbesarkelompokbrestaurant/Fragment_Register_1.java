@@ -12,9 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class Fragment_Register_1 extends Fragment {
     private MaterialButton btnContinue;
+    private TextInputLayout tvFullName,tvPhoneNumber;
 
     public Fragment_Register_1() {
         // Required empty public constructor
@@ -31,6 +33,8 @@ public class Fragment_Register_1 extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment__register_1, container, false);
         btnContinue = view.findViewById(R.id.btnContinue);
+        tvFullName = view.findViewById(R.id.textInputFullName);
+        tvPhoneNumber = view.findViewById(R.id.textInputNumber);
         return view;
     }
 
@@ -41,9 +45,33 @@ public class Fragment_Register_1 extends Fragment {
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.register_container,new Fragment_register_2()).addToBackStack(null).commit();
+                if(CheckValidation()){
+                    Fragment fragment = new Fragment_register_2();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("Full Name",tvFullName.getEditText().getText().toString());
+                    bundle.putString("Phone Number",tvFullName.getEditText().getText().toString());
+                    fragment.setArguments(bundle);
+                    getActivity().getSupportFragmentManager().beginTransaction().
+                            replace(R.id.register_container,fragment).addToBackStack(null).commit();
+                }
             }
         });
+    }
+
+    private boolean CheckValidation(){
+        boolean validation = true;
+
+        if(tvFullName.getEditText().getText().toString().isEmpty()){
+            tvFullName.setError("Full Name Cannot be Empty");
+            validation = false;
+        }
+
+        if(tvPhoneNumber.getEditText().getText().toString().isEmpty() ||
+                tvPhoneNumber.getEditText().getText().toString().length() < 9 ){
+            tvPhoneNumber.setError("Phone Number Must be 8 or more digits");
+            validation = false;
+        }
+        return validation;
     }
 
 }

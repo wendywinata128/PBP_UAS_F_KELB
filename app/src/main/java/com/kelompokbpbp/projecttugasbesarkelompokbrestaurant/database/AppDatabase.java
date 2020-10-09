@@ -6,7 +6,7 @@ import androidx.room.RoomDatabase;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.Keranjang;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.User;
 
-@Database(entities = {User.class, Keranjang.class},version = 1)
+@Database(entities = {User.class},version = 1)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract UserDAO userDao();
 }

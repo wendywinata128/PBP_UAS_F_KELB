@@ -33,4 +33,5 @@
     <string name="continue_hint">Continue</string>
     <string name="match_password">Match Password</string>
     <string name="check_all">Check All</string>
+    <string name="logo_register_account">Logo Register Account</string>
 </resources>

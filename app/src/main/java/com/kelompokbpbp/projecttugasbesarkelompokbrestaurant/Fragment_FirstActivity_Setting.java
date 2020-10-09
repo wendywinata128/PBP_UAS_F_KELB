@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.register_activity.RegisterActivity;
@@ -65,8 +66,13 @@ public class Fragment_FirstActivity_Setting extends Fragment implements Compound
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(),RegisterActivity.class);
-                startActivity(intent);
+                if(cbLocation.isChecked() && cbCamera.isChecked()){
+                    Intent intent = new Intent(getContext(),RegisterActivity.class);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(Fragment_FirstActivity_Setting.this.getContext(),
+                            "Required Must be Filled",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
