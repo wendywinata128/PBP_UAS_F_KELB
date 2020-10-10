@@ -4,7 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 public class AppPreference {
-    private static final String PREFERENCE_RUN = "PREFERENCE_FIRST_RUN";
+    private static final String PREFERENCE_FIRST_RUN = "PREFERENCE_FIRST_RUN";
+    private static final String PREFERENCE_USERNAME_LOGIN = "PREFERENCE_USERNAME_LOGIN";
     private static final String PREFERENCE_NAME = "PREFERENCE_APP";
     private Context context;
     private SharedPreferences pref;
@@ -15,13 +16,21 @@ public class AppPreference {
     }
 
     public Boolean getFirstRun(){
-        boolean firstRun = pref.getBoolean(PREFERENCE_RUN,true);
+        boolean firstRun = pref.getBoolean(PREFERENCE_FIRST_RUN,true);
 
         if(firstRun){
-            pref.edit().putBoolean(PREFERENCE_RUN,false).apply();
+            pref.edit().putBoolean(PREFERENCE_FIRST_RUN,false).apply();
             return true;
         }
 
         return false;
+    }
+
+    public String getLoginUsername(){
+        return pref.getString(PREFERENCE_USERNAME_LOGIN,null);
+    }
+
+    public void setLoginUsername(String username){
+        pref.edit().putString(PREFERENCE_USERNAME_LOGIN,username).apply();
     }
 }

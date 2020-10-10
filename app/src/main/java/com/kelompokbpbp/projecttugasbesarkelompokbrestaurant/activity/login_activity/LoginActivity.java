@@ -13,6 +13,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.main_activity.MainActivity;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.register_activity.RegisterActivity;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.AppPreference;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.DatabaseClient;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.User;
 
@@ -70,6 +71,10 @@ public class LoginActivity extends AppCompatActivity {
                     builder.setMessage("Username or password is incorrect!")
                     .show();
                 }else{
+
+                    AppPreference appPreference = new AppPreference(LoginActivity.this.getApplicationContext());
+
+                    appPreference.setLoginUsername(user.getUsername());
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     finish();
                 }
