@@ -1,5 +1,6 @@
 package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -61,6 +62,8 @@ public class ProfilFragment extends Fragment {
             public void onClick(View v) {
                 AppPreference appPreference = new AppPreference(getContext());
                 appPreference.setLoginUsername(null);
+                Intent toLogin = new Intent(ProfilFragment.this.getContext(), LoginActivity.class);
+                startActivity(toLogin);
             }
         });
     }
