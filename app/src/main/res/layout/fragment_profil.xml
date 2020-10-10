@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_profile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProfilFragment">
@@ -12,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:text="My Profile"
+        android:text="@string/my_profile"
         style="@style/TextAppearance.MaterialComponents.Headline5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -58,13 +59,20 @@
         android:layout_marginTop="5dp"
         android:text="@string/phone_number" />
 
-    <com.google.android.material.button.MaterialButton
+    <FrameLayout
+        android:id="@+id/btn_editProfile_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/profile_photo"
         app:layout_constraintTop_toBottomOf="@id/profile_phone"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        android:text="@string/edit_profile"/>
+        android:layout_marginTop="5dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_editProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_profile"/>
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

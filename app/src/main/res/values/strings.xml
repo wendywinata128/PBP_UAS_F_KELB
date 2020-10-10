@@ -41,4 +41,8 @@
     <string name="edit_profile">Edit Profile</string>
     <string name="phone_number">Phone number</string>
     <string name="nama">Nama</string>
+    <string name="my_profile">My Profile</string>
+    <string name="input_your_name">Input your name</string>
+    <string name="input_your_username">Input your username</string>
+    <string name="input_your_phone_number">Input your phone number</string>
 </resources>
