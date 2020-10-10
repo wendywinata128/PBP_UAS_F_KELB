@@ -23,7 +23,6 @@ public class EditProfileFragment extends Fragment {
     TextInputEditText editName, editUsername, editPhoneNumber;
     Button updateBtn, cancelBtn;
     User user;
-    String name, username, phoneNumber;
 
     public EditProfileFragment() {
         // Required empty public constructor
