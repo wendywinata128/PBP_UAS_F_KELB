@@ -67,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                 if(user == null){
                     AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
 
-                    builder.setMessage("Username atau Password Salah!")
+                    builder.setMessage("Username or password is incorrect!")
                     .show();
                 }else{
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));

@@ -6,15 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".ProfilFragment">
 
+    <TextView
+        android:id="@+id/my_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="My Profile"
+        style="@style/TextAppearance.MaterialComponents.Headline5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_photo"
         android:layout_width="113dp"
         android:layout_height="113dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/ic_baseline_account_circle_24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/my_profile" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/profile_name"
@@ -24,7 +36,7 @@
         app:layout_constraintTop_toTopOf="@id/profile_photo"
         android:layout_marginStart="20dp"
         android:layout_marginTop="12dp"
-        android:text="Nama" />
+        android:text="@string/nama" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/profile_username"
@@ -34,7 +46,7 @@
         app:layout_constraintTop_toBottomOf="@id/profile_name"
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
-        android:text="Username" />
+        android:text="@string/username" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/profile_phone"
@@ -44,7 +56,7 @@
         app:layout_constraintTop_toBottomOf="@id/profile_username"
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
-        android:text="Phone number" />
+        android:text="@string/phone_number" />
 
     <com.google.android.material.button.MaterialButton
         android:layout_width="wrap_content"

@@ -53,7 +53,7 @@ public class Fragment_Register_1 extends Fragment {
                     Fragment fragment = new Fragment_register_2();
                     Bundle bundle = new Bundle();
                     bundle.putString("Full Name",tvFullName.getEditText().getText().toString());
-                    bundle.putString("Phone Number",tvFullName.getEditText().getText().toString());
+                    bundle.putString("Phone Number",tvPhoneNumber.getEditText().getText().toString());
                     fragment.setArguments(bundle);
                     getActivity().getSupportFragmentManager().beginTransaction().
                             replace(R.id.register_container,fragment).addToBackStack(null).commit();
