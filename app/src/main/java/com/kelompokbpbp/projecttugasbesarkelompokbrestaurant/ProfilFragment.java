@@ -1,6 +1,7 @@
 package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -19,9 +20,12 @@ import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.AppPrefere
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.DatabaseClient;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.User;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class ProfilFragment extends Fragment {
     private TextView tvName, tvUsername, tvPhoneNumber;
     private MaterialButton btnEdit, btnLogout;
+    private CircleImageView photoProfile;
     private User dataUser;
 
     public ProfilFragment() {
@@ -36,6 +40,7 @@ public class ProfilFragment extends Fragment {
         tvName = view.findViewById(R.id.profile_name);
         tvUsername = view.findViewById(R.id.profile_username);
         tvPhoneNumber = view.findViewById(R.id.profile_phone);
+        photoProfile = view.findViewById(R.id.profile_photo);
         btnEdit = view.findViewById(R.id.btn_editProfile);
         btnLogout = view.findViewById(R.id.btn_logout);
         return view;
@@ -94,6 +99,7 @@ public class ProfilFragment extends Fragment {
                     tvName.setText(user.getNama());
                     tvUsername.setText(user.getUsername());
                     tvPhoneNumber.setText(user.getNohp());
+                    photoProfile.setImageURI(Uri.parse(user.getPhotoProfile()));
                 }
             }
         }

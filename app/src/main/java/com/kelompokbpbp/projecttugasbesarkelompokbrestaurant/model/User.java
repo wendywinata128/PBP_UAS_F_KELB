@@ -1,5 +1,7 @@
 package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model;
 
+import android.net.Uri;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -23,11 +25,15 @@ public class User implements Serializable {
     @ColumnInfo(name="password")
     private String password;
 
-    public User(String nama , String nohp , String username , String password){
+    @ColumnInfo(name="photo")
+    private String photoProfile;
+
+    public User(String nama , String nohp , String username , String password, String photoProfile){
         this.nama = nama;
         this.nohp = nohp;
         this.username = username;
         this.password = password;
+        this.photoProfile = photoProfile;
     }
     public int getId() {
         return id;
@@ -67,5 +73,13 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPhotoProfile(){
+        return photoProfile;
+    }
+
+    public void setPhotoProfile(String photoProfile) {
+        this.photoProfile = photoProfile;
     }
 }

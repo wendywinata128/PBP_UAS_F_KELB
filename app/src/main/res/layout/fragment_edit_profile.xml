@@ -21,6 +21,7 @@
         android:layout_height="113dp"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
+        android:scaleType="centerCrop"
         android:src="@drawable/ic_baseline_account_circle_24"/>
 
     <com.google.android.material.button.MaterialButton
