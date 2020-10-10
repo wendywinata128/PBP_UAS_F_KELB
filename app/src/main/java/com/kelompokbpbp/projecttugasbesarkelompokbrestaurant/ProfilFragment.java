@@ -52,7 +52,7 @@ public class ProfilFragment extends Fragment {
                 profileData.putSerializable("user_profile", dataUser);
                 fragmentEditProfile.setArguments(profileData);
                 getActivity().getSupportFragmentManager().beginTransaction().
-                        replace(R.id.fragment_profile,fragmentEditProfile).addToBackStack(null).commit();
+                        replace(R.id.fragment_profile,fragmentEditProfile).commit();
             }
         });
 

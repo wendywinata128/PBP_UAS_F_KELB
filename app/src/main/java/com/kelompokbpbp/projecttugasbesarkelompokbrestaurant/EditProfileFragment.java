@@ -47,7 +47,7 @@ public class EditProfileFragment extends Fragment {
                 super.onPostExecute(aVoid);
                 Toast.makeText(getActivity().getApplicationContext(), "Your profile is updated!", Toast.LENGTH_SHORT).show();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.hide(EditProfileFragment.this).commit();
+                transaction.replace(R.id.fragment_profile, new ProfilFragment()).commit();
             }
         }
         UpdateUserProfile updateUserProfile = new UpdateUserProfile();
