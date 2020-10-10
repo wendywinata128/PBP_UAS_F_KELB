@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.AppPreference;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.DatabaseClient;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.User;
 
@@ -59,19 +60,28 @@ public class ProfilFragment extends Fragment {
 
             @Override
             protected User doInBackground(Void... voids) {
-                User dataUser = DatabaseClient.getInstance(getActivity().getApplicationContext())
-                        .getAppDatabase()
-                        .userDao()
-                        .getUserProfile();
-                return dataUser;
+                AppPreference appPreference = new AppPreference(ProfilFragment.this.getActivity().getApplicationContext());
+                String username = appPreference.getLoginUsername();
+
+                if(username != null){
+                    User dataUser = DatabaseClient.getInstance(getActivity().getApplicationContext())
+                            .getAppDatabase()
+                            .userDao()
+                            .getUserProfile(username);
+                    return dataUser;
+                }
+
+                return null;
             }
 
             @Override
             protected void onPostExecute(User user) {
                 super.onPostExecute(user);
-                tvName.setText(user.getNama());
-                tvUsername.setText(user.getUsername());
-                tvPhoneNumber.setText(user.getNohp());
+                if(user!=null) {
+                    tvName.setText(user.getNama());
+                    tvUsername.setText(user.getUsername());
+                    tvPhoneNumber.setText(user.getNohp());
+                }
             }
         }
 
