@@ -13,13 +13,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.login_activity.LoginActivity;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.AppPreference;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.DatabaseClient;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.User;
 
 public class ProfilFragment extends Fragment {
     private TextView tvName, tvUsername, tvPhoneNumber;
-    private MaterialButton btnEdit;
+    private MaterialButton btnEdit, btnLogout;
+    private User dataUser;
 
     public ProfilFragment() {
         // Required empty public constructor
@@ -34,6 +36,7 @@ public class ProfilFragment extends Fragment {
         tvUsername = view.findViewById(R.id.profile_username);
         tvPhoneNumber = view.findViewById(R.id.profile_phone);
         btnEdit = view.findViewById(R.id.btn_editProfile);
+        btnLogout = view.findViewById(R.id.btn_logout);
         return view;
     }
 
@@ -45,12 +48,19 @@ public class ProfilFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 EditProfileFragment fragmentEditProfile = new EditProfileFragment();
-                User user = new User(tvName.getText().toString(), tvPhoneNumber.getText().toString(), tvUsername.getText().toString(), null);
                 Bundle profileData = new Bundle();
-                profileData.putSerializable("user_profile", user);
+                profileData.putSerializable("user_profile", dataUser);
                 fragmentEditProfile.setArguments(profileData);
                 getActivity().getSupportFragmentManager().beginTransaction().
                         replace(R.id.fragment_profile,fragmentEditProfile).addToBackStack(null).commit();
+            }
+        });
+
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppPreference appPreference = new AppPreference(getContext());
+                appPreference.setLoginUsername(null);
             }
         });
     }
@@ -64,7 +74,7 @@ public class ProfilFragment extends Fragment {
                 String username = appPreference.getLoginUsername();
 
                 if(username != null){
-                    User dataUser = DatabaseClient.getInstance(getActivity().getApplicationContext())
+                    dataUser = DatabaseClient.getInstance(getActivity().getApplicationContext())
                             .getAppDatabase()
                             .userDao()
                             .getUserProfile(username);

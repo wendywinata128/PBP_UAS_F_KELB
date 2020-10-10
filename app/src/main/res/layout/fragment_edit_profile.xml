@@ -16,7 +16,7 @@
         android:text="@string/edit_profile" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profile_photo"
+        android:id="@+id/edit_profile_photo"
         android:layout_width="113dp"
         android:layout_height="113dp"
         android:layout_gravity="center"
@@ -24,6 +24,7 @@
         android:src="@drawable/ic_baseline_account_circle_24"/>
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_edit_profilePhoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -51,6 +52,7 @@
         android:layout_margin="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:enabled="false"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -59,7 +61,8 @@
             android:layout_height="wrap_content"
             android:autofillHints=""
             android:hint="@string/input_your_username"
-            android:inputType="text" />
+            android:inputType="text"
+            android:enabled="false"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 

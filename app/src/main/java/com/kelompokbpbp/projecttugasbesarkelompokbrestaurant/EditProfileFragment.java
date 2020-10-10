@@ -11,17 +11,20 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.DatabaseClient;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.User;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class EditProfileFragment extends Fragment {
 
     TextInputEditText editName, editUsername, editPhoneNumber;
-    Button updateBtn, cancelBtn;
+    MaterialButton updateBtn, cancelBtn, captureBtn;
+    CircleImageView profilePhoto;
     User user;
 
     public EditProfileFragment() {
@@ -56,9 +59,13 @@ public class EditProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_edit_profile, container, false);
         user = (User) getArguments().getSerializable("user_profile");
+
+        profilePhoto = view.findViewById(R.id.edit_profile_photo);
+
         editName = view.findViewById(R.id.input_name);
         editUsername = view.findViewById(R.id.input_username);
         editPhoneNumber = view.findViewById(R.id.input_phone);
+
         updateBtn = view.findViewById(R.id.btn_update);
         cancelBtn = view.findViewById(R.id.btn_cancel);
 
