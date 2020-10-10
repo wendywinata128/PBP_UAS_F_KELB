@@ -1,12 +1,10 @@
 package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -15,9 +13,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
-import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.login_activity.LoginActivity;
-import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.main_activity.MainActivity;
-import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.register_activity.Fragment_register_2;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.DatabaseClient;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.User;
 
@@ -48,7 +43,11 @@ public class ProfilFragment extends Fragment {
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragmentEditProfile = new EditProfileFragment();
+                EditProfileFragment fragmentEditProfile = new EditProfileFragment();
+                User user = new User(tvName.getText().toString(), tvPhoneNumber.getText().toString(), tvUsername.getText().toString(), null);
+                Bundle profileData = new Bundle();
+                profileData.putSerializable("user_profile", user);
+                fragmentEditProfile.setArguments(profileData);
                 getActivity().getSupportFragmentManager().beginTransaction().
                         replace(R.id.fragment_profile,fragmentEditProfile).addToBackStack(null).commit();
             }
