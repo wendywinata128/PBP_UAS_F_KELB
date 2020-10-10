@@ -1,12 +1,10 @@
 package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -15,14 +13,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
-import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.login_activity.LoginActivity;
-import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.main_activity.MainActivity;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.DatabaseClient;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.User;
 
 public class ProfilFragment extends Fragment {
     private TextView tvName, tvUsername, tvPhoneNumber;
-    private User user;
     private MaterialButton btnEdit;
 
     public ProfilFragment() {
@@ -37,6 +32,7 @@ public class ProfilFragment extends Fragment {
         tvName = view.findViewById(R.id.profile_name);
         tvUsername = view.findViewById(R.id.profile_username);
         tvPhoneNumber = view.findViewById(R.id.profile_phone);
+        btnEdit = view.findViewById(R.id.btn_editProfile);
         return view;
     }
 
@@ -44,6 +40,18 @@ public class ProfilFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         getUserProfile();
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditProfileFragment fragmentEditProfile = new EditProfileFragment();
+                User user = new User(tvName.getText().toString(), tvPhoneNumber.getText().toString(), tvUsername.getText().toString(), null);
+                Bundle profileData = new Bundle();
+                profileData.putSerializable("user_profile", user);
+                fragmentEditProfile.setArguments(profileData);
+                getActivity().getSupportFragmentManager().beginTransaction().
+                        replace(R.id.fragment_profile,fragmentEditProfile).addToBackStack(null).commit();
+            }
+        });
     }
 
     private void getUserProfile() {
