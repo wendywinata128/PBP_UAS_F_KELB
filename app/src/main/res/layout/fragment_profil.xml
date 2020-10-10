@@ -7,12 +7,52 @@
     tools:context=".ProfilFragment">
 
     <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_photo"
         android:layout_width="113dp"
         android:layout_height="113dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:src="@color/colorAccent"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_baseline_account_circle_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/profile_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/profile_photo"
+        app:layout_constraintTop_toTopOf="@id/profile_photo"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="12dp"
+        android:text="Nama" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/profile_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/profile_photo"
+        app:layout_constraintTop_toBottomOf="@id/profile_name"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:text="Username" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/profile_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/profile_photo"
+        app:layout_constraintTop_toBottomOf="@id/profile_username"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:text="Phone number" />
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/profile_photo"
+        app:layout_constraintTop_toBottomOf="@id/profile_phone"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/edit_profile"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
