@@ -8,6 +8,7 @@
     tools:context=".activity.splash_screen_activity.SplashScreenActivity">
 
     <LinearLayout
+        android:id="@+id/layoutContent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
