@@ -72,13 +72,13 @@ public class Fragment_Register_1 extends Fragment {
         boolean validation = true;
 
         if(tvFullName.getEditText().getText().toString().isEmpty()){
-            tvFullName.setError("Full Name Cannot be Empty");
+            tvFullName.setError("Full name cannot be empty");
             validation = false;
         }
 
         if(tvPhoneNumber.getEditText().getText().toString().isEmpty() ||
                 tvPhoneNumber.getEditText().getText().toString().length() < 9 ){
-            tvPhoneNumber.setError("Phone Number Must be 8 or more digits");
+            tvPhoneNumber.setError("Phone number must be 8 or more digits");
             validation = false;
         }
         return validation;

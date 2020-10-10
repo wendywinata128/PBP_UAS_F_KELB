@@ -64,12 +64,12 @@ public class Fragment_register_2 extends Fragment {
 
         if(tvUsername.getEditText().getText().toString().contains(" ") ||
             tvUsername.getEditText().getText().toString().isEmpty()){
-            tvUsername.setError("Username Cannot contains space");
+            tvUsername.setError("Username cannot contains space");
             validation = false;
         }
 
         if(tvPassword.getEditText().getText().toString().length() < 6){
-            tvPassword.setError("Password Must be at least 6 digit");
+            tvPassword.setError("Password must be at least 6 digit");
             validation = false;
         }
 
@@ -88,7 +88,7 @@ public class Fragment_register_2 extends Fragment {
             @Override
             protected Void doInBackground(Void... voids) {
                 User data = new User(fullName, phoneNumber, tvUsername.getEditText().getText().toString(),
-                        tvPassword.getEditText().getText().toString());
+                        tvPassword.getEditText().getText().toString(), "-");
 
                 DatabaseClient.getInstance(getActivity().getApplicationContext())
                         .getAppDatabase()
