@@ -14,20 +14,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.databinding.CartItemLayoutBinding;
-import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.databinding.ItemGridFoodBinding;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.Keranjang;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.Menu;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> {
     private Context context;
     private List<Keranjang> listKeranjang;
+    private List<Keranjang> listKeranjangAr = new ArrayList<>();
 
     public CartAdapter(){}
     public CartAdapter(Context context, List<Keranjang> listKeranjang){
         this.context = context;
         this.listKeranjang = listKeranjang;
+        listKeranjangAr.addAll(listKeranjang);
     }
 
     @NonNull
@@ -35,7 +37,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         CartItemLayoutBinding binding = DataBindingUtil.inflate(
                 LayoutInflater.from(parent.getContext()),R.layout.cart_item_layout,parent,false);
-
         return new MyViewHolder(binding);
     }
 

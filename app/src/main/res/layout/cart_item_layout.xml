@@ -51,17 +51,19 @@ xmlns:tools="http://schemas.android.com/tools">
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
-<!--                <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton-->
-<!--                    android:id="@+id/txt_jumlah"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:layout_width="80dp"-->
-<!--                    android:layout_height="30dp"-->
-<!--                    android:layout_marginLeft="220dp"-->
-<!--                    app:initialNumber="1"-->
-<!--                    app:finalNumber="100"-->
-<!--                    app:backGroundColor="@color/bottom"-->
-<!--                    app:textColor="@color/colorPrimaryDark">-->
-<!--                </com.cepheuen.elegantnumberbutton.view.ElegantNumberButton>-->
+                   <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                       android:id="@+id/txt_jumlah"
+                       android:layout_weight="1"
+                       android:layout_width="80dp"
+                       android:layout_height="30dp"
+                       android:layout_marginLeft="220dp"
+                       app:initialNumber="1"
+                       app:finalNumber="100"
+                       app:backGroundColor="@color/bottom"
+                       app:textColor="@color/colorPrimaryDark" >
+
+                   </com.cepheuen.elegantnumberbutton.view.ElegantNumberButton>
+
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

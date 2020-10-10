@@ -21,16 +21,16 @@ public class Keranjang {
     public String harga;
     @ColumnInfo(name = "totalHarga")
     public String totalHarga;
-    @ColumnInfo(name = "username")
-    public String username;
+    //@ColumnInfo(name = "username")
+    //public String username;
     @ColumnInfo(name = "fotoMenu")
     public String fotoMenu;
 
-    public Keranjang(String namaMakanan, String jumlah, String totalHarga, String username) {
+    public Keranjang(String namaMakanan, String jumlah, String totalHarga) {
         this.namaMakanan = namaMakanan;
         this.jumlah = jumlah;
         this.totalHarga = totalHarga;
-        this.username = username;
+        //this.username = username;
         this.fotoMenu = fotoMenu;
     }
 
@@ -74,13 +74,13 @@ public class Keranjang {
         this.totalHarga = totalHarga;
     }
 
-    public String getUsername() {
+    /*public String getUsername() {
         return username;
     }
 
     public void setUsername(String username) {
         this.username = username;
-    }
+    }*/
 
     public String getFotoMenu() {
         return fotoMenu;
