@@ -18,12 +18,11 @@ public class AppPreference {
     public Boolean getFirstRun(){
         boolean firstRun = pref.getBoolean(PREFERENCE_FIRST_RUN,true);
 
-        if(firstRun){
-            pref.edit().putBoolean(PREFERENCE_FIRST_RUN,false).apply();
-            return true;
-        }
+        return firstRun;
+    }
 
-        return false;
+    public void setFirstRun(){
+        pref.edit().putBoolean(PREFERENCE_FIRST_RUN,false).apply();
     }
 
     public String getLoginUsername(){

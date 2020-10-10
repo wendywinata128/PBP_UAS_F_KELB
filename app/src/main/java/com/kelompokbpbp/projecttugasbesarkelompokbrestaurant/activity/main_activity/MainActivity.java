@@ -13,6 +13,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.databinding.DataBindingUtil;
 
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.AppPreference;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityMainBinding activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        AppPreference appPreference = new AppPreference(this.getApplicationContext());
+        appPreference.setFirstRun();
 
         BottomNavigationView navView = findViewById(R.id.bottomNavigation);
         NavController navController = Navigation.findNavController(this,R.id.nav_host_fragment);
