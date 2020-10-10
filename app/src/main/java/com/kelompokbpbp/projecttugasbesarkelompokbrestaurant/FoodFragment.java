@@ -75,6 +75,4 @@ public class FoodFragment extends Fragment {
         super.onDestroyView();
         fragmentFoodBinding = null;
     }
-
-
 }
