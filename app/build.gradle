@@ -22,6 +22,8 @@ android {
         }
     }
 
+
+
     //data binding
     buildFeatures {
         dataBinding true

@@ -3,22 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_profile"
-    android:background="@android:color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context=".ProfilFragment">
 
     <TextView
         android:id="@+id/my_profile"
+        style="@style/TextAppearance.MaterialComponents.Headline5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="@string/my_profile"
-        style="@style/TextAppearance.MaterialComponents.Headline5"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_photo"
@@ -34,39 +34,39 @@
         android:id="@+id/profile_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/profile_photo"
-        app:layout_constraintTop_toTopOf="@id/profile_photo"
         android:layout_marginStart="20dp"
         android:layout_marginTop="12dp"
-        android:text="@string/nama" />
+        android:text="@string/nama"
+        app:layout_constraintStart_toEndOf="@id/profile_photo"
+        app:layout_constraintTop_toTopOf="@id/profile_photo" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/profile_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/profile_photo"
-        app:layout_constraintTop_toBottomOf="@id/profile_name"
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
-        android:text="@string/username" />
+        android:text="@string/username"
+        app:layout_constraintStart_toEndOf="@id/profile_photo"
+        app:layout_constraintTop_toBottomOf="@id/profile_name" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/profile_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/profile_photo"
-        app:layout_constraintTop_toBottomOf="@id/profile_username"
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
-        android:text="@string/phone_number" />
+        android:text="@string/phone_number"
+        app:layout_constraintStart_toEndOf="@id/profile_photo"
+        app:layout_constraintTop_toBottomOf="@id/profile_username" />
 
     <FrameLayout
         android:id="@+id/btn_editProfile_layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
         android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/profile_photo"
         app:layout_constraintTop_toBottomOf="@id/profile_phone">
@@ -96,10 +96,52 @@
     </FrameLayout>
 
     <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="5dp"
-        android:background="@android:color/black"
         android:layout_marginTop="16dp"
+        android:background="@android:color/black"
         app:layout_constraintTop_toBottomOf="@+id/btn_logout_layout" />
+
+    <TextView
+        android:id="@+id/textView4"
+        style="@style/TextAppearance.MaterialComponents.Headline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="My Address"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="-39dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        tools:itemCount="3"
+        tools:listitem="@layout/item_address_layout" />
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/add_new_address"
+        android:backgroundTint="@color/colorAccent"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/rvAddress"
+        app:layout_constraintStart_toStartOf="@+id/rvAddress"
+        app:layout_constraintTop_toBottomOf="@+id/rvAddress" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
