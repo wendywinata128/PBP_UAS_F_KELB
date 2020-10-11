@@ -77,7 +77,7 @@ public class Fragment_Register_1 extends Fragment {
         }
 
         if(tvPhoneNumber.getEditText().getText().toString().isEmpty() ||
-                tvPhoneNumber.getEditText().getText().toString().length() < 9 ){
+                tvPhoneNumber.getEditText().getText().toString().length() < 8 ){
             tvPhoneNumber.setError("Phone number must be 8 or more digits");
             validation = false;
         }

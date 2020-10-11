@@ -34,7 +34,7 @@
             android:letterSpacing="0.1"
             android:lineSpacingExtra="5dp"
             android:lines="5"
-            android:text="Hello , Since its your first time open Restoku We Want to Setting Our App To Match Your Comfort"
+            android:text="@string/greetings"
             android:textSize="16sp" />
     </LinearLayout>
 

@@ -123,7 +123,9 @@ public class EditProfileFragment extends Fragment {
                         .load(Uri.parse(user.getPhotoProfile()))
                         .into(editProfilePhoto);
             } else {
-                editProfilePhoto.setImageResource(R.drawable.ic_baseline_account_circle_24);
+                Glide.with(getContext())
+                        .load(R.drawable.ic_baseline_account_circle_24)
+                        .into(editProfilePhoto);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -187,7 +189,7 @@ public class EditProfileFragment extends Fragment {
         }
 
         if(editPhoneNumber.getText().toString().isEmpty() ||
-                String.valueOf(editPhoneNumber.getText()).length() < 9 ){
+                String.valueOf(editPhoneNumber.getText()).length() < 8 ){
             editPhoneLayout.setError("Phone number must be 8 or more digits");
             validation = false;
         }
