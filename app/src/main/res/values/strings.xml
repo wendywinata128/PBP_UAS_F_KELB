@@ -26,7 +26,7 @@
     <string name="register_account">Register Account</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
-    <string name="register">I DONT HAVE ACCOUNT YET</string>
+    <string name="register">I DO NOT HAVE ACCOUNT YET</string>
     <string name="i_already_have_account">I already have account</string>
     <string name="full_name">Full Name</string>
     <string name="handphone_number">Handphone Number</string>
@@ -46,7 +46,7 @@
     <string name="input_your_username">Input your username</string>
     <string name="input_your_phone_number">Input your phone number</string>
     <string name="logout">Logout</string>
-    <string name="nama_alamat">Nama Alamat</string>
-    <string name="number">1</string>
-    <string name="add_new_address">ADD NEW ADDRESS</string>
+    <string name="edit_profile_picture">Edit Profile Picture</string>
+    <string name="cancel">Cancel</string>
+    <string name="update_profile">Update Profile</string>
 </resources>

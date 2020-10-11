@@ -123,7 +123,9 @@ public class EditProfileFragment extends Fragment {
                         .load(Uri.parse(user.getPhotoProfile()))
                         .into(editProfilePhoto);
             } else {
-                editProfilePhoto.setImageResource(R.drawable.ic_baseline_account_circle_24);
+                Glide.with(getContext())
+                        .load(R.drawable.ic_baseline_account_circle_24)
+                        .into(editProfilePhoto);
             }
         } catch (Exception e) {
             e.printStackTrace();
