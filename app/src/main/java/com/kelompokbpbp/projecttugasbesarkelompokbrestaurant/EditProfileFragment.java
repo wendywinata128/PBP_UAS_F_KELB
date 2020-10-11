@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -118,7 +119,9 @@ public class EditProfileFragment extends Fragment {
 
         try {
             if(user.getPhotoProfile() != null) {
-                editProfilePhoto.setImageURI(Uri.parse(user.getPhotoProfile()));
+                Glide.with(getContext())
+                        .load(Uri.parse(user.getPhotoProfile()))
+                        .into(editProfilePhoto);
             } else {
                 editProfilePhoto.setImageResource(R.drawable.ic_baseline_account_circle_24);
             }
@@ -197,6 +200,8 @@ public class EditProfileFragment extends Fragment {
         if(requestCode == storage_requestCode) {
             if(grantResults[0] == PackageManager.PERMISSION_DENIED) {
                 Toast.makeText(getContext(), "Storage permission denied", Toast.LENGTH_LONG).show();
+            }else{
+                capturePhoto();
             }
         }
     }
@@ -217,7 +222,9 @@ public class EditProfileFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         //Called when photo was captured from camera
         if(resultCode == RESULT_OK) {
-            editProfilePhoto.setImageURI(image_uri);
+            Glide.with(getContext())
+                    .load(image_uri)
+                    .into(editProfilePhoto);
         }
     }
 }

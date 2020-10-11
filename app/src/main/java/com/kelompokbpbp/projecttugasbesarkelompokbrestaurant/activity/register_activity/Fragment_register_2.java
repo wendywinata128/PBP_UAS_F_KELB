@@ -16,7 +16,9 @@ import android.widget.Toast;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.login_activity.LoginActivity;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.main_activity.MainActivity;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.AppPreference;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.DatabaseClient;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.User;
 
@@ -102,7 +104,7 @@ public class Fragment_register_2 extends Fragment {
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
                 Toast.makeText(Fragment_register_2.this.getContext(), "User Registered Success", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(Fragment_register_2.this.getContext(), MainActivity.class));
+                startActivity(new Intent(Fragment_register_2.this.getContext(), LoginActivity.class));
                 getActivity().finishAndRemoveTask();
             }
         }

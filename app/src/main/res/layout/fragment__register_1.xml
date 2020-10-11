@@ -10,8 +10,10 @@
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="32dp"
         android:gravity="center"
         android:orientation="vertical"
@@ -24,8 +26,8 @@
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:src="@drawable/boy"
-            android:contentDescription="@string/logo_register_account"/>
+            android:contentDescription="@string/logo_register_account"
+            android:src="@drawable/boy" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -42,13 +44,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:hint="@string/full_name"
-            app:helperText="Enter your real name"
-            app:errorEnabled="true">
+            app:errorEnabled="true"
+            app:helperText="Enter your real name">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"/>
+                android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -64,16 +66,17 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"/>
+                android:inputType="number" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnContinue"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginTop="15dp"
+            android:backgroundTint="#55EA68"
             android:text="@string/continue_hint" />
 
         <com.google.android.material.button.MaterialButton
@@ -81,8 +84,8 @@
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/i_already_have_account"
             android:layout_marginTop="15dp"
+            android:text="@string/i_already_have_account"
             android:textColor="#A60F0F" />
 
     </LinearLayout>

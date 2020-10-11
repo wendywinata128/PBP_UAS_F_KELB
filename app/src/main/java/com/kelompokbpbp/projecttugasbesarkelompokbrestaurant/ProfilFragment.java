@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.button.MaterialButton;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.login_activity.LoginActivity;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.AppPreference;
@@ -68,6 +69,7 @@ public class ProfilFragment extends Fragment {
                 AppPreference appPreference = new AppPreference(getContext());
                 appPreference.setLoginUsername(null);
                 Intent toLogin = new Intent(ProfilFragment.this.getContext(), LoginActivity.class);
+                getActivity().finishAndRemoveTask();
                 startActivity(toLogin);
             }
         });
@@ -99,7 +101,9 @@ public class ProfilFragment extends Fragment {
                     tvName.setText(user.getNama());
                     tvUsername.setText(user.getUsername());
                     tvPhoneNumber.setText(user.getNohp());
-                    photoProfile.setImageURI(Uri.parse(user.getPhotoProfile()));
+                    Glide.with(getContext())
+                            .load(Uri.parse(user.getPhotoProfile()))
+                            .into(photoProfile);
                 }
             }
         }
