@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:elevation="5dp"
+    android:orientation="vertical"
+    tools:context=".EditAddAddressFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        style="@style/TextAppearance.MaterialComponents.Headline5"
+        android:text="Add Address" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/edit_profile_photo"
+        android:layout_width="113dp"
+        android:layout_height="113dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_baseline_account_circle_24"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_edit_profilePhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Set Location"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_name_layout"
+        android:layout_margin="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:hint="Address Name"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_address_layout"
+        android:layout_margin="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:autofillHints=""
+            android:hint="Address Detail"
+            android:inputType="textMultiLine"
+            android:lines="4"
+            android:gravity="start|top"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_cancel"
+            android:text="@string/cancel"
+            android:layout_weight="0.8"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="16dp"
+            android:backgroundTint="#ED2B2A"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_update"
+            android:text="Add"
+            android:layout_weight="0.8"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="#00BCD4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</LinearLayout>

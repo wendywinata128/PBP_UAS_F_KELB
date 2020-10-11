@@ -2,6 +2,7 @@ package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.adapter;
 
 import android.location.Address;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.MyViewHo
         this.listData = new ArrayList<>();
         this.listData.clear();
         this.listData.addAll(listData);
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -37,6 +39,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.MyViewHo
     public void onBindViewHolder(@NonNull AddressAdapter.MyViewHolder holder, int position) {
         Alamat data = listData.get(position);
 
+        Log.d("MASUK",String.valueOf(position));
         holder.number.setText(String.valueOf(position+1));
         holder.addressName.setText(data.getAddressName());
     }
