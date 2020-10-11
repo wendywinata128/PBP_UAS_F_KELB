@@ -189,7 +189,7 @@ public class EditProfileFragment extends Fragment {
         }
 
         if(editPhoneNumber.getText().toString().isEmpty() ||
-                String.valueOf(editPhoneNumber.getText()).length() < 9 ){
+                String.valueOf(editPhoneNumber.getText()).length() < 8 ){
             editPhoneLayout.setError("Phone number must be 8 or more digits");
             validation = false;
         }
