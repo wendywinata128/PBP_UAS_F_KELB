@@ -1,5 +1,6 @@
 package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -81,6 +82,7 @@ public class ProfilFragment extends Fragment {
                 fragmentEditProfile.setArguments(profileData);
                 getActivity().getSupportFragmentManager().beginTransaction().
                         replace(R.id.fragment_profile,fragmentEditProfile).commit();
+
             }
         });
 
@@ -93,6 +95,7 @@ public class ProfilFragment extends Fragment {
                 editAddAddressFragment.setArguments(profileData);
                 getActivity().getSupportFragmentManager().beginTransaction().
                         replace(R.id.fragment_profile,editAddAddressFragment).commit();
+
             }
         });
 
@@ -153,10 +156,7 @@ public class ProfilFragment extends Fragment {
                         .getAppDatabase()
                         .addressDAO()
                         .getAllAlamat(username);
-
-
                 Log.d("MASUK",String.valueOf(dataList.size()));
-
                 return dataList;
             }
 

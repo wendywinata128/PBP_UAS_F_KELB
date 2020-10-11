@@ -8,145 +8,158 @@
     android:background="@android:color/white"
     tools:context=".ProfilFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/fragment_profile">
 
-        <TextView
-            android:id="@+id/my_profile"
-            style="@style/TextAppearance.MaterialComponents.Headline5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:text="@string/my_profile"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_photo"
-            android:layout_width="113dp"
-            android:layout_height="113dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/ic_baseline_account_circle_24"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/my_profile" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/profile_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="12dp"
-            android:text="@string/nama"
-            app:layout_constraintStart_toEndOf="@id/profile_photo"
-            app:layout_constraintTop_toTopOf="@id/profile_photo" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/profile_username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
-            android:text="@string/username"
-            app:layout_constraintStart_toEndOf="@id/profile_photo"
-            app:layout_constraintTop_toBottomOf="@id/profile_name" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/profile_phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
-            android:text="@string/phone_number"
-            app:layout_constraintStart_toEndOf="@id/profile_photo"
-            app:layout_constraintTop_toBottomOf="@id/profile_username" />
-
-        <FrameLayout
-            android:id="@+id/btn_editProfile_layout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/profile_photo"
-            app:layout_constraintTop_toBottomOf="@id/profile_phone">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_editProfile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/edit_profile" />
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/btn_logout_layout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            app:layout_constraintEnd_toEndOf="@+id/btn_editProfile_layout"
-            app:layout_constraintStart_toStartOf="@+id/btn_editProfile_layout"
-            app:layout_constraintTop_toBottomOf="@id/btn_editProfile_layout">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_logout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#ED2B2A"
-                android:text="@string/logout" />
-        </FrameLayout>
-
-        <RelativeLayout
-            android:id="@+id/relativeLayout"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:layout_marginTop="16dp"
-            android:background="@android:color/black"
-            app:layout_constraintTop_toBottomOf="@+id/btn_logout_layout" />
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView4"
-            style="@style/TextAppearance.MaterialComponents.Headline5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/my_address"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+            <TextView
+                android:id="@+id/my_profile"
+                style="@style/TextAppearance.MaterialComponents.Headline5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/my_profile"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4"
-            tools:itemCount="3"
-            tools:listitem="@layout/item_address_layout" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_photo"
+                android:layout_width="113dp"
+                android:layout_height="113dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/ic_baseline_account_circle_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/my_profile" />
 
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@+id/rvAddress"
-            app:layout_constraintStart_toStartOf="@+id/rvAddress"
-            app:layout_constraintTop_toBottomOf="@+id/rvAddress">
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/profile_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="12dp"
+                android:text="@string/nama"
+                app:layout_constraintStart_toEndOf="@id/profile_photo"
+                app:layout_constraintTop_toTopOf="@id/profile_photo" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnAddress"
-                android:text="@string/add_new_address"
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/profile_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/username"
+                app:layout_constraintStart_toEndOf="@id/profile_photo"
+                app:layout_constraintTop_toBottomOf="@id/profile_name" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/profile_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/phone_number"
+                app:layout_constraintStart_toEndOf="@id/profile_photo"
+                app:layout_constraintTop_toBottomOf="@id/profile_username" />
+
+            <FrameLayout
+                android:id="@+id/btn_editProfile_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/profile_photo"
+                app:layout_constraintTop_toBottomOf="@id/profile_phone">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_editProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/edit_profile" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/btn_logout_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_editProfile_layout"
+                app:layout_constraintStart_toStartOf="@+id/btn_editProfile_layout"
+                app:layout_constraintTop_toBottomOf="@id/btn_editProfile_layout">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_logout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#ED2B2A"
+                    android:text="@string/logout" />
+            </FrameLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginTop="16dp"
+                android:background="@android:color/black"
+                app:layout_constraintTop_toBottomOf="@+id/btn_logout_layout" />
+
+            <TextView
+                android:id="@+id/textView4"
+                style="@style/TextAppearance.MaterialComponents.Headline5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/my_address"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
+            <FrameLayout
+                android:id="@+id/frame_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorAccent"
-                android:layout_marginTop="16dp"/>
-        </FrameLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView4"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:itemCount="3"
+                    tools:listitem="@layout/item_address_layout" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@+id/frame_layout"
+                app:layout_constraintStart_toStartOf="@+id/frame_layout"
+                app:layout_constraintTop_toBottomOf="@+id/frame_layout">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAddress"
+                    android:text="@string/add_new_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorAccent"
+                    android:layout_marginTop="16dp"/>
+            </FrameLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </FrameLayout>
 
 </ScrollView>

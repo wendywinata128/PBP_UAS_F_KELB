@@ -72,18 +72,16 @@ public class EditProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        container.removeAllViews();
         View view = inflater.inflate(R.layout.fragment_edit_profile, container, false);
         user = (User) getArguments().getSerializable("user_profile");
-
         captureBtn = view.findViewById(R.id.btn_edit_profilePhoto);
-
         editName = view.findViewById(R.id.input_name);
         editNameLayout = view.findViewById(R.id.input_name_layout);
         editUsername = view.findViewById(R.id.input_username);
         editPhoneNumber = view.findViewById(R.id.input_phone);
         editPhoneLayout = view.findViewById(R.id.input_phone_layout);
         editProfilePhoto= view.findViewById(R.id.edit_profile_photo);
-
         updateBtn = view.findViewById(R.id.btn_update);
         cancelBtn = view.findViewById(R.id.btn_cancel);
 

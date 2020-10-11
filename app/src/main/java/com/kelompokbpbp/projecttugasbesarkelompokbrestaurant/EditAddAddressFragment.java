@@ -18,12 +18,14 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.AppPreference;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.DatabaseClient;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.Alamat;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.User;
 
 public class EditAddAddressFragment extends Fragment {
     private Boolean editAddress;
     private TextInputLayout tvAdressName,tvAddressDetail;
     private String addressName,addressDetail;
     private MaterialButton btnCancel,btnOk;
+    private Alamat dataAlamat;
 
     public EditAddAddressFragment() {
         // Required empty public constructor
@@ -47,27 +49,53 @@ public class EditAddAddressFragment extends Fragment {
 
         editAddress = getArguments().getBoolean("Edit Address",false);
 
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_profile, new ProfilFragment()).commit();
-            }
-        });
-
         if(editAddress){
+            dataAlamat = (Alamat) getArguments().getSerializable("Address Data");
+            btnCancel.setText("DELETE");
+            btnOk.setText("UPDATE");
+            tvAdressName.getEditText().setText(dataAlamat.getAddressName());
+            tvAddressDetail.getEditText().setText(dataAlamat.getAddressDetail());
+            editAddress();
 
+            btnCancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    deleteAddress();
+                    endTransaction();
+                }
+            });
+
+            btnOk.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    addressName = tvAdressName.getEditText().getText().toString();
+                    addressDetail = tvAddressDetail.getEditText().getText().toString();
+                    editAddress();
+                    endTransaction();
+                }
+            });
         }else{
+            btnCancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    endTransaction();
+                }
+            });
             btnOk.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     addressName = tvAdressName.getEditText().getText().toString();
                     addressDetail = tvAddressDetail.getEditText().getText().toString();
                     addAddress();
-                    btnCancel.performClick();
+                    endTransaction();
                 }
             });
         }
+    }
+
+    private void endTransaction(){
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_profile, new ProfilFragment()).commit();
     }
 
     private void addAddress(){
@@ -92,5 +120,50 @@ public class EditAddAddressFragment extends Fragment {
 
         AddAddress addAddress = new AddAddress();
         addAddress.execute();
+    }
+
+    private void editAddress(){
+        class EditAddress extends AsyncTask<Void,Void,Void>{
+            @Override
+            protected Void doInBackground(Void... voids) {
+                dataAlamat.setAddressName(addressName);
+                dataAlamat.setAddressDetail(addressDetail);
+
+                DatabaseClient.getInstance(getActivity().getApplicationContext())
+                        .getAppDatabase()
+                        .addressDAO()
+                        .update(dataAlamat);
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+            }
+        }
+
+        EditAddress editAddress = new EditAddress();
+        editAddress.execute();
+    }
+
+    private void deleteAddress(){
+        class DeleteAddress extends AsyncTask<Void,Void,Void>{
+            @Override
+            protected Void doInBackground(Void... voids) {
+                DatabaseClient.getInstance(getActivity().getApplicationContext())
+                        .getAppDatabase()
+                        .addressDAO()
+                        .delete(dataAlamat);
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+            }
+        }
+
+        DeleteAddress deleteAddress = new DeleteAddress();
+        deleteAddress.execute();
     }
 }
