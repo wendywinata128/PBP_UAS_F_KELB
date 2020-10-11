@@ -9,12 +9,14 @@
     <string name="slogan">Quality Over Quantity</string>
     <string name="menu_restoku">Menu Restoku</string>
     <string name="order">Order</string>
+    <string name="greetings">Hello, since its your first time open Restoku, we want to setting our app to match your comfort</string>
 
-    //cart
+    //Cart
     <string name="total_cost">Total Cost</string>
     <string name="cost_number">0</string>
     <string name="checkout">CheckOut</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
+    //Register and Login
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="terms_and_condition">Condition</string>
     <string name="would_you_like_to_get_any_notification_about_food_from_us_optional">Would you like to get any notification about food from us (Optional)</string>
@@ -38,10 +40,12 @@
     <string name="login_account">Login Account</string>
     <string name="gambar_logo_login">Gambar Logo Login</string>
     <string name="register_hint">Register</string>
-    <string name="edit_profile">Edit Profile</string>
     <string name="phone_number">Phone number</string>
     <string name="nama">Nama</string>
     <string name="my_profile">My Profile</string>
+
+    //Edit Profile
+    <string name="edit_profile">Edit Profile</string>
     <string name="input_your_name">Input your name</string>
     <string name="input_your_username">Input your username</string>
     <string name="input_your_phone_number">Input your phone number</string>
@@ -49,4 +53,13 @@
     <string name="edit_profile_picture">Edit Profile Picture</string>
     <string name="cancel">Cancel</string>
     <string name="update_profile">Update Profile</string>
+
+    //Address
+    <string name="my_address">My Address</string>
+    <string name="nama_alamat">Nama Alamat</string>
+    <string name="number">1</string>
+    <string name="add_new_address">ADD NEW ADDRESS</string>
+
+    //Confirmation for Logout
+    <string name="confirmation">Are you sure you want to logout?</string>
 </resources>

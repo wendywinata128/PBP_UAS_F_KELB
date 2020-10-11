@@ -1,5 +1,7 @@
 package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Address;
 import android.net.Uri;
@@ -19,6 +21,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.login_activity.LoginActivity;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.adapter.AddressAdapter;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.AppPreference;
@@ -81,11 +84,7 @@ public class ProfilFragment extends Fragment {
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AppPreference appPreference = new AppPreference(getContext());
-                appPreference.setLoginUsername(null);
-                Intent toLogin = new Intent(ProfilFragment.this.getContext(), LoginActivity.class);
-                getActivity().finishAndRemoveTask();
-                startActivity(toLogin);
+                alertForLogout().show();
             }
         });
     }
@@ -152,5 +151,27 @@ public class ProfilFragment extends Fragment {
 
         GetAddress getAddress = new GetAddress();
         getAddress.execute();
+    }
+
+    public Dialog alertForLogout() {
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(getActivity());
+
+        builder.setMessage(R.string.confirmation)
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                })
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        AppPreference appPreference = new AppPreference(getContext());
+                        appPreference.setLoginUsername(null);
+                        Intent toLogin = new Intent(ProfilFragment.this.getContext(), LoginActivity.class);
+                        getActivity().finishAndRemoveTask();
+                        startActivity(toLogin);
+                    }
+                });
+        return builder.create();
     }
 }
