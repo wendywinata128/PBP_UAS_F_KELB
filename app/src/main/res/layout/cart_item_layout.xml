@@ -14,6 +14,7 @@ xmlns:tools="http://schemas.android.com/tools">
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardElevation="8dp"
+    android:id="@+id/cartAdapter"
     tools:context=".CartAdapter">
     <LinearLayout
         android:orientation="horizontal"
@@ -22,6 +23,7 @@ xmlns:tools="http://schemas.android.com/tools">
         android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/img_cart"
             android:loadImg="@{keranjang.fotoMenu}"
             android:layout_width="80dp"
             android:layout_height="80dp"/>
@@ -32,7 +34,7 @@ xmlns:tools="http://schemas.android.com/tools">
 
             <TextView
                 android:id="@+id/txt_produk_name"
-                android:text="@{keranjang.namaMakanan}"
+                android:text="@{keranjang.menu.nama}"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
@@ -51,19 +53,30 @@ xmlns:tools="http://schemas.android.com/tools">
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
-                   <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
-                       android:id="@+id/txt_jumlah"
-                       android:layout_weight="1"
-                       android:layout_width="80dp"
-                       android:layout_height="30dp"
-                       android:layout_marginLeft="220dp"
-                       app:initialNumber="1"
-                       app:finalNumber="100"
-                       app:backGroundColor="@color/bottom"
-                       app:textColor="@color/colorPrimaryDark" >
+                <Spinner
+                    android:id="@+id/quantitySpinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView"
+                    app:layout_constraintStart_toEndOf="@+id/textView"
+                    app:layout_constraintTop_toTopOf="@+id/textView"
+                    android:entries="@array/quantity_string_array"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                    android:setVal="@{keranjang.jumlah}" />
 
-                   </com.cepheuen.elegantnumberbutton.view.ElegantNumberButton>
-
+                <ImageButton
+                    android:id="@+id/deleteProductButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="260dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:padding="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/quantitySpinner"
+                    app:layout_constraintStart_toEndOf="@+id/quantitySpinner"
+                    app:layout_constraintTop_toTopOf="@+id/quantitySpinner"
+                    app:srcCompat="@drawable/ic_baseline_delete_24" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

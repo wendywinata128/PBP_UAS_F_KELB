@@ -13,7 +13,7 @@ import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
 @Entity
 public class Menu {
     @PrimaryKey
-    private int id;
+    private String id;
     private String nama;
     private String harga;
     private String jenis;
@@ -26,11 +26,11 @@ public class Menu {
         this.fotoMenu = fotoMenu;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

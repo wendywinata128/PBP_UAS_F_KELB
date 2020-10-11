@@ -1,8 +1,11 @@
 package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model;
 
 import android.widget.ImageView;
+import android.widget.Spinner;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.BindingAdapter;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -11,12 +14,15 @@ import com.bumptech.glide.Glide;
 
 @Entity
 public class Keranjang {
+
+    private Menu menu;
+
     @PrimaryKey(autoGenerate = true)
     public int id;
     @ColumnInfo(name = "namaMakanan")
     public String namaMakanan;
     @ColumnInfo(name = "jumlah")
-    public String jumlah;
+    public int jumlah;
     @ColumnInfo(name = "harga")
     public String harga;
     @ColumnInfo(name = "totalHarga")
@@ -26,11 +32,12 @@ public class Keranjang {
     @ColumnInfo(name = "fotoMenu")
     public String fotoMenu;
 
-    public Keranjang(String namaMakanan, String jumlah, String totalHarga) {
+    public Keranjang(Menu menu,String namaMakanan, int jumlah, String totalHarga) {
         this.namaMakanan = namaMakanan;
         this.jumlah = jumlah;
         this.totalHarga = totalHarga;
         //this.username = username;
+        this.menu = menu;
         this.fotoMenu = fotoMenu;
     }
 
@@ -42,6 +49,14 @@ public class Keranjang {
         this.id = id;
     }
 
+    public Menu getMenu(){
+        return menu;
+    }
+
+    public void setMenu(Menu menu) {
+        this.menu = menu;
+    }
+
     public String getNamaMakanan() {
         return namaMakanan;
     }
@@ -50,11 +65,11 @@ public class Keranjang {
         this.namaMakanan = namaMakanan;
     }
 
-    public String getJumlah() {
+    public int getJumlah() {
         return jumlah;
     }
 
-    public void setJumlah(String jumlah) {
+    public void setJumlah(int jumlah) {
         this.jumlah = jumlah;
     }
 
@@ -85,10 +100,32 @@ public class Keranjang {
     public String getFotoMenu() {
         return fotoMenu;
     }
-    @BindingAdapter({"android:loadImg"})
-    public static void setFotoMenu(ImageView imageView, String fotoMenu) {
-        Glide.with(imageView.getContext())
-                .load(fotoMenu)
-                .into(imageView);
+    //@BindingAdapter({"android:loadImg"})
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Keranjang keranjang = (Keranjang) o;
+        return getJumlah() == keranjang.getJumlah() &&
+                getMenu().equals(keranjang.getMenu());
     }
+
+    @BindingAdapter("android:setVal")
+    public static void getSelectedSpinnerValue(Spinner spinner, int jumlah) {
+        spinner.setSelection(jumlah - 1, true);
+    }
+
+    public static DiffUtil.ItemCallback<Keranjang> itemCallback = new DiffUtil.ItemCallback<Keranjang>() {
+        @Override
+        public boolean areItemsTheSame(@NonNull Keranjang oldItem, @NonNull Keranjang newItem) {
+            return oldItem.getJumlah() == newItem.getJumlah();
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull Keranjang oldItem, @NonNull Keranjang newItem) {
+            return oldItem.equals(newItem);
+        }
+    };
 }
