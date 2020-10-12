@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,20 +14,20 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.button.MaterialButton;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.databinding.CartItemLayoutBinding;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.Keranjang;
 
 import java.util.List;
 
-public class CartAdapter extends ListAdapter<Keranjang,CartAdapter.CartViewHolder> {
+public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
     private Context context;
     private List<Keranjang> listKeranjang;
-    private CartInterface cartInterface;
 
-    public CartAdapter(CartInterface cartInterface) {
-        super(Keranjang.itemCallback);
-        this.cartInterface = cartInterface;
+    public CartAdapter(Context context,List<Keranjang>listKeranjang) {
+        this.listKeranjang = listKeranjang;
+        this.context = context;
     }
 
     @NonNull
@@ -39,60 +40,30 @@ public class CartAdapter extends ListAdapter<Keranjang,CartAdapter.CartViewHolde
 
     @Override
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
-        holder.cartItemLayoutBinding.setKeranjang(getItem(position));
-        holder.cartItemLayoutBinding.executePendingBindings();
-        /*holder.txt_jumlah.setNumber(String.valueOf(listKeranjang.get(position).getJumlah()));
+        Keranjang keranjang = listKeranjang.get(position);
+//        Glide.with(context).load(listKeranjang.get(position).getFotoMenu())
+//                .into(holder.foto);
+        holder.txtNama.setText("asdasd");
+        holder.txtharga.setText(new StringBuilder("")
+                .append(listKeranjang.get(position).getHarga() + listKeranjang.get(position).getTotalHarga()));
 
-        holder.txt_jumlah.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
-            @Override
-            public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
-                Keranjang keranjang = listKeranjang.get(position);
-                keranjang.setJumlah(newValue);
-
-                Common.cartRepository.updateCart(keranjang);
-            }
-        }); */
     }
 
-    /*@Override
+    @Override
     public int getItemCount() {
         return listKeranjang.size();
-    }*/
-
-    class CartViewHolder extends RecyclerView.ViewHolder{
-        CartItemLayoutBinding cartItemLayoutBinding;
-
-        public CartViewHolder(@NonNull CartItemLayoutBinding cartItemLayoutBinding) {
-            super(cartItemLayoutBinding.getRoot());
-            this.cartItemLayoutBinding = cartItemLayoutBinding;
-
-            cartItemLayoutBinding.deleteProductButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    cartInterface.deleteItem(getItem(getAdapterPosition()));
-                }
-            });
-            cartItemLayoutBinding.quantitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    int jumlah = position + 1;
-                    if (jumlah == getItem(getAdapterPosition()).getJumlah()) {
-                        return;
-                    }
-                    cartInterface.changeQuantity(getItem(getAdapterPosition()), jumlah);
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-
-                }
-            });
-            //this.binding = binding;
-        }
     }
 
-    public interface CartInterface {
-        void deleteItem(Keranjang keranjang);
-        void changeQuantity(Keranjang keranjang, int jumlah);
+    class CartViewHolder extends RecyclerView.ViewHolder{
+        TextView txtNama,txtharga;
+        ImageView foto;
+        private CartItemLayoutBinding binding;
+        public CartViewHolder(@NonNull CartItemLayoutBinding binding) {
+            super(binding.getRoot());
+            txtNama = itemView.findViewById(R.id.txt_produk_name);
+            txtharga = itemView.findViewById(R.id.txt_produk_harga);
+            foto = itemView.findViewById(R.id.img_cart);
+        //this.binding = binding;
+        }
     }
 }

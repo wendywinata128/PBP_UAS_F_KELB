@@ -2,13 +2,17 @@ package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model;
 
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.BindingAdapter;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
+
+import static android.media.audiofx.AutomaticGainControl.isAvailable;
 
 @Entity
 public class Menu {
@@ -68,4 +72,5 @@ public class Menu {
                 .load(fotoMenu)
                 .into(imageView);
     }
+
 }

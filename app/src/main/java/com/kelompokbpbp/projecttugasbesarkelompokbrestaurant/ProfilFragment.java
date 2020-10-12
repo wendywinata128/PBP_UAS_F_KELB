@@ -36,7 +36,7 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ProfilFragment extends Fragment {
+public class  ProfilFragment extends Fragment {
     private TextView tvName, tvUsername, tvPhoneNumber;
     private RecyclerView rvAddress;
     private AddressAdapter addressAdapter;

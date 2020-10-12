@@ -24,7 +24,7 @@ xmlns:tools="http://schemas.android.com/tools">
 
         <ImageView
             android:id="@+id/img_cart"
-            android:loadImg="@{keranjang.fotoMenu}"
+
             android:layout_width="80dp"
             android:layout_height="80dp"/>
         <LinearLayout
@@ -34,7 +34,7 @@ xmlns:tools="http://schemas.android.com/tools">
 
             <TextView
                 android:id="@+id/txt_produk_name"
-                android:text="@{keranjang.menu.nama}"
+                android:text="@{keranjang.namaMakanan}"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
@@ -63,8 +63,7 @@ xmlns:tools="http://schemas.android.com/tools">
                     app:layout_constraintStart_toEndOf="@+id/textView"
                     app:layout_constraintTop_toTopOf="@+id/textView"
                     android:entries="@array/quantity_string_array"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-                    android:setVal="@{keranjang.jumlah}" />
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"/>
 
                 <ImageButton
                     android:id="@+id/deleteProductButton"
