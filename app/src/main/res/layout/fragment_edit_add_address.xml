@@ -8,12 +8,13 @@
     tools:context=".EditAddAddressFragment">
 
     <TextView
+        android:id="@+id/tv_caption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_gravity="center"
         style="@style/TextAppearance.MaterialComponents.Headline5"
-        android:text="Add Address" />
+        android:text="@string/add_address" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/edit_profile_photo"
@@ -25,11 +26,11 @@
         android:src="@drawable/ic_baseline_account_circle_24"/>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_edit_profilePhoto"
+        android:id="@+id/btnSetAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Set Location"/>
+        android:text="@string/set_location"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/input_name_layout"
@@ -43,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autofillHints=""
-            android:hint="Address Name"
+            android:hint="@string/address_name"
             android:inputType="text" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -61,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:autofillHints=""
-            android:hint="Address Detail"
+            android:hint="@string/address_detail"
             android:inputType="textMultiLine"
             android:lines="4"
             android:gravity="start|top"/>
@@ -86,7 +87,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_update"
-            android:text="Add"
+            android:text="@string/add"
             android:layout_weight="0.8"
             android:layout_marginEnd="16dp"
             android:backgroundTint="#00BCD4"

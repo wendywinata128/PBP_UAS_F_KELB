@@ -44,7 +44,6 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.MyViewHo
     public void onBindViewHolder(@NonNull final AddressAdapter.MyViewHolder holder, int position) {
         final Alamat data = listData.get(position);
 
-        Log.d("MASUK",String.valueOf(position));
         holder.number.setText(String.valueOf(position+1));
         holder.addressName.setText(data.getAddressName());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
