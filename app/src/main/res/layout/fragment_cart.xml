@@ -41,35 +41,7 @@
             android:layout_margin="8dp"
             tools:context=".CartFragment">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="8"
-                    android:padding="8dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="@string/total_cost"
-                        android:textSize="30sp"
-                        android:layout_weight="4"/>
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/txt_final_price"
-                        android:text="@string/cost_number"
-                        android:gravity="right"
-                        android:textSize="30sp"
-                        android:layout_weight="4"/>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/btn_checkOut"
