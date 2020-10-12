@@ -18,6 +18,8 @@ import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
 import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.camera.CameraPosition;
+import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.location.LocationComponent;
 import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions;
@@ -84,6 +86,13 @@ public class GeoLocationActivity extends AppCompatActivity implements OnMapReady
 
                     GeoJsonSource source = mapboxMap.getStyle().getSourceAs(DESTINATION_SOURCE_ID);
                     source.setGeoJson(destination);
+
+                    mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(
+                            new CameraPosition.Builder()
+                            .target(new LatLng(destination.latitude(),destination.longitude()))
+                            .zoom(8)
+                            .build()
+                    ),4000);
                 }
 
                 mapboxMap.addOnMapClickListener(new MapboxMap.OnMapClickListener() {
