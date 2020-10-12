@@ -28,7 +28,7 @@ public class EditAddAddressFragment extends Fragment {
     private TextInputLayout tvAdressName,tvAddressDetail;
     private TextView tvCaption;
     private String addressName,addressDetail,addressLocation="-";
-    private MaterialButton btnCancel,btnOk,btnSetAddress;
+    private MaterialButton btnCancel,btnOk,btnSetAddress, btnCancelEdit;
     private Alamat dataAlamat;
     public static final int GEO_LOCATION_RESULT = 11001;
 
@@ -47,6 +47,7 @@ public class EditAddAddressFragment extends Fragment {
         btnOk = view.findViewById(R.id.btn_update);
         btnSetAddress = view.findViewById(R.id.btnSetAddress);
         tvCaption = view.findViewById(R.id.tv_caption);
+        btnCancelEdit = view.findViewById(R.id.btn_cancel_2);
         return view;
     }
 
@@ -86,9 +87,18 @@ public class EditAddAddressFragment extends Fragment {
             btnOk.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    addressName = tvAdressName.getEditText().getText().toString();
-                    addressDetail = tvAddressDetail.getEditText().getText().toString();
-                    editAddress();
+                    if(CheckValidationAddress()) {
+                        addressName = tvAdressName.getEditText().getText().toString();
+                        addressDetail = tvAddressDetail.getEditText().getText().toString();
+                        editAddress();
+                        endTransaction();
+                    }
+                }
+            });
+
+            btnCancelEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
                     endTransaction();
                 }
             });
@@ -102,12 +112,16 @@ public class EditAddAddressFragment extends Fragment {
             btnOk.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    addressName = tvAdressName.getEditText().getText().toString();
-                    addressDetail = tvAddressDetail.getEditText().getText().toString();
-                    addAddress();
-                    endTransaction();
+                    if(CheckValidationAddress())
+                    {
+                        addressName = tvAdressName.getEditText().getText().toString();
+                        addressDetail = tvAddressDetail.getEditText().getText().toString();
+                        addAddress();
+                        endTransaction();
+                    }
                 }
             });
+            btnCancelEdit.setVisibility(View.GONE);
         }
     }
 
@@ -195,5 +209,20 @@ public class EditAddAddressFragment extends Fragment {
                 addressLocation = data.getStringExtra("Address Data");
             }
         }
+    }
+
+    private boolean CheckValidationAddress(){
+        boolean validation = true;
+
+        if(tvAdressName.getEditText().getText().toString().isEmpty()){
+            tvAdressName.setError("Address name cannot be empty");
+            validation = false;
+        }
+
+        if(tvAddressDetail.getEditText().getText().toString().isEmpty()){
+            tvAddressDetail.setError("Address detail cannot be empty");
+            validation = false;
+        }
+        return validation;
     }
 }
