@@ -34,7 +34,6 @@ xmlns:tools="http://schemas.android.com/tools">
 
             <TextView
                 android:id="@+id/txt_produk_name"
-                android:text="@{keranjang.namaMakanan}"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
@@ -47,7 +46,6 @@ xmlns:tools="http://schemas.android.com/tools">
 
                 <TextView
                     android:id="@+id/txt_produk_harga"
-                    android:text="@{keranjang.harga}"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"

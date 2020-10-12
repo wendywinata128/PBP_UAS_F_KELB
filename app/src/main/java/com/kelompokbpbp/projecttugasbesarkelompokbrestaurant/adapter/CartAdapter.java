@@ -43,9 +43,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         Keranjang keranjang = listKeranjang.get(position);
 //        Glide.with(context).load(listKeranjang.get(position).getFotoMenu())
 //                .into(holder.foto);
-        holder.txtNama.setText("asdasd");
-        holder.txtharga.setText(new StringBuilder("")
-                .append(listKeranjang.get(position).getHarga() + listKeranjang.get(position).getTotalHarga()));
+        holder.txtNama.setText(keranjang.getNamaMakanan());
+        holder.txtharga.setText(keranjang.getHarga());
 
     }
 
@@ -60,9 +59,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         private CartItemLayoutBinding binding;
         public CartViewHolder(@NonNull CartItemLayoutBinding binding) {
             super(binding.getRoot());
-            txtNama = itemView.findViewById(R.id.txt_produk_name);
-            txtharga = itemView.findViewById(R.id.txt_produk_harga);
-            foto = itemView.findViewById(R.id.img_cart);
+            txtNama = binding.txtProdukName;
+            txtharga = binding.txtProdukHarga;
         //this.binding = binding;
         }
     }
