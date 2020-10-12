@@ -41,8 +41,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     @Override
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
         Keranjang keranjang = listKeranjang.get(position);
-//        Glide.with(context).load(listKeranjang.get(position).getFotoMenu())
-//                .into(holder.foto);
+        Glide.with(context).load(keranjang.fotoMakanan)
+                .into(holder.foto);
         holder.txtNama.setText(keranjang.getNamaMakanan());
         holder.txtharga.setText(keranjang.getHarga());
 
@@ -61,6 +61,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             super(binding.getRoot());
             txtNama = binding.txtProdukName;
             txtharga = binding.txtProdukHarga;
+            foto = binding.imgCart;
         //this.binding = binding;
         }
     }

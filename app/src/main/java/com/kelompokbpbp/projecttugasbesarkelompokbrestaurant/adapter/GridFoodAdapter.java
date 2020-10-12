@@ -129,7 +129,7 @@ public class GridFoodAdapter extends RecyclerView.Adapter<GridFoodAdapter.MyView
             //final String gambar = holder.binding.getMenu().getFotoMenu();
             @Override
             protected Void doInBackground(Void... voids) {
-                Keranjang keranjang = new Keranjang(data.getNama(),1,data.getHarga(),data.getHarga(),username);
+                Keranjang keranjang = new Keranjang(data.getNama(),1,data.getHarga(),data.getHarga(),username,data.getFotoMenu());
                 //keranjang.setFotoMenu();
 
                 DatabaseClient.getInstance(context)

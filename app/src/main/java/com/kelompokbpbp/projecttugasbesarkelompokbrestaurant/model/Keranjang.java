@@ -27,13 +27,16 @@ public class Keranjang {
     public String totalHarga;
     @ColumnInfo(name = "username")
     public String username;
+    @ColumnInfo(name = "fotoMakanan")
+    public String fotoMakanan;
 
-    public Keranjang(String namaMakanan, int jumlah, String totalHarga,String harga, String username) {
+    public Keranjang(String namaMakanan, int jumlah, String totalHarga,String harga, String username,String fotoMakanan) {
         this.namaMakanan = namaMakanan;
         this.jumlah = jumlah;
         this.totalHarga = totalHarga;
         this.harga = harga;
         this.username = username;
+        this.fotoMakanan = fotoMakanan;
     }
 
     public int getId() {
@@ -84,7 +87,15 @@ public class Keranjang {
         this.username = username;
     }
 
-//
+    public String getFotoMakanan() {
+        return fotoMakanan;
+    }
+
+    public void setFotoMakanan(String fotoMakanan) {
+        this.fotoMakanan = fotoMakanan;
+    }
+
+    //
 //    @BindingAdapter({"android:loadImg"})
 //    public void setFotoMenu(ImageView imageView, String fotoMenu) {
 //        Glide.with(imageView.getContext())
