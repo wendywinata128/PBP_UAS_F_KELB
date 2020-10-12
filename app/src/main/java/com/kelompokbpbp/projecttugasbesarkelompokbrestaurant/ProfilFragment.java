@@ -1,5 +1,6 @@
 package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +40,7 @@ public class ProfilFragment extends Fragment {
     private TextView tvName, tvUsername, tvPhoneNumber;
     private RecyclerView rvAddress;
     private AddressAdapter addressAdapter;
-    private MaterialButton btnEdit, btnLogout;
+    private MaterialButton btnEdit, btnLogout,btnAddress;
     private CircleImageView photoProfile;
     private User dataUser;
 
@@ -57,6 +59,7 @@ public class ProfilFragment extends Fragment {
         photoProfile = view.findViewById(R.id.profile_photo);
         btnEdit = view.findViewById(R.id.btn_editProfile);
         btnLogout = view.findViewById(R.id.btn_logout);
+        btnAddress = view.findViewById(R.id.btnAddress);
         rvAddress = view.findViewById(R.id.rvAddress);
         return view;
     }
@@ -64,9 +67,10 @@ public class ProfilFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
         getAllAddress();
-        rvAddress.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        rvAddress.setAdapter(addressAdapter);
+
 
         getUserProfile();
         btnEdit.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +82,20 @@ public class ProfilFragment extends Fragment {
                 fragmentEditProfile.setArguments(profileData);
                 getActivity().getSupportFragmentManager().beginTransaction().
                         replace(R.id.fragment_profile,fragmentEditProfile).commit();
+
+            }
+        });
+
+        btnAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditAddAddressFragment editAddAddressFragment = new EditAddAddressFragment();
+                Bundle profileData = new Bundle();
+                profileData.putBoolean("Edit Address",false);
+                editAddAddressFragment.setArguments(profileData);
+                getActivity().getSupportFragmentManager().beginTransaction().
+                        replace(R.id.fragment_profile,editAddAddressFragment).commit();
+
             }
         });
 
@@ -138,7 +156,7 @@ public class ProfilFragment extends Fragment {
                         .getAppDatabase()
                         .addressDAO()
                         .getAllAlamat(username);
-
+                Log.d("MASUK",String.valueOf(dataList.size()));
                 return dataList;
             }
 
@@ -146,6 +164,9 @@ public class ProfilFragment extends Fragment {
             protected void onPostExecute(List<Alamat> alamats) {
                 super.onPostExecute(alamats);
                 addressAdapter = new AddressAdapter(alamats);
+                rvAddress.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+                rvAddress.setAdapter(addressAdapter);
+                Log.d("MASUK",String.valueOf(addressAdapter.getItemCount()));
             }
         }
 

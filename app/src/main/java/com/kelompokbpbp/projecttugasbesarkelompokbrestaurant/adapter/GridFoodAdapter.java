@@ -3,6 +3,7 @@ package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.adapter;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
@@ -41,8 +42,13 @@ public class GridFoodAdapter extends RecyclerView.Adapter<GridFoodAdapter.MyView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         final Menu menu = listMenu.get(position);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
         holder.bind(menu);
     }
 
