@@ -20,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.button.MaterialButton;
@@ -133,9 +134,15 @@ public class  ProfilFragment extends Fragment {
                     tvName.setText(user.getNama());
                     tvUsername.setText(user.getUsername());
                     tvPhoneNumber.setText(user.getNohp());
-                    Glide.with(getContext())
-                            .load(Uri.parse(user.getPhotoProfile()))
-                            .into(photoProfile);
+                    if(!user.getPhotoProfile().equals("-")){
+                        Glide.with(getContext())
+                                .load(Uri.parse(user.getPhotoProfile()))
+                                .into(photoProfile);
+                    }else{
+                        Glide.with(getContext())
+                                .load(R.drawable.ic_baseline_account_circle_24)
+                                .into(photoProfile);
+                    }
                 }
             }
         }

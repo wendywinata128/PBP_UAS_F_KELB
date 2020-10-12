@@ -13,8 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.Toast;
 
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.adapter.GridFoodAdapter;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.AppPreference;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.object.DaftarMenu;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.databinding.FragmentFoodBinding;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.Menu;
@@ -41,6 +43,10 @@ public class FoodFragment extends Fragment {
         fragmentFoodBinding = FragmentFoodBinding.inflate(inflater, container, false);
         View view = fragmentFoodBinding.getRoot();
         searchView = fragmentFoodBinding.searchView;
+
+        AppPreference appPreference = new AppPreference(this.getContext());
+
+        Toast.makeText(this.getContext(),"User Aktif " + appPreference.getLoginUsername(),Toast.LENGTH_SHORT).show();
 
         // Get data Menu
         ListMenu = new DaftarMenu().MENU;

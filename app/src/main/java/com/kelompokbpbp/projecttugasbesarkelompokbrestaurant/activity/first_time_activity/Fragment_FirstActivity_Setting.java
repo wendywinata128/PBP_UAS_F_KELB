@@ -31,7 +31,7 @@ import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.register_a
 
 public class Fragment_FirstActivity_Setting extends Fragment implements CompoundButton.OnCheckedChangeListener {
     private CheckBox cbNotification, cbLocation, cbCamera;
-    private MaterialButton btnCheckAll,btnContinue;
+    private MaterialButton btnContinue;
 
     private static final int REQ_LOCATION = 1001;
     private static final int REQ_CAMERA = 1002;
@@ -49,7 +49,6 @@ public class Fragment_FirstActivity_Setting extends Fragment implements Compound
         cbNotification = view.findViewById(R.id.cbNotification);
         cbCamera = view.findViewById(R.id.cbCamera);
         cbLocation = view.findViewById(R.id.cbLocation);
-        btnCheckAll = view.findViewById(R.id.btnCheckAll);
         btnContinue = view.findViewById(R.id.btnContinue);
         return view;
     }
@@ -63,14 +62,6 @@ public class Fragment_FirstActivity_Setting extends Fragment implements Compound
         cbLocation.setOnCheckedChangeListener(this);
         cbCamera.setOnCheckedChangeListener(this);
         cbNotification.setOnCheckedChangeListener(this);
-        btnCheckAll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cbLocation.setChecked(true);
-                cbCamera.setChecked(true);
-                cbNotification.setChecked(true);
-            }
-        });
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

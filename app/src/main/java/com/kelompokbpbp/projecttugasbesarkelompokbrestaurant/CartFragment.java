@@ -29,8 +29,6 @@ public class CartFragment extends Fragment{
     //private static final String TAG = "CartFragment";
     RecyclerView recyclerView;
     FragmentCartBinding fragmentCartBinding;
-    NavController navController;
-    Keranjang keranjang;
     MaterialButton checkOut;
     CartAdapter adapter;
 
@@ -52,56 +50,11 @@ public class CartFragment extends Fragment{
         getKeranjang();
 
         checkOut = view.findViewById(R.id.btn_checkOut);
-//        checkOut.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                ArrayList<Keranjang> keranjangs = new ArrayList<>();
-//                for(int i=0;i<adapter.getItemCount();i++){
-//                    keranjangs.add(adapter.getItem(i));
-//                }
-//
-//                Bundle bundle = new Bundle();
-//                bundle.putSerializable("arraylist",keranjangs);
-//
-//                /*if (adapter.getItemCount()>0)
-//                    Navigation.findNavController(view).navigate(R.id.action_navigation);
-//                else Toast.makeText(getContext(),"Cart is Empty",
-//                        Toast.LENGTH_SHORT).show();*/
-//            }
-//        });
         return view;
     }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        /*//navController = Navigation.findNavController(view);
-
-        final CartAdapter cartAdapter = new CartAdapter(this);
-        fragmentCartBinding.recyclerCart.setAdapter(cartAdapter);
-
-        cartViewModel = new ViewModelProvider(requireActivity()).get(cartViewModel.class);
-        cartViewModel.getCart().observe(getViewLifecycleOwner(), new Observer<List<Keranjang>>() {
-            @Override
-            public void onChanged(List<Keranjang> keranjang) {
-                cartAdapter.submitList(keranjang);
-                fragmentCartBinding.btnCheckOut.setEnabled(keranjang.size() > 0);
-            }
-        });
-
-        cartViewModel.getTotalHarga().observe(getViewLifecycleOwner(), new Observer<Double>() {
-            @Override
-            public void onChanged(Double aDouble) {
-                fragmentCartBinding.txtFinalPrice.setText(aDouble.toString());
-            }
-        });
-
-        fragmentCartBinding.btnCheckOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //navController.navigate(R.id.action_cartFragment_to_foodFragment);
-            }
-        });*/
 
     }
     public void getKeranjang(){

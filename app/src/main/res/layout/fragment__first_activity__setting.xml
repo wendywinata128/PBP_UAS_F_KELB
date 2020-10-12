@@ -81,23 +81,15 @@
             android:text="@string/yes_you_can_access_my_camera" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginTop="42dp"
             android:orientation="horizontal">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnCheckAll"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/check_all"
-                android:textColor="#A60f0f" />
-
-            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnContinue"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/continue_hint" />
         </LinearLayout>

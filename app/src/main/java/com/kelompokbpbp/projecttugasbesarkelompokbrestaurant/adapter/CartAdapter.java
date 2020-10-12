@@ -62,7 +62,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             txtNama = binding.txtProdukName;
             txtharga = binding.txtProdukHarga;
             foto = binding.imgCart;
-        //this.binding = binding;
         }
     }
 }
