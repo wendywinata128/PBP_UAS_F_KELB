@@ -8,25 +8,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".CartFragment">
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/app_bar"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:backgroundTint="@color/bottom">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:popupTheme="@style/AppTheme"/>
-        </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="8dp"
             android:id="@+id/recycler_cart"
-            android:layout_below="@+id/app_bar"
             android:layout_above="@+id/layout_price"
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"

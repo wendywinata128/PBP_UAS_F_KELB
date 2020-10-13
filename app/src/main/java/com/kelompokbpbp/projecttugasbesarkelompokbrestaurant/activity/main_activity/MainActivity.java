@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
         notificationManagerCompat.notify(0,notificationCompat.build());
 
-        Toast.makeText(this,"User Aktif " + appPreference.getLoginUsername(),Toast.LENGTH_SHORT).show();
 
         BottomNavigationView navView = findViewById(R.id.bottomNavigation);
         NavController navController = Navigation.findNavController(this,R.id.nav_host_fragment);

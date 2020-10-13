@@ -93,7 +93,6 @@ public class EditAddAddressActivity extends AppCompatActivity {
                 }
             });
         }else{
-            Toast.makeText(EditAddAddressActivity.this,addressLocation,Toast.LENGTH_SHORT).show();
             btnCancel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -195,7 +194,6 @@ public class EditAddAddressActivity extends AppCompatActivity {
         if(requestCode == GEO_LOCATION_RESULT){
             if(resultCode == GEO_LOCATION_RESULT){
                 addressLocation = data.getStringExtra("Address Data");
-
             }
         }
     }
