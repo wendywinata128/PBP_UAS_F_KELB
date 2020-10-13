@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
@@ -13,7 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.google.android.material.button.MaterialButton;
-import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.EditAddAddressFragment;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.edit_add_address_activity.EditAddAddressActivity;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
 import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.geojson.Point;
@@ -60,7 +59,7 @@ public class GeoLocationActivity extends AppCompatActivity implements OnMapReady
             public void onClick(View view) {
                 Intent resultIntent = new Intent();
                 resultIntent.putExtra("Address Data",destination.toJson());
-                setResult(EditAddAddressFragment.GEO_LOCATION_RESULT,resultIntent);
+                setResult(EditAddAddressActivity.GEO_LOCATION_RESULT,resultIntent);
                 finish();
             }
         });

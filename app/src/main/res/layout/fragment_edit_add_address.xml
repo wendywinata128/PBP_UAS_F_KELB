@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:orientation="vertical"
-    tools:context=".EditAddAddressFragment">
+    tools:context=".activity.edit_add_address_activity.EditAddAddressActivity">
 
     <TextView
         android:id="@+id/tv_caption"

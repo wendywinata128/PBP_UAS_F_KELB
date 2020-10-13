@@ -1,10 +1,8 @@
 package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.location.Address;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -15,16 +13,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.edit_add_address_activity.EditAddAddressActivity;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.login_activity.LoginActivity;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.adapter.AddressAdapter;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.AppPreference;
@@ -32,12 +29,12 @@ import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.DatabaseCl
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.Alamat;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.User;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class  ProfilFragment extends Fragment {
+    public static final int EDIT_ADD_ADDRESS_REQ = 1123;
     private TextView tvName, tvUsername, tvPhoneNumber;
     private RecyclerView rvAddress;
     private AddressAdapter addressAdapter;
@@ -90,13 +87,9 @@ public class  ProfilFragment extends Fragment {
         btnAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditAddAddressFragment editAddAddressFragment = new EditAddAddressFragment();
-                Bundle profileData = new Bundle();
-                profileData.putBoolean("Edit Address",false);
-                editAddAddressFragment.setArguments(profileData);
-                getActivity().getSupportFragmentManager().beginTransaction().
-                        replace(R.id.fragment_profile,editAddAddressFragment).commit();
-
+                Intent intent = new Intent(getContext(), EditAddAddressActivity.class);
+                intent.putExtra("Edit Address",false);
+                startActivityForResult(intent,EDIT_ADD_ADDRESS_REQ);
             }
         });
 
@@ -106,6 +99,7 @@ public class  ProfilFragment extends Fragment {
                 alertForLogout().show();
             }
         });
+
     }
 
     private void getUserProfile() {
@@ -163,7 +157,6 @@ public class  ProfilFragment extends Fragment {
                         .getAppDatabase()
                         .addressDAO()
                         .getAllAlamat(username);
-                Log.d("MASUK",String.valueOf(dataList.size()));
                 return dataList;
             }
 
@@ -173,7 +166,16 @@ public class  ProfilFragment extends Fragment {
                 addressAdapter = new AddressAdapter(alamats);
                 rvAddress.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
                 rvAddress.setAdapter(addressAdapter);
-                Log.d("MASUK",String.valueOf(addressAdapter.getItemCount()));
+                addressAdapter.setOnClickListen(new AddressAdapter.SetOnClickListen() {
+                    @Override
+                    public void onClickItem(Alamat data) {
+                        Intent intent = new Intent(getContext(), EditAddAddressActivity.class);
+                        intent.putExtra("Edit Address" , true);
+                        intent.putExtra("Address Data",data);
+
+                        startActivityForResult(intent, ProfilFragment.EDIT_ADD_ADDRESS_REQ);
+                    }
+                });
             }
         }
 
@@ -201,5 +203,14 @@ public class  ProfilFragment extends Fragment {
                     }
                 });
         return builder.create();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == EDIT_ADD_ADDRESS_REQ){
+            getAllAddress();
+        }
     }
 }

@@ -2,6 +2,8 @@ package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.main_acti
 //Kelompok PBP B , Wendy , Elvina , Wenny
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
@@ -25,6 +27,16 @@ public class MainActivity extends AppCompatActivity {
         ActivityMainBinding activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         AppPreference appPreference = new AppPreference(this.getApplicationContext());
         appPreference.setFirstRun();
+
+        NotificationCompat.Builder notificationCompat = new NotificationCompat.Builder(this,"Channel 1")
+                .setContentTitle("Restoku")
+                .setContentText("Selamat Datang " + appPreference.getLoginUsername())
+                .setSmallIcon(R.drawable.logo_restoku);
+
+        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
+        notificationManagerCompat.notify(0,notificationCompat.build());
+
+        Toast.makeText(this,"User Aktif " + appPreference.getLoginUsername(),Toast.LENGTH_SHORT).show();
 
         BottomNavigationView navView = findViewById(R.id.bottomNavigation);
         NavController navController = Navigation.findNavController(this,R.id.nav_host_fragment);

@@ -44,10 +44,6 @@ public class FoodFragment extends Fragment {
         View view = fragmentFoodBinding.getRoot();
         searchView = fragmentFoodBinding.searchView;
 
-        AppPreference appPreference = new AppPreference(this.getContext());
-
-        Toast.makeText(this.getContext(),"User Aktif " + appPreference.getLoginUsername(),Toast.LENGTH_SHORT).show();
-
         // Get data Menu
         ListMenu = new DaftarMenu().MENU;
 

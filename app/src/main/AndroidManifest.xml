@@ -28,6 +28,7 @@
         </service>
 
         <activity android:name=".activity.login_activity.LoginActivity" />
+        <activity android:name=".activity.edit_add_address_activity.EditAddAddressActivity" />
         <activity android:name=".activity.register_activity.RegisterActivity" />
         <activity android:name=".activity.splash_screen_activity.SplashScreenActivity">
             <intent-filter>
