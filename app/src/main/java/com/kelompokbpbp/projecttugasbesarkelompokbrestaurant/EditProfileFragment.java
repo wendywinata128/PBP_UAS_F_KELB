@@ -116,11 +116,11 @@ public class EditProfileFragment extends Fragment {
         }
 
         try {
-            if(user.getPhotoProfile() != null) {
+            if(!user.getPhotoProfile().equals("-")){
                 Glide.with(getContext())
                         .load(Uri.parse(user.getPhotoProfile()))
                         .into(editProfilePhoto);
-            } else {
+            }if(user.getPhotoProfile().equals("-")){
                 Glide.with(getContext())
                         .load(R.drawable.ic_baseline_account_circle_24)
                         .into(editProfilePhoto);
