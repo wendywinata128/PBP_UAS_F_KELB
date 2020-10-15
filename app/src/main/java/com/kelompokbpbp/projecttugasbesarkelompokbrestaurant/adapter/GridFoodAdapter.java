@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
@@ -22,7 +21,6 @@ import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.DatabaseCl
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.databinding.ItemGridFoodBinding;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.Keranjang;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.Menu;
-import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +59,8 @@ public class GridFoodAdapter extends RecyclerView.Adapter<GridFoodAdapter.MyView
         holder.order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addItem(menu);
+                addItemToCart(menu);
+                Toast.makeText(context,menu.getNama() + " successfully added to your cart!",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -77,7 +76,7 @@ public class GridFoodAdapter extends RecyclerView.Adapter<GridFoodAdapter.MyView
         public MyViewHolder(@NonNull ItemGridFoodBinding binding){
             super(binding.getRoot());
             this.binding = binding;
-            order = itemView.findViewById(R.id.orderbtn);
+            order = binding.orderbtn;
         }
 
         public void bind(Menu menu) {
@@ -122,22 +121,19 @@ public class GridFoodAdapter extends RecyclerView.Adapter<GridFoodAdapter.MyView
             }
         };
     }
-    private void addItem(final Menu data) {
+    private void addItemToCart(final Menu data) {
         class addItem extends AsyncTask<Void, Void, Void> {
             AppPreference appPreference = new AppPreference(context);
             String username = appPreference.getLoginUsername();
-            //final String gambar = holder.binding.getMenu().getFotoMenu();
+
             @Override
             protected Void doInBackground(Void... voids) {
                 Keranjang keranjang = new Keranjang(data.getNama(),1,data.getHarga(),data.getHarga(),username,data.getFotoMenu());
-                //keranjang.setFotoMenu();
 
                 DatabaseClient.getInstance(context)
                         .getAppDatabase()
                         .keranjangDAO()
                         .insert(keranjang);
-
-
                 return null;
             }
 
