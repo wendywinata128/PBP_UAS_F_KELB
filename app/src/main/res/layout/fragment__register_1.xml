@@ -66,7 +66,7 @@
                 android:layout_marginTop="15dp"
                 android:hint="@string/handphone_number"
                 app:errorEnabled="true"
-                app:helperText="More than 8 digit">
+                app:helperText="Minimum 8 digit">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
