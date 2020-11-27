@@ -50,10 +50,10 @@ public class EditProfileFragment extends Fragment {
         class UpdateUserProfile extends AsyncTask<Void, Void, Void> {
             @Override
             protected Void doInBackground(Void... voids) {
-                DatabaseClient.getInstance(getActivity().getApplicationContext())
-                        .getAppDatabase()
-                        .userDao()
-                        .update(user);
+//                DatabaseClient.getInstance(getActivity().getApplicationContext())
+//                        .getAppDatabase()
+//                        .userDao()
+//                        .update(user);
                 return null;
             }
 
@@ -105,15 +105,15 @@ public class EditProfileFragment extends Fragment {
             e.printStackTrace();
         }
 
-        try {
-            if(user.getNohp() != null) {
-                editPhoneNumber.setText(user.getNohp());
-            } else {
-                editPhoneNumber.setText("-");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            if(user.getNohp() != null) {
+//                editPhoneNumber.setText(user.getNohp());
+//            } else {
+//                editPhoneNumber.setText("-");
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
         try {
             if(!user.getPhotoProfile().equals("-")){
@@ -158,7 +158,7 @@ public class EditProfileFragment extends Fragment {
                 if(CheckValidation()) {
                     user.setNama(String.valueOf(editName.getText()));
                     user.setUsername(String.valueOf(editUsername.getText()));
-                    user.setNohp(String.valueOf(editPhoneNumber.getText()));
+//                    user.setNohp(String.valueOf(editPhoneNumber.getText()));
                     if(image_uri == null) {
                         user.setPhotoProfile(user.getPhotoProfile());
                     } else {

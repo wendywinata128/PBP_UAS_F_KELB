@@ -6,31 +6,33 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
-@Entity
 public class User implements Serializable {
-    @PrimaryKey(autoGenerate = true)
+
+    @SerializedName("id")
     private int id;
 
-    @ColumnInfo(name = "full_name")
+    @SerializedName("name")
     private String nama;
 
-    @ColumnInfo(name = "handphone_number")
-    private String nohp;
+    @SerializedName("email")
+    private String email;
 
-    @ColumnInfo(name = "username")
+    @SerializedName("username")
     private String username;
 
-    @ColumnInfo(name="password")
+    @SerializedName("password")
     private String password;
 
-    @ColumnInfo(name="photo")
+    @SerializedName("photo")
     private String photoProfile;
 
-    public User(String nama , String nohp , String username , String password, String photoProfile){
+    public User(String nama , String email , String username , String password, String photoProfile){
         this.nama = nama;
-        this.nohp = nohp;
+        this.email = email;
         this.username = username;
         this.password = password;
         this.photoProfile = photoProfile;
@@ -51,12 +53,12 @@ public class User implements Serializable {
         this.nama = nama;
     }
 
-    public String getNohp() {
-        return nohp;
+    public String getEmail() {
+        return email;
     }
 
-    public void setNohp(String nohp) {
-        this.nohp = nohp;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getUsername() {

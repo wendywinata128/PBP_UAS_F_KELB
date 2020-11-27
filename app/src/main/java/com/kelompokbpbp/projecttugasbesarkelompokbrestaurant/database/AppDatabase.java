@@ -7,9 +7,7 @@ import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.Alamat;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.Keranjang;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.User;
 
-@Database(entities = {User.class, Alamat.class,Keranjang.class},version = 1)
+@Database(entities = {Alamat.class},version = 1)
 abstract public class AppDatabase extends RoomDatabase {
-    abstract public UserDAO userDao();
     abstract public AddressDAO addressDAO();
-    abstract public KeranjangDAO keranjangDAO();
 }

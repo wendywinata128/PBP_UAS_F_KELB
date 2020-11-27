@@ -19,7 +19,7 @@ import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.login_acti
 
 public class Fragment_Register_1 extends Fragment {
     private MaterialButton btnContinue,btnLogin;
-    private TextInputLayout tvFullName,tvPhoneNumber;
+    private TextInputLayout tvFullName,tvEmail;
 
     public Fragment_Register_1() {
         // Required empty public constructor
@@ -37,7 +37,7 @@ public class Fragment_Register_1 extends Fragment {
         View view = inflater.inflate(R.layout.fragment__register_1, container, false);
         btnContinue = view.findViewById(R.id.btnContinue);
         tvFullName = view.findViewById(R.id.textInputFullName);
-        tvPhoneNumber = view.findViewById(R.id.textInputNumber);
+        tvEmail = view.findViewById(R.id.textInputEmail);
         btnLogin = view.findViewById(R.id.btnMoveLogin);
         return view;
     }
@@ -53,7 +53,7 @@ public class Fragment_Register_1 extends Fragment {
                     Fragment fragment = new Fragment_register_2();
                     Bundle bundle = new Bundle();
                     bundle.putString("Full Name",tvFullName.getEditText().getText().toString());
-                    bundle.putString("Phone Number",tvPhoneNumber.getEditText().getText().toString());
+                    bundle.putString("Email",tvEmail.getEditText().getText().toString());
                     fragment.setArguments(bundle);
                     getActivity().getSupportFragmentManager().beginTransaction().
                             replace(R.id.register_container,fragment).addToBackStack(null).commit();
@@ -76,11 +76,6 @@ public class Fragment_Register_1 extends Fragment {
             validation = false;
         }
 
-        if(tvPhoneNumber.getEditText().getText().toString().isEmpty() ||
-                tvPhoneNumber.getEditText().getText().toString().length() < 8 ){
-            tvPhoneNumber.setError("Phone number must be 8 or more digits");
-            validation = false;
-        }
         return validation;
     }
 

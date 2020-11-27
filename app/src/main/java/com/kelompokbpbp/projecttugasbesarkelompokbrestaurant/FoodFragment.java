@@ -2,12 +2,15 @@ package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +19,18 @@ import android.widget.Filterable;
 import android.widget.Toast;
 
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.adapter.GridFoodAdapter;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.MenuResponse;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.RetrofitClient;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.AppPreference;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.object.DaftarMenu;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.databinding.FragmentFoodBinding;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.Menu;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class FoodFragment extends Fragment {
 
@@ -70,13 +79,40 @@ public class FoodFragment extends Fragment {
             }
         });
 
-
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        getDataMenu();
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         fragmentFoodBinding = null;
+    }
+
+    private void getDataMenu(){
+        Call<MenuResponse> client = RetrofitClient.getRetrofit().menuList();
+
+        client.enqueue(new Callback<MenuResponse>() {
+            @Override
+            public void onResponse(Call<MenuResponse> call, Response<MenuResponse> response) {
+                if(response.isSuccessful()){
+                    gridFoodAdapter.setListMenu(response.body().getData());
+                    Toast.makeText(getContext(),"Data loaded success",Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getContext(),"Data Gagal Di Loaded",Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MenuResponse> call, Throwable t) {
+                Toast.makeText(getContext(),"Kesalahan Jaringan",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

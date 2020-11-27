@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
@@ -18,16 +19,28 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.login_activity.LoginActivity;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.main_activity.MainActivity;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.RetrofitClient;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.UserResponse;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.AppPreference;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.DatabaseClient;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.User;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class Fragment_register_2 extends Fragment {
 
     private TextInputLayout tvUsername,tvPassword,tvMatchPassword;
-    private String fullName,phoneNumber;
+    private String fullName,email;
     private MaterialButton btnRegister;
+    private ProgressBar pbRegister;
 
 
     public Fragment_register_2() {
@@ -42,9 +55,10 @@ public class Fragment_register_2 extends Fragment {
         tvUsername = view.findViewById(R.id.textInputUsername);
         tvPassword = view.findViewById(R.id.textInputPassword);
         tvMatchPassword = view.findViewById(R.id.textInputMatchPassword);
+        pbRegister = view.findViewById(R.id.pb_register);
         btnRegister = view.findViewById(R.id.btnRegister);
         fullName = getArguments().getString("Full Name");
-        phoneNumber = getArguments().getString("Phone Number");
+        email = getArguments().getString("Email");
         return view;
     }
 
@@ -85,30 +99,45 @@ public class Fragment_register_2 extends Fragment {
     }
 
     private void registerUser(){
-        class RegisterUser extends AsyncTask<Void,Void,Void>{
+        User data = new User(fullName, email, tvUsername.getEditText().getText().toString(),
+                tvPassword.getEditText().getText().toString(), "-");
 
+        Call<UserResponse> client = RetrofitClient.getRetrofit().userRegister(
+                data.getNama(),
+                data.getUsername(),
+                data.getEmail(),
+                data.getPassword(),
+                "avatar_default.png",
+                data.getUsername());
+
+        pbRegister.setVisibility(View.VISIBLE);
+        client.enqueue(new Callback<UserResponse>() {
             @Override
-            protected Void doInBackground(Void... voids) {
-                User data = new User(fullName, phoneNumber, tvUsername.getEditText().getText().toString(),
-                        tvPassword.getEditText().getText().toString(), "-");
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                if(response.isSuccessful()){
+                    pbRegister.setVisibility(View.GONE);
+                    Toast.makeText(getContext(),"Success : "+response.body().getMessage(),Toast.LENGTH_SHORT).show();
 
-                DatabaseClient.getInstance(getActivity().getApplicationContext())
-                        .getAppDatabase()
-                        .userDao()
-                        .insert(data);
+                    Intent intent = new Intent(getContext(),LoginActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-                return null;
+                    startActivity(intent);
+                }else{
+                    try {
+                        JSONObject error = new JSONObject(response.errorBody().string());
+                        Toast.makeText(getContext(),error.optString("message"), Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
 
             @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
-                Toast.makeText(Fragment_register_2.this.getContext(), "User Registered Success", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(Fragment_register_2.this.getContext(), LoginActivity.class));
-                getActivity().finishAndRemoveTask();
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+                Toast.makeText(getContext(),"Internet Problem ?",Toast.LENGTH_SHORT).show();
             }
-        }
-        RegisterUser registerUser = new RegisterUser();
-        registerUser.execute();
+        });
     }
 }

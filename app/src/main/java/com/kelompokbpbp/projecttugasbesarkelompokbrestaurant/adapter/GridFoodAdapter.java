@@ -28,14 +28,25 @@ import java.util.List;
 
 public class GridFoodAdapter extends RecyclerView.Adapter<GridFoodAdapter.MyViewHolder> implements Filterable {
     private Context context;
-    private List<Menu> listMenu;
+    private List<Menu> listMenu = new ArrayList<>();
     private List<Menu> filterMenu;
 
     public GridFoodAdapter(Context context, List<Menu> listMenu){
         this.context = context;
-        this.listMenu = listMenu;
+        this.listMenu.clear();
+        this.listMenu.addAll(listMenu);
         filterMenu = new ArrayList<>();
         filterMenu.addAll(listMenu);
+    }
+
+    public void setListMenu(List<Menu> listMenu){
+        this.listMenu.clear();
+        this.listMenu.addAll(listMenu);
+
+        this.filterMenu.clear();
+        this.filterMenu.addAll(listMenu);
+
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -130,10 +141,10 @@ public class GridFoodAdapter extends RecyclerView.Adapter<GridFoodAdapter.MyView
             protected Void doInBackground(Void... voids) {
                 Keranjang keranjang = new Keranjang(data.getNama(),1,data.getHarga(),data.getHarga(),username,data.getFotoMenu());
 
-                DatabaseClient.getInstance(context)
-                        .getAppDatabase()
-                        .keranjangDAO()
-                        .insert(keranjang);
+//                DatabaseClient.getInstance(context)
+//                        .getAppDatabase()
+//                        .keranjangDAO()
+//                        .insert(keranjang);
                 return null;
             }
 

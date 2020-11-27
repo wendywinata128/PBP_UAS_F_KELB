@@ -6,21 +6,36 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.main_activity.MainActivity;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.register_activity.RegisterActivity;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.RetrofitClient;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.UserResponse;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.AppPreference;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.DatabaseClient;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.User;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
     private MaterialButton btnLogin , btnRegister;
     private TextInputLayout tvUsername,tvPassword;
+    private ProgressBar pbLogin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +46,8 @@ public class LoginActivity extends AppCompatActivity {
 
         tvUsername = findViewById(R.id.textInputUsername);
         tvPassword = findViewById(R.id.textInputPassword);
+
+        pbLogin = findViewById(R.id.pb_login);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,40 +64,43 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void checkUserLogin(){
-        class CheckUser extends AsyncTask<Void,Void, User>{
+        String username = tvUsername.getEditText().getText().toString().trim();
+        String password = tvPassword.getEditText().getText().toString();
+        Call<UserResponse> login = RetrofitClient.getRetrofit().userLogin(username,password);
 
+        pbLogin.setVisibility(View.VISIBLE);
+        login.enqueue(new Callback<UserResponse>() {
             @Override
-            protected User doInBackground(Void... voids) {
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                pbLogin.setVisibility(View.GONE);
+                if(response.isSuccessful()){
+                    Toast.makeText(LoginActivity.this,"Login Berhasil : " + response.body().getMessage(),Toast.LENGTH_SHORT).show();
 
-                User data = DatabaseClient.getInstance(getApplicationContext())
-                        .getAppDatabase()
-                        .userDao()
-                        .getUser(tvUsername.getEditText().getText().toString(),
-                                tvPassword.getEditText().getText().toString());
+                    AppPreference appPreference = new AppPreference(getApplicationContext());
 
-                return data;
-            }
+                    appPreference.setUserToken(response.body().getToken());
 
-            @Override
-            protected void onPostExecute(User user) {
-                super.onPostExecute(user);
-
-                if(user == null){
-                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-
-                    builder.setMessage("Username or password is incorrect!")
-                    .show();
-                }else{
-
-                    AppPreference appPreference = new AppPreference(LoginActivity.this.getApplicationContext());
-
-                    appPreference.setLoginUsername(user.getUsername());
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                    startActivity(intent);
                     finish();
+                }else{
+                    try {
+                        JSONObject error = new JSONObject(response.errorBody().string());
+                        Toast.makeText(LoginActivity.this,"Login Gagal : " + error.getString("message"),Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
                 }
             }
-        }
-        CheckUser checkUser = new CheckUser();
-        checkUser.execute();
+
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+                pbLogin.setVisibility(View.GONE);
+                Toast.makeText(LoginActivity.this,"Internet Problem ?",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

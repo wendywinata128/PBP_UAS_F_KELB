@@ -7,6 +7,7 @@ public class AppPreference {
     private static final String PREFERENCE_FIRST_RUN = "PREFERENCE_FIRST_RUN";
     private static final String PREFERENCE_USERNAME_LOGIN = "PREFERENCE_USERNAME_LOGIN";
     private static final String PREFERENCE_NAME = "PREFERENCE_APP";
+    private static final String PREFERENCE_USER_TOKEN = "PREFERENCE_USER_TOKEN";
     private Context context;
     private SharedPreferences pref;
 
@@ -31,5 +32,13 @@ public class AppPreference {
 
     public void setLoginUsername(String username){
         pref.edit().putString(PREFERENCE_USERNAME_LOGIN,username).apply();
+    }
+
+    public void setUserToken(String token){
+        pref.edit().putString(PREFERENCE_USER_TOKEN,token).apply();
+    }
+
+    public String getUserToken(){
+        return pref.getString(PREFERENCE_USER_TOKEN,null);
     }
 }

@@ -73,11 +73,12 @@ public class CartFragment extends Fragment{
 
             @Override
             protected List<Keranjang> doInBackground(Void... voids){
-                List<Keranjang> userCart = DatabaseClient.getInstance(getContext())
-                        .getAppDatabase()
-                        .keranjangDAO()
-                        .getAllKeranjang(username);
-                return userCart;
+//                List<Keranjang> userCart = DatabaseClient.getInstance(getContext())
+//                        .getAppDatabase()
+//                        .keranjangDAO()
+//                        .getAllKeranjang(username);
+//                return userCart;
+                return null;
             }
         }
 

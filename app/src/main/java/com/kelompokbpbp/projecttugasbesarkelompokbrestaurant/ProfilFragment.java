@@ -111,11 +111,11 @@ public class  ProfilFragment extends Fragment {
                 String username = appPreference.getLoginUsername();
 
                 if(username != null){
-                    dataUser = DatabaseClient.getInstance(getActivity().getApplicationContext())
-                            .getAppDatabase()
-                            .userDao()
-                            .getUserProfile(username);
-                    return dataUser;
+//                    dataUser = DatabaseClient.getInstance(getActivity().getApplicationContext())
+//                            .getAppDatabase()
+//                            .userDao()
+//                            .getUserProfile(username);
+//                    return dataUser;
                 }
 
                 return null;
@@ -127,7 +127,7 @@ public class  ProfilFragment extends Fragment {
                 if(user!=null) {
                     tvName.setText(user.getNama());
                     tvUsername.setText(user.getUsername());
-                    tvPhoneNumber.setText(user.getNohp());
+//                    tvPhoneNumber.setText(user.getNohp());
                     if(!user.getPhotoProfile().equals("-")){
                         Glide.with(getContext())
                                 .load(Uri.parse(user.getPhotoProfile()))

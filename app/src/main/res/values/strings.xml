@@ -76,6 +76,7 @@
     <string name="delete_address">DELETE</string>
     <string name="update_address">UPDATE</string>
     <string name="edit_address">Edit Address</string>
+    <string name="email">Email</string>
 
     <string-array name="quantity_string_array">
         <item>1</item>
