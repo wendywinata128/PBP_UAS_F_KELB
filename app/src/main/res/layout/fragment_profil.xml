@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
+    android:fillViewport="true"
     tools:context=".ProfilFragment">
 
     <FrameLayout
@@ -13,9 +14,18 @@
         android:layout_height="wrap_content"
         android:id="@+id/fragment_profile">
 
+        <ProgressBar
+            android:id="@+id/pb_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX="2"
+            android:scaleY="2"
+            android:layout_gravity="center"/>
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:id="@+id/profile_layout">
 
             <TextView
                 android:id="@+id/my_profile"
@@ -59,12 +69,12 @@
                 app:layout_constraintTop_toBottomOf="@id/profile_name" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/profile_phone"
+                android:id="@+id/profile_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
-                android:text="@string/phone_number"
+                android:text="My Email"
                 app:layout_constraintStart_toEndOf="@id/profile_photo"
                 app:layout_constraintTop_toBottomOf="@id/profile_username" />
 
@@ -77,7 +87,7 @@
                 android:layout_marginEnd="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/profile_photo"
-                app:layout_constraintTop_toBottomOf="@id/profile_phone">
+                app:layout_constraintTop_toBottomOf="@id/profile_email">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_editProfile"

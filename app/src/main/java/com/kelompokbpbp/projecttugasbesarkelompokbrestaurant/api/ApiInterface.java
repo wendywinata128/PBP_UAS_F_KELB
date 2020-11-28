@@ -8,6 +8,7 @@ import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -25,6 +26,9 @@ public interface ApiInterface {
                                     @Field("password") String password,
                                     @Field("photo") String photo,
                                     @Field("address") String address);
+
+    @GET("/api/user")
+    Call<UserResponse> userDetails(@Header("Authorization") String header);
 
     @GET("/api/menu")
     Call<MenuResponse> menuList();

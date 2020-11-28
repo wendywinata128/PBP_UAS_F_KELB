@@ -25,7 +25,7 @@ public class User implements Serializable {
     private String username;
 
     @SerializedName("password")
-    private String password;
+    private String password=null;
 
     @SerializedName("photo")
     private String photoProfile;

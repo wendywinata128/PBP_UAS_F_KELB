@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.first_time_activity.FirstTimeActivity;
@@ -37,16 +38,17 @@ public class SplashScreenActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }else{
-//                    if(appPreference.getLoginUsername() == null){
+                    if(appPreference.getLoginUsername() == null){
                         Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
                         startActivity(intent);
-//                    }else{
-//                        Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
-//                        startActivity(intent);
-//                    }
+                    }else{
+                        Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    }
                     finish();
                 }
             }
         },3000);
+        Toast.makeText(this,"Hello",Toast.LENGTH_SHORT).show();
     }
 }
