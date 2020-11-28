@@ -1,7 +1,6 @@
 package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.register_activity;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,11 +17,8 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.login_activity.LoginActivity;
-import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.main_activity.MainActivity;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.RetrofitClient;
-import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.UserResponse;
-import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.AppPreference;
-import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.DatabaseClient;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.response.UserResponse;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.User;
 
 import org.json.JSONException;
@@ -123,6 +119,7 @@ public class Fragment_register_2 extends Fragment {
 
                     startActivity(intent);
                 }else{
+                    pbRegister.setVisibility(View.GONE);
                     try {
                         JSONObject error = new JSONObject(response.errorBody().string());
                         Toast.makeText(getContext(),error.optString("message"), Toast.LENGTH_SHORT).show();
@@ -137,6 +134,7 @@ public class Fragment_register_2 extends Fragment {
             @Override
             public void onFailure(Call<UserResponse> call, Throwable t) {
                 Toast.makeText(getContext(),"Internet Problem ?",Toast.LENGTH_SHORT).show();
+                pbRegister.setVisibility(View.GONE);
             }
         });
     }

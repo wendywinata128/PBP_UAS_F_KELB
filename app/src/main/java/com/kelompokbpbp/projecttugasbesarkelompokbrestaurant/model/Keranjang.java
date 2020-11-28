@@ -11,23 +11,29 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.annotations.SerializedName;
 
-@Entity
 public class Keranjang {
 
-    @PrimaryKey(autoGenerate = true)
+    @SerializedName("id")
     public int id;
-    @ColumnInfo(name = "namaMakanan")
+
+    @SerializedName("menu_name")
     public String namaMakanan;
-    @ColumnInfo(name = "jumlah")
+
+    @SerializedName("amount")
     public int jumlah;
-    @ColumnInfo(name = "harga")
+
+    @SerializedName("price")
     public String harga;
-    @ColumnInfo(name = "totalHarga")
+
+    @SerializedName("total")
     public String totalHarga;
-    @ColumnInfo(name = "username")
+
+    @SerializedName("username")
     public String username;
-    @ColumnInfo(name = "fotoMakanan")
+
+    @SerializedName("photo")
     public String fotoMakanan;
 
     public Keranjang(String namaMakanan, int jumlah, String totalHarga,String harga, String username,String fotoMakanan) {

@@ -37,13 +37,13 @@ public class SplashScreenActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }else{
-                    if(appPreference.getLoginUsername() == null){
+//                    if(appPreference.getLoginUsername() == null){
                         Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
                         startActivity(intent);
-                    }else{
-                        Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
-                        startActivity(intent);
-                    }
+//                    }else{
+//                        Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+//                        startActivity(intent);
+//                    }
                     finish();
                 }
             }

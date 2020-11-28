@@ -18,12 +18,22 @@ import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.adapter.CartAdapter;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.RetrofitClient;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.response.CartResponse;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.AppPreference;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.DatabaseClient;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.databinding.FragmentCartBinding;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.Keranjang;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CartFragment extends Fragment{
     //private static final String TAG = "CartFragment";
@@ -59,30 +69,30 @@ public class CartFragment extends Fragment{
     }
     public void getKeranjang(){
         AppPreference appPreference = new AppPreference(getContext());
-        final String username = appPreference.getLoginUsername();
-        class GetKeranjang extends AsyncTask<Void,Void,List<Keranjang>>{
+
+        Call<CartResponse> client = RetrofitClient.getRetrofit().getCartsByUsername(appPreference.getLoginUsername());
+
+        client.enqueue(new Callback<CartResponse>() {
             @Override
-            protected void onPostExecute(List<Keranjang>keranjangList){
-                super.onPostExecute(keranjangList);
-                adapter = new CartAdapter(getContext(),keranjangList);
-                recyclerView.setAdapter(adapter);
-                if(keranjangList.isEmpty()){
-                    Toast.makeText(getContext(),"Empty List",Toast.LENGTH_SHORT).show();
+            public void onResponse(Call<CartResponse> call, Response<CartResponse> response) {
+                if(response.isSuccessful()){
+                    if(response.body().getData() != null) {
+                        adapter = new CartAdapter(getContext(),response.body().getData());
+                        recyclerView.setAdapter(adapter);
+                    }else{
+                        try {
+                            Toast.makeText(getContext(), new JSONObject(response.errorBody().string()).optString("message"),Toast.LENGTH_SHORT).show();
+                        } catch (IOException | JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
             }
 
             @Override
-            protected List<Keranjang> doInBackground(Void... voids){
-//                List<Keranjang> userCart = DatabaseClient.getInstance(getContext())
-//                        .getAppDatabase()
-//                        .keranjangDAO()
-//                        .getAllKeranjang(username);
-//                return userCart;
-                return null;
+            public void onFailure(Call<CartResponse> call, Throwable t) {
+                Toast.makeText(getContext(),"Kesalahan Jaringan ? ",Toast.LENGTH_SHORT).show();
             }
-        }
-
-        GetKeranjang get = new GetKeranjang();
-        get.execute();
+        });
     }
 }

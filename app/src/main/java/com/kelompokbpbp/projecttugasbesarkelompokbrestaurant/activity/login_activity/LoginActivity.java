@@ -1,12 +1,9 @@
 package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.login_activity;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -17,10 +14,8 @@ import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.main_activity.MainActivity;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.register_activity.RegisterActivity;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.RetrofitClient;
-import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.UserResponse;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.response.UserResponse;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.AppPreference;
-import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.DatabaseClient;
-import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.User;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -79,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                     AppPreference appPreference = new AppPreference(getApplicationContext());
 
                     appPreference.setUserToken(response.body().getToken());
+                    appPreference.setLoginUsername(response.body().getData().getUsername());
 
                     Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                     startActivity(intent);

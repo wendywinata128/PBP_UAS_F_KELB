@@ -1,12 +1,15 @@
 package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api;
 
-import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.User;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.response.CartResponse;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.response.MenuResponse;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.response.UserResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface ApiInterface {
     @POST("/api/user/login")
@@ -25,6 +28,9 @@ public interface ApiInterface {
 
     @GET("/api/menu")
     Call<MenuResponse> menuList();
+
+    @GET("/api/carts/{username}")
+    Call<CartResponse> getCartsByUsername(@Path("username") String username);
 
 
 
