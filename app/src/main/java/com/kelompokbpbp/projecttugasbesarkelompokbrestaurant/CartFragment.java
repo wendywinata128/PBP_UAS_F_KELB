@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
@@ -41,6 +42,7 @@ public class CartFragment extends Fragment{
     FragmentCartBinding fragmentCartBinding;
     MaterialButton checkOut;
     CartAdapter adapter;
+    private ProgressBar pbCart;
 
     public CartFragment(){
         // Required empty public constructor
@@ -54,6 +56,7 @@ public class CartFragment extends Fragment{
         View view = fragmentCartBinding.getRoot();
 
         recyclerView = fragmentCartBinding.recyclerCart;
+        pbCart = fragmentCartBinding.pbCart;
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
@@ -77,6 +80,7 @@ public class CartFragment extends Fragment{
             public void onResponse(Call<CartResponse> call, Response<CartResponse> response) {
                 if(response.isSuccessful()){
                     if(response.body().getData() != null) {
+                        pbCart.setVisibility(View.GONE);
                         adapter = new CartAdapter(getContext(),response.body().getData());
                         recyclerView.setAdapter(adapter);
                     }else{

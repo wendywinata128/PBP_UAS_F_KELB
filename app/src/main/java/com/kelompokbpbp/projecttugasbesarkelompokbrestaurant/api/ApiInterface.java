@@ -10,6 +10,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface ApiInterface {
@@ -35,6 +36,14 @@ public interface ApiInterface {
 
     @GET("/api/carts/{username}")
     Call<CartResponse> getCartsByUsername(@Path("username") String username);
+
+    @PUT("/api/user/edit/{id}")
+    @FormUrlEncoded
+    Call<UserResponse> getUserAfterEdit(@Path("id") String id,
+                                        @Field("name") String name,
+                                        @Field("address") String address,
+                                        @Field("email") String email,
+                                        @Field("photo") String photo);
 
 
 

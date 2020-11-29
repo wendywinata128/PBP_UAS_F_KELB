@@ -9,6 +9,15 @@
         android:layout_height="match_parent"
         tools:context=".CartFragment">
 
+        <ProgressBar
+            android:id="@+id/pb_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:scaleY="2"
+            android:scaleX="2"
+            />
+
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"

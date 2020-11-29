@@ -124,19 +124,23 @@ public class ProfilFragment extends Fragment {
         client.enqueue(new Callback<UserResponse>() {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                if(getActivity() == null){
+                    return;
+                }
+
                 if (response.isSuccessful()) {
                     pbProfile.setVisibility(View.GONE);
                     profile_layout.setVisibility(View.VISIBLE);
 
-                    User user = response.body().getData();
+                    dataUser = response.body().getData();
 
-                    if (user != null) {
-                        tvName.setText(user.getNama());
-                        tvUsername.setText(user.getUsername());
-                        tvEmail.setText(user.getEmail());
-                        if (!user.getPhotoProfile().equals("-")) {
+                    if (dataUser != null) {
+                        tvName.setText(dataUser.getNama());
+                        tvUsername.setText(dataUser.getUsername());
+                        tvEmail.setText(dataUser.getEmail());
+                        if (!dataUser.getPhotoProfile().equals("-")) {
                             Glide.with(getContext())
-                                    .load("https://pbp.dbappz.top/img/"+user.getPhotoProfile())
+                                    .load("https://pbp.dbappz.top/img/"+dataUser.getPhotoProfile())
                                     .into(photoProfile);
                         } else {
                             Glide.with(getContext())
@@ -146,7 +150,6 @@ public class ProfilFragment extends Fragment {
                     }
                 }
                 else{
-                    pbProfile.setVisibility(View.GONE);
                     Toast.makeText(getContext(),"Load Gagal , Trying reload in 3 second",Toast.LENGTH_SHORT).show();
 
                     handler.postDelayed(() -> getUserProfile(),3000);
@@ -156,7 +159,10 @@ public class ProfilFragment extends Fragment {
 
             @Override
             public void onFailure(Call<UserResponse> call, Throwable t) {
-                pbProfile.setVisibility(View.GONE);
+                if(getActivity() == null){
+                    return;
+                }
+
                 Toast.makeText(getContext(),"Load Gagal , Trying reload in 3 second",Toast.LENGTH_SHORT).show();
 
                 handler.postDelayed(() -> getUserProfile(),3000);
@@ -235,7 +241,7 @@ public class ProfilFragment extends Fragment {
             getAllAddress();
         }
     }
-    
+
 
     @Override
     public void onPause() {
