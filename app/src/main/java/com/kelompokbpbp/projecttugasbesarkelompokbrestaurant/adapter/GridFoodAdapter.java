@@ -81,6 +81,7 @@ public class GridFoodAdapter extends RecyclerView.Adapter<GridFoodAdapter.MyView
             @Override
             public void onClick(View view) {
                 addItemToCart(menu);
+                Toast.makeText(context, menu.getNama() + " successfully added to your cart!", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -167,8 +168,6 @@ public class GridFoodAdapter extends RecyclerView.Adapter<GridFoodAdapter.MyView
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                }else{
-                    Toast.makeText(context, data.getNama() + " successfully added to your cart!", Toast.LENGTH_SHORT).show();
                 }
             }
 
