@@ -45,6 +45,11 @@ public interface ApiInterface {
                                         @Field("email") String email,
                                         @Field("photo") String photo);
 
-
-
+    @POST("/api/cart/insert")
+    @FormUrlEncoded
+    Call<MenuResponse> insertCart(@Field("username") String username,
+                                  @Field("menu_name") String menu_name,
+                                  @Field("status") String status,
+                                  @Field("price") String price,
+                                  @Field("amount") String amount);
 }

@@ -84,11 +84,8 @@ public class CartFragment extends Fragment{
                         adapter = new CartAdapter(getContext(),response.body().getData());
                         recyclerView.setAdapter(adapter);
                     }else{
-                        try {
-                            Toast.makeText(getContext(), new JSONObject(response.errorBody().string()).optString("message"),Toast.LENGTH_SHORT).show();
-                        } catch (IOException | JSONException e) {
-                            e.printStackTrace();
-                        }
+                        pbCart.setVisibility(View.GONE);
+                        Toast.makeText(getContext(),response.body().getMessage(),Toast.LENGTH_SHORT).show();
                     }
                 }
             }

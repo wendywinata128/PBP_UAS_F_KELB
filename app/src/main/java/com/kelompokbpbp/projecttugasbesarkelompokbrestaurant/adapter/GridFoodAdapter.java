@@ -16,14 +16,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.RetrofitClient;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.response.MenuResponse;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.AppPreference;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.DatabaseClient;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.databinding.ItemGridFoodBinding;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.Keranjang;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.Menu;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class GridFoodAdapter extends RecyclerView.Adapter<GridFoodAdapter.MyViewHolder> implements Filterable {
@@ -31,7 +41,7 @@ public class GridFoodAdapter extends RecyclerView.Adapter<GridFoodAdapter.MyView
     private List<Menu> listMenu = new ArrayList<>();
     private List<Menu> filterMenu;
 
-    public GridFoodAdapter(Context context, List<Menu> listMenu){
+    public GridFoodAdapter(Context context, List<Menu> listMenu) {
         this.context = context;
         this.listMenu.clear();
         this.listMenu.addAll(listMenu);
@@ -39,7 +49,7 @@ public class GridFoodAdapter extends RecyclerView.Adapter<GridFoodAdapter.MyView
         filterMenu.addAll(listMenu);
     }
 
-    public void setListMenu(List<Menu> listMenu){
+    public void setListMenu(List<Menu> listMenu) {
         this.listMenu.clear();
         this.listMenu.addAll(listMenu);
 
@@ -71,7 +81,6 @@ public class GridFoodAdapter extends RecyclerView.Adapter<GridFoodAdapter.MyView
             @Override
             public void onClick(View view) {
                 addItemToCart(menu);
-                Toast.makeText(context,menu.getNama() + " successfully added to your cart!",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -84,7 +93,8 @@ public class GridFoodAdapter extends RecyclerView.Adapter<GridFoodAdapter.MyView
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private ItemGridFoodBinding binding;
         MaterialButton order;
-        public MyViewHolder(@NonNull ItemGridFoodBinding binding){
+
+        public MyViewHolder(@NonNull ItemGridFoodBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
             order = binding.orderbtn;
@@ -102,21 +112,21 @@ public class GridFoodAdapter extends RecyclerView.Adapter<GridFoodAdapter.MyView
             protected FilterResults performFiltering(CharSequence charSequence) {
                 FilterResults filterResults = new FilterResults();
 
-                Log.d("MASUK","Perform Filtering " +charSequence);
+                Log.d("MASUK", "Perform Filtering " + charSequence);
 
-                if(charSequence == null || charSequence.length() == 0){
+                if (charSequence == null || charSequence.length() == 0) {
                     filterResults.count = filterMenu.size();
                     filterResults.values = filterMenu;
-                    Log.d("MASUK","Filter Empty " +charSequence);
-                }else{
-                    Log.d("MASUK","Filter loaded " +charSequence);
+                    Log.d("MASUK", "Filter Empty " + charSequence);
+                } else {
+                    Log.d("MASUK", "Filter loaded " + charSequence);
                     List<Menu> filterList = new ArrayList<>();
-                    for(Menu menu : filterMenu){
-                        if(menu.getNama().toLowerCase().contains(charSequence.toString().toLowerCase())){
+                    for (Menu menu : filterMenu) {
+                        if (menu.getNama().toLowerCase().contains(charSequence.toString().toLowerCase())) {
                             filterList.add(menu);
-                            Log.d("TEST","MASUK");
+                            Log.d("TEST", "MASUK");
                         }
-                        Log.d("TEST","LOOP");
+                        Log.d("TEST", "LOOP");
                     }
                     filterResults.count = filterList.size();
                     filterResults.values = filterList;
@@ -127,33 +137,45 @@ public class GridFoodAdapter extends RecyclerView.Adapter<GridFoodAdapter.MyView
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
                 listMenu.clear();
-                listMenu.addAll((List<Menu>)filterResults.values);
+                listMenu.addAll((List<Menu>) filterResults.values);
                 notifyDataSetChanged();
             }
         };
     }
+
     private void addItemToCart(final Menu data) {
-        class addItem extends AsyncTask<Void, Void, Void> {
-            AppPreference appPreference = new AppPreference(context);
-            String username = appPreference.getLoginUsername();
+        AppPreference appPreference = new AppPreference(context);
+        String username = appPreference.getLoginUsername();
 
+        Call<MenuResponse> client = RetrofitClient.getRetrofit().insertCart(
+                username,
+                data.getNama(),
+                "active",
+                data.getHarga(),
+                "1"
+        );
+
+        client.enqueue(new Callback<MenuResponse>() {
             @Override
-            protected Void doInBackground(Void... voids) {
-                Keranjang keranjang = new Keranjang(data.getNama(),1,data.getHarga(),data.getHarga(),username,data.getFotoMenu());
-
-//                DatabaseClient.getInstance(context)
-//                        .getAppDatabase()
-//                        .keranjangDAO()
-//                        .insert(keranjang);
-                return null;
+            public void onResponse(Call<MenuResponse> call, Response<MenuResponse> response) {
+                if(!response.isSuccessful()){
+                    try {
+                        JSONObject error = new JSONObject(response.errorBody().string());
+                        Toast.makeText(context,error.getString("message"),Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }else{
+                    Toast.makeText(context, data.getNama() + " successfully added to your cart!", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
+            public void onFailure(Call<MenuResponse> call, Throwable t) {
+                Toast.makeText(context,"Network Problem",Toast.LENGTH_SHORT).show();
             }
-        }
-        addItem add = new addItem();
-        add.execute();
+        });
     }
 }

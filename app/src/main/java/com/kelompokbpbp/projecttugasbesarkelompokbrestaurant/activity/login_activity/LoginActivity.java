@@ -81,11 +81,12 @@ public class LoginActivity extends AppCompatActivity {
                     finish();
                 }else{
                     try {
-                        JSONObject error = new JSONObject(response.errorBody().string());
+                        JSONObject error = null;
+                        if (response.errorBody() != null) {
+                            error = new JSONObject(response.errorBody().string());
+                        }
                         Toast.makeText(LoginActivity.this,"Login Gagal : " + error.getString("message"),Toast.LENGTH_SHORT).show();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
+                    } catch (JSONException | IOException e) {
                         e.printStackTrace();
                     }
 
