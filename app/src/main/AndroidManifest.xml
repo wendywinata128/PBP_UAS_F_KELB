@@ -17,7 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-        <activity android:name=".activity.geo_location_activity.GeoLocationActivity"></activity>
+        <activity android:name=".payment.PaymentActivity"></activity>
+        <activity android:name=".activity.geo_location_activity.GeoLocationActivity" />
 
         <service
             android:name=".service.FireBaseMessagingService"

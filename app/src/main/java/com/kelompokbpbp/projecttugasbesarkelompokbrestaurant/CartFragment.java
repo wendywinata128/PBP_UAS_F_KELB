@@ -1,5 +1,6 @@
 package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -25,6 +26,7 @@ import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.AppPrefere
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.DatabaseClient;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.databinding.FragmentCartBinding;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.Keranjang;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.payment.PaymentActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -68,6 +70,14 @@ public class CartFragment extends Fragment{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        checkOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), PaymentActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
     public void getKeranjang(){

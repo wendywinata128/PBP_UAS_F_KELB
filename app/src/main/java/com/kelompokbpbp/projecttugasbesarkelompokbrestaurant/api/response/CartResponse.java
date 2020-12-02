@@ -15,6 +15,18 @@ public class CartResponse {
     @Expose
     private List<Keranjang> data = null;
 
+    @SerializedName("total")
+    @Expose
+    private String total = null;
+
+    public String getTotal() {
+        return total;
+    }
+
+    public void setTotal(String total) {
+        this.total = total;
+    }
+
     public String getMessage() {
         return message;
     }
