@@ -18,6 +18,7 @@ import com.google.android.material.button.MaterialButton;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.RetrofitClient;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.response.MenuResponse;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.response.MessageResponse;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.AppPreference;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.DatabaseClient;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.databinding.ItemGridFoodBinding;
@@ -148,7 +149,7 @@ public class GridFoodAdapter extends RecyclerView.Adapter<GridFoodAdapter.MyView
         AppPreference appPreference = new AppPreference(context);
         String username = appPreference.getLoginUsername();
 
-        Call<MenuResponse> client = RetrofitClient.getRetrofit().insertCart(
+        Call<MessageResponse> client = RetrofitClient.getRetrofit().insertCart(
                 username,
                 data.getNama(),
                 "active",
@@ -156,9 +157,9 @@ public class GridFoodAdapter extends RecyclerView.Adapter<GridFoodAdapter.MyView
                 "1"
         );
 
-        client.enqueue(new Callback<MenuResponse>() {
+        client.enqueue(new Callback<MessageResponse>() {
             @Override
-            public void onResponse(Call<MenuResponse> call, Response<MenuResponse> response) {
+            public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
                 if(!response.isSuccessful()){
                     try {
                         JSONObject error = new JSONObject(response.errorBody().string());
@@ -172,7 +173,7 @@ public class GridFoodAdapter extends RecyclerView.Adapter<GridFoodAdapter.MyView
             }
 
             @Override
-            public void onFailure(Call<MenuResponse> call, Throwable t) {
+            public void onFailure(Call<MessageResponse> call, Throwable t) {
                 Toast.makeText(context,"Network Problem",Toast.LENGTH_SHORT).show();
             }
         });

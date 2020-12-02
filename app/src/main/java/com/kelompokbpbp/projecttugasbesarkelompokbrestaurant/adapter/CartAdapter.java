@@ -16,10 +16,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.google.android.material.button.MaterialButton;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.RetrofitClient;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.response.MessageResponse;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.databinding.CartItemLayoutBinding;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.Keranjang;
 
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
     private Context context;
@@ -51,23 +57,73 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         holder.deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                
+                Call<MessageResponse> client = RetrofitClient.getRetrofit().deleteItemCart(String.valueOf(keranjang.id));
+
+                client.enqueue(new Callback<MessageResponse>() {
+                    @Override
+                    public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
+                        if(response.isSuccessful()){
+                            listKeranjang.remove(position);
+                            notifyItemRemoved(position);
+                            notifyItemRangeChanged(position,listKeranjang.size());
+                        }else{
+                            Toast.makeText(context,"Failed",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<MessageResponse> call, Throwable t) {
+                        Toast.makeText(context,"Failed",Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
 
         holder.btnMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                keranjang.jumlah--;
-                holder.tvCount.setText(String.valueOf(keranjang.jumlah));
+                Call<MessageResponse> client = RetrofitClient.getRetrofit().decrementItemCart(String.valueOf(keranjang.id));
+
+                client.enqueue(new Callback<MessageResponse>() {
+                    @Override
+                    public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
+                        if(response.isSuccessful()){
+                            keranjang.jumlah--;
+                            holder.tvCount.setText(String.valueOf(keranjang.jumlah));
+                        }else{
+                            Toast.makeText(context,"Failed",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<MessageResponse> call, Throwable t) {
+                        Toast.makeText(context,"Failed",Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
 
         holder.btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                keranjang.jumlah++;
-                holder.tvCount.setText(String.valueOf(keranjang.jumlah));
+                Call<MessageResponse> client = RetrofitClient.getRetrofit().incrementItemCart(String.valueOf(keranjang.id));
+
+                client.enqueue(new Callback<MessageResponse>() {
+                    @Override
+                    public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
+                        if(response.isSuccessful()){
+                            keranjang.jumlah++;
+                            holder.tvCount.setText(String.valueOf(keranjang.jumlah));
+                        }else{
+                            Toast.makeText(context,"Failed",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<MessageResponse> call, Throwable t) {
+                        Toast.makeText(context,"Failed",Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
 

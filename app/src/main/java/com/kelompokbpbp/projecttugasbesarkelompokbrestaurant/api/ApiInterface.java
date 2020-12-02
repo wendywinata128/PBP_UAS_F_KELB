@@ -2,6 +2,7 @@ package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api;
 
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.response.CartResponse;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.response.MenuResponse;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.response.MessageResponse;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.response.UserResponse;
 
 import retrofit2.Call;
@@ -47,9 +48,20 @@ public interface ApiInterface {
 
     @POST("/api/cart/insert")
     @FormUrlEncoded
-    Call<MenuResponse> insertCart(@Field("username") String username,
-                                  @Field("menu_name") String menu_name,
-                                  @Field("status") String status,
-                                  @Field("price") String price,
-                                  @Field("amount") String amount);
+    Call<MessageResponse> insertCart(@Field("username") String username,
+                                     @Field("menu_name") String menu_name,
+                                     @Field("status") String status,
+                                     @Field("price") String price,
+                                     @Field("amount") String amount);
+
+    @POST("/api/carts/{id}/incrementCount")
+    Call<MessageResponse> incrementItemCart(@Path("id") String id);
+
+    @POST("/api/carts/{id}/decrementCount")
+    Call<MessageResponse> decrementItemCart(@Path("id") String id);
+
+    @POST("/api/carts/{id}/delete")
+    Call<MessageResponse> deleteItemCart(@Path("id") String id);
+
+
 }
