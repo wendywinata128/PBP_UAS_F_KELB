@@ -28,7 +28,15 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".activity.login_activity.LoginActivity" />
+        <activity android:name=".activity.login_activity.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="https"
+                    android:host="pbp.dbappz.top"/>
+            </intent-filter>
+        </activity>
         <activity android:name=".activity.edit_add_address_activity.EditAddAddressActivity" />
         <activity android:name=".activity.register_activity.RegisterActivity" />
         <activity android:name=".activity.splash_screen_activity.SplashScreenActivity">

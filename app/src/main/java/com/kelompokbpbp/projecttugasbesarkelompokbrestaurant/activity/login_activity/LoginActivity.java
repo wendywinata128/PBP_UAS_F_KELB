@@ -3,7 +3,9 @@ package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.login_act
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -14,6 +16,7 @@ import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.main_activity.MainActivity;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.register_activity.RegisterActivity;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.RetrofitClient;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.response.MessageResponse;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.response.UserResponse;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.AppPreference;
 
@@ -21,6 +24,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,6 +47,40 @@ public class LoginActivity extends AppCompatActivity {
         tvPassword = findViewById(R.id.textInputPassword);
 
         pbLogin = findViewById(R.id.pb_login);
+
+        Uri uri = getIntent().getData();
+
+        if(uri != null){
+            AppPreference appPreference = new AppPreference(getApplicationContext());
+
+            if(appPreference.getUserToken() != null){
+                appPreference.setUserToken(null);
+                appPreference.setLoginUsername(null);
+            }
+
+            String path = uri.getPath();
+            String query = uri.getQuery();
+            Call<MessageResponse> client = RetrofitClient.getRetrofit().verifyEmail(path+"?"+query);
+
+            client.enqueue(new Callback<MessageResponse>() {
+                @Override
+                public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
+                    if(response.isSuccessful()){
+                        Toast.makeText(LoginActivity.this,"User Verified Success",Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(LoginActivity.this,"User Verified Failed",Toast.LENGTH_SHORT).show();
+                    }
+
+                    Log.d("Verify",path +"?"+ query);
+                }
+
+                @Override
+                public void onFailure(Call<MessageResponse> call, Throwable t) {
+                    Toast.makeText(LoginActivity.this,"Internet Problem",Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override

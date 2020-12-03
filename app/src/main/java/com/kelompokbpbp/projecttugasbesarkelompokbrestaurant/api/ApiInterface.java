@@ -13,6 +13,8 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
+import retrofit2.http.Url;
 
 public interface ApiInterface {
     @POST("/api/user/login")
@@ -62,6 +64,9 @@ public interface ApiInterface {
 
     @POST("/api/carts/{id}/delete")
     Call<MessageResponse> deleteItemCart(@Path("id") String id);
+
+    @GET
+    Call<MessageResponse> verifyEmail(@Url String url);
 
 
 }
