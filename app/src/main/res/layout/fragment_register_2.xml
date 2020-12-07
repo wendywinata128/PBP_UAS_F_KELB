@@ -78,7 +78,7 @@
                 android:layout_marginTop="15dp"
                 android:hint="@string/password"
                 app:errorEnabled="true"
-                app:helperText="More than 6 Character">
+                app:helperText="Minimum 6 characters">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
