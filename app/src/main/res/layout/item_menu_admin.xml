@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_marginBottom="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <data>
+        <variable
+            name="menu"
+            type="com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.Menu"/>
+    </data>
+
+    <LinearLayout
+        android:id="@+id/item_menu_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_margin="10dp">
+
+        <ImageView
+            android:layout_gravity="center_horizontal"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="fitXY"
+            android:id="@+id/image_url"/>
+
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="5dp">
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:text="Name"
+                    android:textSize="14sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_marginStart="10dp"
+                    android:id="@+id/tvMenuName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="5dp">
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:text="Price"
+                    android:textSize="14sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_marginStart="10dp"
+                    android:id="@+id/tvMenuPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="5dp">
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:text="Type"
+                    android:textSize="14sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_marginStart="10dp"
+                    android:id="@+id/tvMenuType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btnDeleteMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="22dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="8dp"
+            app:srcCompat="@drawable/ic_baseline_delete_24" />
+    </LinearLayout>
+
+    <View
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#B3B2B2"/>
+
+</layout>

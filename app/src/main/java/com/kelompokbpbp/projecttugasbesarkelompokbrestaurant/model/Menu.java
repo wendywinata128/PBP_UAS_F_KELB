@@ -13,9 +13,11 @@ import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.annotations.SerializedName;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
 
+import java.io.Serializable;
+
 import static android.media.audiofx.AutomaticGainControl.isAvailable;
 
-public class Menu {
+public class Menu implements Serializable {
 
     @SerializedName("id")
     private String id;

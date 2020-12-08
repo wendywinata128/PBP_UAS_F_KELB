@@ -1,5 +1,6 @@
 package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -44,14 +45,15 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         return new CartViewHolder(cartItemLayoutBinding);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
         Keranjang keranjang = listKeranjang.get(position);
-        Glide.with(context).load("https://pbp.dbappz.top/img/"+keranjang.fotoMakanan)
+        Glide.with(context).load("https://pbp.dbappz.top/img/"+keranjang.getFotoMakanan())
                 .error(R.drawable.ic_baseline_broken_image_24)
                 .into(holder.foto);
         holder.txtNama.setText(keranjang.getNamaMakanan());
-        holder.txtharga.setText(keranjang.getHarga());
+        holder.txtharga.setText("Rp " + keranjang.getHarga());
         holder.tvCount.setText(String.valueOf(keranjang.getJumlah()));
 
         holder.deleteButton.setOnClickListener(new View.OnClickListener() {

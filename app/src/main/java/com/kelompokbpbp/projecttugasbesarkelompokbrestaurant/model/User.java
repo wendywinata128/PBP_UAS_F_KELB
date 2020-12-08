@@ -30,12 +30,16 @@ public class User implements Serializable {
     @SerializedName("photo")
     private String photoProfile;
 
-    public User(String nama , String email , String username , String password, String photoProfile){
+    @SerializedName("role")
+    private String role;
+
+    public User(String nama , String email , String username , String password, String photoProfile, String role){
         this.nama = nama;
         this.email = email;
         this.username = username;
         this.password = password;
         this.photoProfile = photoProfile;
+        this.role = role;
     }
     public int getId() {
         return id;
@@ -83,5 +87,13 @@ public class User implements Serializable {
 
     public void setPhotoProfile(String photoProfile) {
         this.photoProfile = photoProfile;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

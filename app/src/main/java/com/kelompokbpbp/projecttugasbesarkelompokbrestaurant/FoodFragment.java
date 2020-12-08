@@ -34,7 +34,7 @@ public class FoodFragment extends Fragment {
     private RecyclerView recyclerView;
     private GridFoodAdapter gridFoodAdapter;
     private RecyclerView.LayoutManager gridLayoutManager;
-    private ArrayList<Menu> ListMenu;
+    private ArrayList<Menu> ListMenu = new ArrayList<>();
     private SearchView searchView;
 
     public FoodFragment() {
@@ -48,9 +48,6 @@ public class FoodFragment extends Fragment {
         fragmentFoodBinding = FragmentFoodBinding.inflate(inflater, container, false);
         View view = fragmentFoodBinding.getRoot();
         searchView = fragmentFoodBinding.searchView;
-
-        // Get data Menu
-        ListMenu = new DaftarMenu().MENU;
 
         // Recycler view
         recyclerView = fragmentFoodBinding.recyclerViewMenu;

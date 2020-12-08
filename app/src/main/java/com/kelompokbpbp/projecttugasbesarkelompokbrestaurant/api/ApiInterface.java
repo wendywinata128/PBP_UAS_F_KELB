@@ -37,6 +37,24 @@ public interface ApiInterface {
     @GET("/api/menu")
     Call<MenuResponse> menuList();
 
+    @POST("/api/menu/insert")
+    @FormUrlEncoded
+    Call<MenuResponse> insertMenu(@Field("name") String name,
+                                  @Field("price") String price,
+                                  @Field("type") String type,
+                                  @Field("photo") String photo);
+
+    @PUT("/api/menu/update/{id}")
+    @FormUrlEncoded
+    Call<MenuResponse> updateMenu(@Path("id") String id,
+                                  @Field("name") String name,
+                                  @Field("price") String price,
+                                  @Field("type") String type,
+                                  @Field("photo") String photo);
+
+    @POST("/api/menu/delete/{id}")
+    Call<MenuResponse> deleteMenu(@Path("id") String id);
+
     @GET("/api/carts/{username}")
     Call<CartResponse> getCartsByUsername(@Path("username") String username);
 
@@ -67,6 +85,4 @@ public interface ApiInterface {
 
     @GET
     Call<MessageResponse> verifyEmail(@Url String url);
-
-
 }

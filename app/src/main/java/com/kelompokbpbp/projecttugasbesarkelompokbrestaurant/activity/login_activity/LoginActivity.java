@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.admin_activity.HomeAdminActivity;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.main_activity.MainActivity;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.register_activity.RegisterActivity;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.RetrofitClient;
@@ -114,7 +115,12 @@ public class LoginActivity extends AppCompatActivity {
                     appPreference.setUserToken(response.body().getToken());
                     appPreference.setLoginUsername(response.body().getData().getUsername());
 
-                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                    Intent intent;
+                    if(response.body().getData().getRole().equals("admin")) {
+                        intent = new Intent(LoginActivity.this, HomeAdminActivity.class);
+                    } else {
+                        intent = new Intent(LoginActivity.this, MainActivity.class);
+                    }
                     startActivity(intent);
                     finish();
                 }else{

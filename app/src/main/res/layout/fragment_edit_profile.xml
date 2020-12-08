@@ -80,7 +80,7 @@
             android:layout_marginTop="16dp"
             android:autofillHints=""
             android:hint="@string/input_your_email"
-            android:inputType="text"/>
+            android:inputType="textEmailAddress"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 

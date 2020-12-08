@@ -100,14 +100,4 @@ public class Keranjang {
     public void setFotoMakanan(String fotoMakanan) {
         this.fotoMakanan = fotoMakanan;
     }
-
-    //
-//    @BindingAdapter({"android:loadImg"})
-//    public void setFotoMenu(ImageView imageView, String fotoMenu) {
-//        Glide.with(imageView.getContext())
-//                .load(fotoMenu)
-//                .into(imageView);
-//    }
-
-
 }

@@ -17,7 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-        <activity android:name=".payment.PaymentActivity"></activity>
+        <activity android:name=".activity.admin_activity.SetMenuActivity"/>
+        <activity android:name=".activity.admin_activity.HomeAdminActivity" />
+        <activity android:name=".payment.PaymentActivity" />
         <activity android:name=".activity.geo_location_activity.GeoLocationActivity" />
 
         <service
@@ -30,11 +32,14 @@
 
         <activity android:name=".activity.login_activity.LoginActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <data android:scheme="https"
-                    android:host="pbp.dbappz.top"/>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="pbp.dbappz.top"
+                    android:scheme="https" />
             </intent-filter>
         </activity>
         <activity android:name=".activity.edit_add_address_activity.EditAddAddressActivity" />

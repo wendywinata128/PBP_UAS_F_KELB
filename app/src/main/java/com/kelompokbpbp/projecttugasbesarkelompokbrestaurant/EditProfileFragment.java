@@ -201,9 +201,8 @@ public class EditProfileFragment extends Fragment {
             validation = false;
         }
 
-        if (editEmail.getText().toString().isEmpty() ||
-                String.valueOf(editEmail.getText()).length() < 8) {
-            editPhoneLayout.setError("Phone number must be 8 or more digits");
+        if (editEmail.getText().toString().isEmpty()) {
+            editEmail.setError("Please enter valid email address");
             validation = false;
         }
         return validation;
