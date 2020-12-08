@@ -1,0 +1,651 @@
+Index: app/src/main/java/com/kelompokbpbp/projecttugasbesarkelompokbrestaurant/activity/register_activity/Fragment_register_2.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.register_activity;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.annotation.Nullable;\r\nimport androidx.fragment.app.Fragment;\r\n\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.ProgressBar;\r\nimport android.widget.Toast;\r\n\r\nimport com.google.android.material.button.MaterialButton;\r\nimport com.google.android.material.textfield.TextInputLayout;\r\nimport com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;\r\nimport com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.login_activity.LoginActivity;\r\nimport com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.RetrofitClient;\r\nimport com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.response.UserResponse;\r\nimport com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.User;\r\n\r\nimport org.json.JSONException;\r\nimport org.json.JSONObject;\r\n\r\nimport java.io.IOException;\r\n\r\nimport retrofit2.Call;\r\nimport retrofit2.Callback;\r\nimport retrofit2.Response;\r\n\r\n\r\npublic class Fragment_register_2 extends Fragment {\r\n\r\n    private TextInputLayout tvUsername,tvPassword,tvMatchPassword;\r\n    private String fullName,email;\r\n    private MaterialButton btnRegister;\r\n    private ProgressBar pbRegister;\r\n\r\n\r\n    public Fragment_register_2() {\r\n        // Required empty public constructor\r\n    }\r\n\r\n\r\n    @Override\r\n    public View onCreateView(LayoutInflater inflater, ViewGroup container,\r\n                             Bundle savedInstanceState) {\r\n        View view = inflater.inflate(R.layout.fragment_register_2, container, false);\r\n        tvUsername = view.findViewById(R.id.textInputUsername);\r\n        tvPassword = view.findViewById(R.id.textInputPassword);\r\n        tvMatchPassword = view.findViewById(R.id.textInputMatchPassword);\r\n        pbRegister = view.findViewById(R.id.pb_register);\r\n        btnRegister = view.findViewById(R.id.btnRegister);\r\n        fullName = getArguments().getString(\"Full Name\");\r\n        email = getArguments().getString(\"Email\");\r\n        return view;\r\n    }\r\n\r\n    @Override\r\n    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {\r\n        super.onViewCreated(view, savedInstanceState);\r\n        btnRegister.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n                if(checkValidation()) {\r\n                    registerUser();\r\n                }\r\n            }\r\n        });\r\n    }\r\n\r\n    private boolean checkValidation(){\r\n        boolean validation = true;\r\n\r\n        if(tvUsername.getEditText().getText().toString().contains(\" \") ||\r\n            tvUsername.getEditText().getText().toString().isEmpty()){\r\n            tvUsername.setError(\"Username cannot contains space\");\r\n            validation = false;\r\n        }\r\n\r\n        if(tvPassword.getEditText().getText().toString().length() < 6){\r\n            tvPassword.setError(\"Password must be at least 6 digit\");\r\n            validation = false;\r\n        }\r\n\r\n        if(!(tvPassword.getEditText().getText().toString()\r\n                .equals(tvMatchPassword.getEditText().getText().toString()))){\r\n            tvMatchPassword.setError(\"Password is not same\");\r\n            validation = false;\r\n        }\r\n\r\n        return validation;\r\n    }\r\n\r\n    private void registerUser(){\r\n        User data = new User(fullName, email, tvUsername.getEditText().getText().toString(),\r\n                tvPassword.getEditText().getText().toString(), \"-\");\r\n\r\n        Call<UserResponse> client = RetrofitClient.getRetrofit().userRegister(\r\n                data.getNama(),\r\n                data.getUsername(),\r\n                data.getEmail(),\r\n                data.getPassword(),\r\n                \"avatar_default.png\",\r\n                data.getUsername());\r\n\r\n        pbRegister.setVisibility(View.VISIBLE);\r\n        client.enqueue(new Callback<UserResponse>() {\r\n            @Override\r\n            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {\r\n                if(response.isSuccessful()){\r\n                    pbRegister.setVisibility(View.GONE);\r\n                    Toast.makeText(getContext(),\"Success : \"+response.body().getMessage(),Toast.LENGTH_SHORT).show();\r\n\r\n                    Intent intent = new Intent(getContext(),LoginActivity.class);\r\n                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);\r\n\r\n                    startActivity(intent);\r\n                }else{\r\n                    pbRegister.setVisibility(View.GONE);\r\n                    try {\r\n                        JSONObject error = new JSONObject(response.errorBody().string());\r\n                        Toast.makeText(getContext(),error.optString(\"message\"), Toast.LENGTH_SHORT).show();\r\n                    } catch (JSONException e) {\r\n                        e.printStackTrace();\r\n                    } catch (IOException e) {\r\n                        e.printStackTrace();\r\n                    }\r\n                }\r\n            }\r\n\r\n            @Override\r\n            public void onFailure(Call<UserResponse> call, Throwable t) {\r\n                Toast.makeText(getContext(),\"Internet Problem ?\",Toast.LENGTH_SHORT).show();\r\n                pbRegister.setVisibility(View.GONE);\r\n            }\r\n        });\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/kelompokbpbp/projecttugasbesarkelompokbrestaurant/activity/register_activity/Fragment_register_2.java	(revision 92c80ecebacab9aa8b3ff6a5540cf498a6af6d2d)
++++ app/src/main/java/com/kelompokbpbp/projecttugasbesarkelompokbrestaurant/activity/register_activity/Fragment_register_2.java	(date 1607437258812)
+@@ -7,6 +7,7 @@
+ import androidx.annotation.Nullable;
+ import androidx.fragment.app.Fragment;
+ 
++import android.util.Log;
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
+@@ -16,6 +17,10 @@
+ import com.google.android.material.button.MaterialButton;
+ import com.google.android.material.textfield.TextInputLayout;
+ import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
++import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.UnitTest.ActivityUtil;
++import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.UnitTest.RegisterPresenter;
++import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.UnitTest.RegisterService;
++import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.UnitTest.RegisterView;
+ import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.login_activity.LoginActivity;
+ import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.RetrofitClient;
+ import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.response.UserResponse;
+@@ -31,13 +36,13 @@
+ import retrofit2.Response;
+ 
+ 
+-public class Fragment_register_2 extends Fragment {
++public class Fragment_register_2 extends Fragment implements RegisterView {
+ 
+     private TextInputLayout tvUsername,tvPassword,tvMatchPassword;
+     private String fullName,email;
+     private MaterialButton btnRegister;
+     private ProgressBar pbRegister;
+-
++    private RegisterPresenter presenter;
+ 
+     public Fragment_register_2() {
+         // Required empty public constructor
+@@ -55,6 +60,11 @@
+         btnRegister = view.findViewById(R.id.btnRegister);
+         fullName = getArguments().getString("Full Name");
+         email = getArguments().getString("Email");
++
++        Log.d("FULL NAME","FULL NAME : "+fullName+email);
++
++        presenter = new RegisterPresenter(this,new RegisterService());
++
+         return view;
+     }
+ 
+@@ -64,14 +74,14 @@
+         btnRegister.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+-                if(checkValidation()) {
+-                    registerUser();
+-                }
++                //if(checkValidation()) {
++                    presenter.onRegisterClicked();
++                //}
+             }
+         });
+     }
+ 
+-    private boolean checkValidation(){
++    /*private boolean checkValidation(){
+         boolean validation = true;
+ 
+         if(tvUsername.getEditText().getText().toString().contains(" ") ||
+@@ -92,12 +102,15 @@
+         }
+ 
+         return validation;
+-    }
++    }*/
+ 
+     private void registerUser(){
++        Log.d("FULL NAME","Start Main 2");
+         User data = new User(fullName, email, tvUsername.getEditText().getText().toString(),
+                 tvPassword.getEditText().getText().toString(), "-");
+ 
++        Log.d("FULL NAME","FULL NAME : "+data.getNama());
++
+         Call<UserResponse> client = RetrofitClient.getRetrofit().userRegister(
+                 data.getNama(),
+                 data.getUsername(),
+@@ -138,4 +151,109 @@
+             }
+         });
+     }
++
++    @Override
++    public String getNama() {
++        return null;
++    }
++
++    @Override
++    public void showNamaError(String message) {
++
++    }
++
++    @Override
++    public String getEmail() {
++        return null;
++    }
++
++    @Override
++    public void showEmailError(String message) {
++
++    }
++
++    @Override
++    public String getUsername() {
++        return tvUsername.getEditText().getText().toString();
++    }
++
++    @Override
++    public void showUsernameError(String message) {
++        tvUsername.getEditText().setError(message);
++    }
++
++    @Override
++    public String getPassword() {
++        return tvPassword.getEditText().getText().toString();
++    }
++
++    @Override
++    public void showPasswordError(String message) {
++        tvPassword.getEditText().setError(message);
++    }
++
++    @Override
++    public String getMatchPass() {
++        return tvMatchPassword.getEditText().getText().toString();
++    }
++
++    @Override
++    public void showMatchPassError(String message) {
++        tvMatchPassword.getEditText().setError(message);
++    }
++
++    @Override
++    public String getPhotoProfile() {
++        return null;
++    }
++
++    @Override
++    public void showPhotoError(String message) {
++
++    }
++
++    @Override
++    public String getAddress() {
++        return null;
++    }
++
++    @Override
++    public void showAddressError(String message) {
++
++    }
++
++    @Override
++    public void startMainActivity() {
++        Log.d("FULL NAME","Start Main Activity ");
++        registerUser();
++    }
++
++    @Override
++    public void startLoginActivity() {
++    }
++
++    @Override
++    public void startRegisterActivity() {
++
++    }
++
++    @Override
++    public void startUserProfileActivity(User user) {
++
++    }
++
++    @Override
++    public void showRegisterError(String message) {
++
++    }
++
++    @Override
++    public void showErrorResponse(String message) {
++
++    }
++
++    @Override
++    public void continueValidationSuccess() {
++
++    }
+ }
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_payment.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<ScrollView xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:fillViewport=\"true\"\r\n    tools:context=\".payment.PaymentActivity\">\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:orientation=\"vertical\">\r\n\r\n        <ImageView\r\n            android:layout_width=\"250dp\"\r\n            android:layout_height=\"250dp\"\r\n            android:src=\"@drawable/payment\"\r\n            android:layout_gravity=\"center\"\r\n            />\r\n\r\n        <TextView\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Pembayaran\"\r\n            android:textAlignment=\"center\"\r\n            style=\"@style/TextAppearance.MaterialComponents.Headline4\"\r\n            android:textColor=\"@android:color/black\"/>\r\n\r\n        <TextView\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginTop=\"15dp\"\r\n            android:layout_marginStart=\"5dp\"\r\n            android:text=\"Konfirmasi belanja mu\"\r\n            />\r\n        <androidx.recyclerview.widget.RecyclerView\r\n            android:id=\"@+id/rvCartTransaction\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            tools:listitem=\"@layout/cart_transaction_confirmation\"/>\r\n\r\n        <TextView\r\n            android:id=\"@+id/tvTotal\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Total : Rp.50000 \"\r\n            android:textColor=\"@android:color/holo_red_light\"\r\n            android:layout_marginStart=\"10dp\"/>\r\n\r\n        <com.google.android.material.button.MaterialButton\r\n            android:id=\"@+id/btnBayar\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_margin=\"15dp\"\r\n            android:text=\"Bayar\"/>\r\n    </LinearLayout>\r\n\r\n\r\n</ScrollView>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_payment.xml	(revision 92c80ecebacab9aa8b3ff6a5540cf498a6af6d2d)
++++ app/src/main/res/layout/activity_payment.xml	(date 1607420325317)
+@@ -48,12 +48,30 @@
+             android:textColor="@android:color/holo_red_light"
+             android:layout_marginStart="10dp"/>
+ 
+-        <com.google.android.material.button.MaterialButton
+-            android:id="@+id/btnBayar"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:layout_margin="15dp"
+-            android:text="Bayar"/>
++        <LinearLayout
++            android:layout_width="match_parent"
++            android:layout_height="match_parent"
++            android:orientation="vertical">
++            <com.google.android.material.button.MaterialButton
++                android:id="@+id/btnBayar"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_margin="15dp"
++                android:text="Bayar"/>
++        </LinearLayout>
++        <LinearLayout
++            android:layout_width="match_parent"
++            android:layout_height="match_parent"
++            android:orientation="vertical"
++            android:layout_marginTop="-25dp">
++            <com.google.android.material.button.MaterialButton
++                android:id="@+id/btnCetak"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_margin="15dp"
++                android:backgroundTint="#ff4b5c"
++                android:text="Cetak PDF" />
++        </LinearLayout>
+     </LinearLayout>
+ 
+ 
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>apply plugin: 'com.android.application'\r\napply plugin: 'com.google.gms.google-services'\r\n\r\nandroid {\r\n    compileSdkVersion 30\r\n    buildToolsVersion \"30.0.2\"\r\n\r\n    defaultConfig {\r\n        applicationId \"com.kelompokbpbp.projecttugasbesarkelompokbrestaurant\"\r\n        minSdkVersion 21\r\n        targetSdkVersion 30\r\n        versionCode 1\r\n        versionName \"1.0\"\r\n\r\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\r\n    }\r\n\r\n    buildTypes {\r\n        release {\r\n            minifyEnabled false\r\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n\r\n    compileOptions {\r\n        sourceCompatibility JavaVersion.VERSION_1_8\r\n        targetCompatibility JavaVersion.VERSION_1_8\r\n    }\r\n\r\n    //data binding\r\n    buildFeatures {\r\n        dataBinding true\r\n    }\r\n}\r\n\r\ndependencies {\r\n    implementation fileTree(dir: \"libs\", include: [\"*.jar\"])\r\n    implementation 'androidx.appcompat:appcompat:1.2.0'\r\n    implementation 'androidx.constraintlayout:constraintlayout:2.0.2'\r\n    implementation 'androidx.legacy:legacy-support-v4:1.0.0'\r\n    implementation 'com.google.firebase:firebase-messaging:20.3.0'\r\n    implementation 'com.google.firebase:firebase-core:17.5.1'\r\n    testImplementation 'junit:junit:4.12'\r\n    androidTestImplementation 'androidx.test.ext:junit:1.1.2'\r\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'\r\n\r\n    implementation 'de.hdodenhof:circleimageview:3.1.0'\r\n    implementation 'androidx.recyclerview:recyclerview:1.1.0'\r\n\r\n    def room_version = \"2.2.5\"\r\n\r\n    implementation \"androidx.room:room-runtime:$room_version\"\r\n    annotationProcessor \"androidx.room:room-compiler:$room_version\"\r\n\r\n    implementation 'com.google.android.material:material:1.2.1'\r\n\r\n    //noinspection GradleCompatible\r\n    implementation 'com.android.support:design:28.0.0'\r\n\r\n    //bottom navigation\r\n    implementation 'androidx.navigation:navigation-fragment:2.3.0'\r\n    implementation 'androidx.navigation:navigation-ui:2.3.0'\r\n\r\n    //glide for image loading and caching\r\n    implementation 'com.github.bumptech.glide:glide:4.11.0'\r\n    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'\r\n\r\n    implementation 'com.romandanylyk:pageindicatorview:1.0.3'\r\n\r\n    //elegant number\r\n    implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'\r\n\r\n    //Geo Location\r\n    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:9.2.0'\r\n    implementation 'com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.6'\r\n    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-places-v9:0.12.0'\r\n\r\n    //Api\r\n    implementation 'com.squareup.retrofit2:retrofit:2.4.0'\r\n    implementation 'com.google.code.gson:gson:2.8.2'\r\n    implementation 'com.squareup.retrofit2:converter-gson:2.0.2'\r\n    implementation \"com.squareup.okhttp3:logging-interceptor:4.9.0\"\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/build.gradle	(revision 92c80ecebacab9aa8b3ff6a5540cf498a6af6d2d)
++++ app/build.gradle	(date 1607415332730)
+@@ -46,6 +46,7 @@
+ 
+     implementation 'de.hdodenhof:circleimageview:3.1.0'
+     implementation 'androidx.recyclerview:recyclerview:1.1.0'
++    androidTestImplementation 'androidx.test:rules:1.3.1-alpha02'
+ 
+     def room_version = "2.2.5"
+ 
+@@ -80,4 +81,14 @@
+     implementation 'com.google.code.gson:gson:2.8.2'
+     implementation 'com.squareup.retrofit2:converter-gson:2.0.2'
+     implementation "com.squareup.okhttp3:logging-interceptor:4.9.0"
++
++    //testing
++    testCompile 'org.mockito:mockito-all:1.10.19'
++
++    //pdf
++    implementation 'com.itextpdf:itextg:5.5.10'
++    implementation 'com.mindorks.android:prdownloader:0.6.0'
++    implementation 'com.github.Shashank02051997:FancyToast-Android:0.1.8'
++    implementation 'com.github.Bleoo:WindowImageView:1.0.2'
++    implementation 'com.facebook.fresco:fresco:1.5.0'
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/kelompokbpbp/projecttugasbesarkelompokbrestaurant/activity/register_activity/Fragment_Register_1.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.register_activity;\r\n\r\nimport android.content.Context;\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.annotation.Nullable;\r\nimport androidx.fragment.app.Fragment;\r\n\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\n\r\nimport com.google.android.material.button.MaterialButton;\r\nimport com.google.android.material.textfield.TextInputLayout;\r\nimport com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;\r\nimport com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.login_activity.LoginActivity;\r\n\r\npublic class Fragment_Register_1 extends Fragment {\r\n    private MaterialButton btnContinue,btnLogin;\r\n    private TextInputLayout tvFullName,tvEmail;\r\n\r\n    public Fragment_Register_1() {\r\n        // Required empty public constructor\r\n    }\r\n\r\n    @Override\r\n    public void onAttach(@NonNull Context context) {\r\n        super.onAttach(context);\r\n    }\r\n\r\n    @Override\r\n    public View onCreateView(LayoutInflater inflater, ViewGroup container,\r\n                             Bundle savedInstanceState) {\r\n        // Inflate the layout for this fragment\r\n        View view = inflater.inflate(R.layout.fragment__register_1, container, false);\r\n        btnContinue = view.findViewById(R.id.btnContinue);\r\n        tvFullName = view.findViewById(R.id.textInputFullName);\r\n        tvEmail = view.findViewById(R.id.textInputEmail);\r\n        btnLogin = view.findViewById(R.id.btnMoveLogin);\r\n        return view;\r\n    }\r\n\r\n    @Override\r\n    public void onViewCreated(@NonNull View view, @Nullable final Bundle savedInstanceState) {\r\n        super.onViewCreated(view, savedInstanceState);\r\n\r\n        btnContinue.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n                if(CheckValidation()){\r\n                    Fragment fragment = new Fragment_register_2();\r\n                    Bundle bundle = new Bundle();\r\n                    bundle.putString(\"Full Name\",tvFullName.getEditText().getText().toString());\r\n                    bundle.putString(\"Email\",tvEmail.getEditText().getText().toString());\r\n                    fragment.setArguments(bundle);\r\n                    getActivity().getSupportFragmentManager().beginTransaction().\r\n                            replace(R.id.register_container,fragment).addToBackStack(null).commit();\r\n                }\r\n            }\r\n        });\r\n        btnLogin.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n                startActivity(new Intent(Fragment_Register_1.this.getContext(), LoginActivity.class));\r\n            }\r\n        });\r\n    }\r\n\r\n    private boolean CheckValidation(){\r\n        boolean validation = true;\r\n\r\n        if(tvFullName.getEditText().getText().toString().isEmpty()){\r\n            tvFullName.setError(\"Full name cannot be empty\");\r\n            validation = false;\r\n        }\r\n\r\n        return validation;\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/kelompokbpbp/projecttugasbesarkelompokbrestaurant/activity/register_activity/Fragment_Register_1.java	(revision 92c80ecebacab9aa8b3ff6a5540cf498a6af6d2d)
++++ app/src/main/java/com/kelompokbpbp/projecttugasbesarkelompokbrestaurant/activity/register_activity/Fragment_Register_1.java	(date 1607436680375)
+@@ -8,6 +8,7 @@
+ import androidx.annotation.Nullable;
+ import androidx.fragment.app.Fragment;
+ 
++import android.util.Log;
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
+@@ -15,11 +16,17 @@
+ import com.google.android.material.button.MaterialButton;
+ import com.google.android.material.textfield.TextInputLayout;
+ import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
++import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.UnitTest.ActivityUtil;
++import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.UnitTest.RegisterPresenter;
++import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.UnitTest.RegisterService;
++import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.UnitTest.RegisterView;
+ import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.login_activity.LoginActivity;
++import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.User;
+ 
+-public class Fragment_Register_1 extends Fragment {
++public class Fragment_Register_1 extends Fragment implements RegisterView {
+     private MaterialButton btnContinue,btnLogin;
+     private TextInputLayout tvFullName,tvEmail;
++    private RegisterPresenter presenter;
+ 
+     public Fragment_Register_1() {
+         // Required empty public constructor
+@@ -39,6 +46,9 @@
+         tvFullName = view.findViewById(R.id.textInputFullName);
+         tvEmail = view.findViewById(R.id.textInputEmail);
+         btnLogin = view.findViewById(R.id.btnMoveLogin);
++
++        presenter = new RegisterPresenter(this,new RegisterService());
++
+         return view;
+     }
+ 
+@@ -49,7 +59,8 @@
+         btnContinue.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+-                if(CheckValidation()){
++                presenter.onContinueClicked();
++                /*if(CheckValidation()){
+                     Fragment fragment = new Fragment_register_2();
+                     Bundle bundle = new Bundle();
+                     bundle.putString("Full Name",tvFullName.getEditText().getText().toString());
+@@ -57,7 +68,7 @@
+                     fragment.setArguments(bundle);
+                     getActivity().getSupportFragmentManager().beginTransaction().
+                             replace(R.id.register_container,fragment).addToBackStack(null).commit();
+-                }
++                }*/
+             }
+         });
+         btnLogin.setOnClickListener(new View.OnClickListener() {
+@@ -68,7 +79,7 @@
+         });
+     }
+ 
+-    private boolean CheckValidation(){
++    /*private boolean CheckValidation(){
+         boolean validation = true;
+ 
+         if(tvFullName.getEditText().getText().toString().isEmpty()){
+@@ -77,6 +88,114 @@
+         }
+ 
+         return validation;
++    }*/
++
++    @Override
++    public String getNama() {
++        return tvFullName.getEditText().getText().toString();
++    }
++
++    @Override
++    public void showNamaError(String message) {
++        tvFullName.getEditText().setError(message);
+     }
+ 
++    @Override
++    public String getEmail() {
++        return tvEmail.getEditText().getText().toString();
++    }
++
++    @Override
++    public void showEmailError(String message) {
++        tvEmail.getEditText().setError(message);
++    }
++
++    @Override
++    public String getUsername() {
++        return null;
++    }
++
++    @Override
++    public void showUsernameError(String message) {
++
++    }
++
++    @Override
++    public String getPassword() {
++        return null;
++    }
++
++    @Override
++    public void showPasswordError(String message) {
++
++    }
++
++    @Override
++    public String getMatchPass() {
++        return null;
++    }
++
++    @Override
++    public void showMatchPassError(String message) {
++
++    }
++
++    @Override
++    public String getPhotoProfile() {
++        return null;
++    }
++
++    @Override
++    public void showPhotoError(String message) {
++
++    }
++
++    @Override
++    public String getAddress() {
++        return null;
++    }
++
++    @Override
++    public void showAddressError(String message) {
++
++    }
++
++    @Override
++    public void startMainActivity() {
++
++    }
++
++    @Override
++    public void startLoginActivity() {
++    }
++
++    @Override
++    public void startRegisterActivity() {
++    }
++
++    @Override
++    public void startUserProfileActivity(User user) {
++
++    }
++
++    @Override
++    public void showRegisterError(String message) {
++
++    }
++
++    @Override
++    public void showErrorResponse(String message) {
++
++    }
++
++    @Override
++    public void continueValidationSuccess() {
++        Fragment fragment = new Fragment_register_2();
++        Bundle bundle = new Bundle();
++        bundle.putString("Full Name",tvFullName.getEditText().getText().toString());
++        bundle.putString("Email",tvEmail.getEditText().getText().toString());
++        fragment.setArguments(bundle);
++        getActivity().getSupportFragmentManager().beginTransaction().
++                replace(R.id.register_container,fragment).addToBackStack(null).commit();
++    }
+ }
+\ No newline at end of file
+Index: build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// Top-level build file where you can add configuration options common to all sub-projects/modules.\r\nbuildscript {\r\n    repositories {\r\n        google()\r\n        jcenter()\r\n        mavenCentral()\r\n        maven{\r\n            url ''\r\n        }\r\n    }\r\n    dependencies {\r\n        classpath \"com.android.tools.build:gradle:4.0.0\"\r\n        classpath 'com.google.gms:google-services:4.2.0'\r\n\r\n        // NOTE: Do not place your application dependencies here; they belong\r\n        // in the individual module build.gradle files\r\n    }\r\n}\r\n\r\nallprojects {\r\n    repositories {\r\n        google()\r\n        jcenter()\r\n        maven {url 'https://mapbox.bintray.com/mapbox'}\r\n    }\r\n}\r\n\r\ntask clean(type: Delete) {\r\n    delete rootProject.buildDir\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- build.gradle	(revision 92c80ecebacab9aa8b3ff6a5540cf498a6af6d2d)
++++ build.gradle	(date 1607415374191)
+@@ -22,6 +22,7 @@
+         google()
+         jcenter()
+         maven {url 'https://mapbox.bintray.com/mapbox'}
++        maven { url "https://jitpack.io" }
+     }
+ }
+ 
+Index: .idea/jarRepositories.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"RemoteRepositoriesConfiguration\">\r\n    <remote-repository>\r\n      <option name=\"id\" value=\"central\" />\r\n      <option name=\"name\" value=\"Maven Central repository\" />\r\n      <option name=\"url\" value=\"https://repo1.maven.org/maven2\" />\r\n    </remote-repository>\r\n    <remote-repository>\r\n      <option name=\"id\" value=\"jboss.community\" />\r\n      <option name=\"name\" value=\"JBoss Community repository\" />\r\n      <option name=\"url\" value=\"https://repository.jboss.org/nexus/content/repositories/public/\" />\r\n    </remote-repository>\r\n    <remote-repository>\r\n      <option name=\"id\" value=\"BintrayJCenter\" />\r\n      <option name=\"name\" value=\"BintrayJCenter\" />\r\n      <option name=\"url\" value=\"https://jcenter.bintray.com/\" />\r\n    </remote-repository>\r\n    <remote-repository>\r\n      <option name=\"id\" value=\"Google\" />\r\n      <option name=\"name\" value=\"Google\" />\r\n      <option name=\"url\" value=\"https://dl.google.com/dl/android/maven2/\" />\r\n    </remote-repository>\r\n    <remote-repository>\r\n      <option name=\"id\" value=\"maven\" />\r\n      <option name=\"name\" value=\"maven\" />\r\n      <option name=\"url\" value=\"https://mapbox.bintray.com/mapbox\" />\r\n    </remote-repository>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/jarRepositories.xml	(revision 92c80ecebacab9aa8b3ff6a5540cf498a6af6d2d)
++++ .idea/jarRepositories.xml	(date 1607415442975)
+@@ -26,5 +26,10 @@
+       <option name="name" value="maven" />
+       <option name="url" value="https://mapbox.bintray.com/mapbox" />
+     </remote-repository>
++    <remote-repository>
++      <option name="id" value="maven2" />
++      <option name="name" value="maven2" />
++      <option name="url" value="https://jitpack.io" />
++    </remote-repository>
+   </component>
+ </project>
+\ No newline at end of file
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    package=\"com.kelompokbpbp.projecttugasbesarkelompokbrestaurant\">\r\n\r\n    <uses-permission android:name=\"android.permission.INTERNET\" />\r\n    <uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />\r\n    <uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />\r\n    <uses-permission android:name=\"android.permission.CAMERA\" />\r\n    <uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:icon=\"@drawable/logo_restoku\"\r\n        android:label=\"@string/app_name\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/AppTheme\"\r\n        tools:replace=\"android:icon\">\r\n        <activity android:name=\".payment.PaymentActivity\"></activity>\r\n        <activity android:name=\".activity.geo_location_activity.GeoLocationActivity\" />\r\n\r\n        <service\r\n            android:name=\".service.FireBaseMessagingService\"\r\n            android:exported=\"false\">\r\n            <intent-filter>\r\n                <action android:name=\"com.google.firebase.MESSAGING_EVENT\" />\r\n            </intent-filter>\r\n        </service>\r\n\r\n        <activity android:name=\".activity.login_activity.LoginActivity\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.VIEW\"/>\r\n                <category android:name=\"android.intent.category.DEFAULT\"/>\r\n                <category android:name=\"android.intent.category.BROWSABLE\"/>\r\n                <data android:scheme=\"https\"\r\n                    android:host=\"pbp.dbappz.top\"/>\r\n            </intent-filter>\r\n        </activity>\r\n        <activity android:name=\".activity.edit_add_address_activity.EditAddAddressActivity\" />\r\n        <activity android:name=\".activity.register_activity.RegisterActivity\" />\r\n        <activity android:name=\".activity.splash_screen_activity.SplashScreenActivity\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity>\r\n        <activity android:name=\".activity.first_time_activity.FirstTimeActivity\" />\r\n        <activity android:name=\".activity.main_activity.MainActivity\" />\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(revision 92c80ecebacab9aa8b3ff6a5540cf498a6af6d2d)
++++ app/src/main/AndroidManifest.xml	(date 1607415925426)
+@@ -8,6 +8,8 @@
+     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+     <uses-permission android:name="android.permission.CAMERA" />
+     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
++    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
++    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+ 
+     <application
+         android:allowBackup="true"
+@@ -16,6 +18,7 @@
+         android:roundIcon="@mipmap/ic_launcher_round"
+         android:supportsRtl="true"
+         android:theme="@style/AppTheme"
++        android:usesCleartextTraffic="true"
+         tools:replace="android:icon">
+         <activity android:name=".payment.PaymentActivity"></activity>
+         <activity android:name=".activity.geo_location_activity.GeoLocationActivity" />
+@@ -48,6 +51,7 @@
+         </activity>
+         <activity android:name=".activity.first_time_activity.FirstTimeActivity" />
+         <activity android:name=".activity.main_activity.MainActivity" />
++
+     </application>
+ 
+ </manifest>
+\ No newline at end of file
+Index: app/src/main/java/com/kelompokbpbp/projecttugasbesarkelompokbrestaurant/payment/PaymentActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.payment;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.recyclerview.widget.LinearLayoutManager;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\n\r\nimport android.os.Bundle;\r\nimport android.widget.TextView;\r\nimport android.widget.Toast;\r\n\r\nimport com.google.android.material.button.MaterialButton;\r\nimport com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;\r\nimport com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.adapter.CartTransactionAdapter;\r\nimport com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.RetrofitClient;\r\nimport com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.response.CartResponse;\r\nimport com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.AppPreference;\r\nimport com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.Keranjang;\r\n\r\nimport java.text.DecimalFormat;\r\nimport java.text.DecimalFormatSymbols;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\nimport retrofit2.Call;\r\nimport retrofit2.Callback;\r\nimport retrofit2.Response;\r\n\r\npublic class PaymentActivity extends AppCompatActivity {\r\n\r\n    RecyclerView rvCartTransaction;\r\n    TextView tvTotal;\r\n    MaterialButton btnBayar;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_payment);\r\n\r\n        rvCartTransaction = findViewById(R.id.rvCartTransaction);\r\n        rvCartTransaction.setLayoutManager(new LinearLayoutManager(this));\r\n        rvCartTransaction.setHasFixedSize(true);\r\n\r\n        tvTotal = findViewById(R.id.tvTotal);\r\n\r\n        AppPreference appPreference = new AppPreference(getApplicationContext());\r\n\r\n        Call<CartResponse> client = RetrofitClient.getRetrofit().getCartsByUsername(appPreference.getLoginUsername());\r\n\r\n        client.enqueue(new Callback<CartResponse>() {\r\n            @Override\r\n            public void onResponse(Call<CartResponse> call, Response<CartResponse> response) {\r\n                if(response.isSuccessful()){\r\n                    List<Keranjang> keranjangs = new ArrayList<Keranjang>();\r\n\r\n                    keranjangs.add(null);\r\n                    keranjangs.addAll(response.body().getData());\r\n\r\n                    CartTransactionAdapter adapter = new CartTransactionAdapter(keranjangs);\r\n\r\n                    rvCartTransaction.setAdapter(adapter);\r\n\r\n                    DecimalFormat kursIndonesia = (DecimalFormat) DecimalFormat.getCurrencyInstance();\r\n                    DecimalFormatSymbols formatRp = new DecimalFormatSymbols();\r\n\r\n                    formatRp.setCurrencySymbol(\"Rp. \");\r\n                    formatRp.setMonetaryDecimalSeparator(',');\r\n                    formatRp.setGroupingSeparator('.');\r\n\r\n                    kursIndonesia.setDecimalFormatSymbols(formatRp);\r\n\r\n                    String totalPembayaran = \"Total : \" + kursIndonesia.format(Double.valueOf(response.body().getTotal()));\r\n\r\n                    tvTotal.setText(totalPembayaran);\r\n                }else{\r\n                    Toast.makeText(PaymentActivity.this,\"Failed\",Toast.LENGTH_SHORT).show();\r\n                }\r\n            }\r\n\r\n            @Override\r\n            public void onFailure(Call<CartResponse> call, Throwable t) {\r\n                Toast.makeText(PaymentActivity.this,\"Failed\",Toast.LENGTH_SHORT).show();\r\n            }\r\n        });\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/kelompokbpbp/projecttugasbesarkelompokbrestaurant/payment/PaymentActivity.java	(revision 92c80ecebacab9aa8b3ff6a5540cf498a6af6d2d)
++++ app/src/main/java/com/kelompokbpbp/projecttugasbesarkelompokbrestaurant/payment/PaymentActivity.java	(date 1607421223071)
+@@ -1,14 +1,25 @@
+ package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.payment;
+ 
++import androidx.annotation.NonNull;
+ import androidx.appcompat.app.AppCompatActivity;
++import androidx.lifecycle.ViewModelProvider;
+ import androidx.recyclerview.widget.LinearLayoutManager;
+ import androidx.recyclerview.widget.RecyclerView;
+ 
++import android.app.AlertDialog;
++import android.content.DialogInterface;
++import android.graphics.Color;
+ import android.os.Bundle;
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++import android.widget.Button;
+ import android.widget.TextView;
+ import android.widget.Toast;
+ 
+ import com.google.android.material.button.MaterialButton;
++import com.itextpdf.text.DocumentException;
++import com.itextpdf.text.pdf.PdfWriter;
+ import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
+ import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.adapter.CartTransactionAdapter;
+ import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.RetrofitClient;
+@@ -16,6 +27,8 @@
+ import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.AppPreference;
+ import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.Keranjang;
+ 
++import java.io.File;
++import java.io.FileNotFoundException;
+ import java.text.DecimalFormat;
+ import java.text.DecimalFormatSymbols;
+ import java.util.ArrayList;
+@@ -30,9 +43,19 @@
+     RecyclerView rvCartTransaction;
+     TextView tvTotal;
+     MaterialButton btnBayar;
++    /*private View root;
++    private PdfViewModel pdfViewModel;
++
++    private static final String TAG = "PdfCreatorActivity";
++    final private int REQUEST_CODE_ASK_PERMISSIONS = 101;
++    private File pdfFile;
++    private PdfWriter writer;
++    private AlertDialog.Builder builder;
++    private Button btnCetak;*/
+ 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
++        //pdfViewModel = new ViewModelProvider(this).get(PdfViewModel.class);
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_payment);
+ 
+@@ -42,6 +65,41 @@
+ 
+         tvTotal = findViewById(R.id.tvTotal);
+ 
++        /*btnCetak=findViewById(R.id.btnCetak);
++        btnCetak.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View view) {
++                builder = new AlertDialog.Builder(getContext());
++
++                builder.setCancelable(false);
++                builder.setMessage("Apakah anda yakin ingin mencetak transaksi ?");
++                builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
++                    @Override
++                    public void onClick(DialogInterface dialog, int which) {
++
++                        try {
++                            createPdfWrapper();
++                        } catch (FileNotFoundException e) {
++                            e.printStackTrace();
++                        } catch (DocumentException e) {
++                            e.printStackTrace();
++                        }
++                    }
++                });
++                builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
++                    @Override
++                    public void onClick(DialogInterface dialog, int which) {
++                        dialog.cancel();
++                    }
++                });
++                AlertDialog alert = builder.create();
++                alert.show();
++                alert.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
++                alert.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
++                alert.getButton(AlertDialog.BUTTON_NEGATIVE).setBackgroundColor(Color.WHITE);
++                alert.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(Color.WHITE);
++            }
++        });*/
+         AppPreference appPreference = new AppPreference(getApplicationContext());
+ 
+         Call<CartResponse> client = RetrofitClient.getRetrofit().getCartsByUsername(appPreference.getLoginUsername());
