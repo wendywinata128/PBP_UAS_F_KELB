@@ -182,8 +182,6 @@ public class AddEditMenuFragment extends Fragment {
                     else
                         updateMenu(idMenu,menuName, menuPrice, menuType, photoMenu);
                 }
-
-                getActivity().finish();
             }
         });
 
@@ -192,7 +190,6 @@ public class AddEditMenuFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), SetMenuActivity.class);
                 startActivity(intent);
-                getActivity().finish();
             }
         });
     }
