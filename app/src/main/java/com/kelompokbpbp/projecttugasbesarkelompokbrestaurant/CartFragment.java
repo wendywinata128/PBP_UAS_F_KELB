@@ -87,6 +87,7 @@ public class CartFragment extends Fragment{
 
     }
     public void getKeranjang(){
+        pbCart.setVisibility(View.VISIBLE);
         AppPreference appPreference = new AppPreference(getContext());
 
         Call<CartResponse> client = RetrofitClient.getRetrofit().getCartsByUsername(appPreference.getLoginUsername());
@@ -121,5 +122,11 @@ public class CartFragment extends Fragment{
         if(requestCode == PAYMENT_REQUEST){
             adapter.refreshAdapter();
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getKeranjang();
     }
 }
