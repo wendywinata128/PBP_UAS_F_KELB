@@ -190,6 +190,7 @@ public class AddEditMenuFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), SetMenuActivity.class);
                 startActivity(intent);
+                getActivity().finish();
             }
         });
     }
