@@ -31,9 +31,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:layout_marginStart="5dp"
-            android:text="Konfirmasi belanja mu"
-            />
+            android:layout_marginStart="16dp"
+            android:text="Konfirmasi belanja mu" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvCartTransaction"
             android:layout_width="match_parent"
@@ -44,7 +43,7 @@
             android:id="@+id/tvTotal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Total : Rp.50000 "
+            android:text="Total : Rp 0"
             android:textColor="@android:color/holo_red_light"
             android:layout_marginStart="10dp"/>
 
