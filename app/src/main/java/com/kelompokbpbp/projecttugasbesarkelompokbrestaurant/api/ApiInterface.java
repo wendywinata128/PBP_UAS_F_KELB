@@ -37,24 +37,6 @@ public interface ApiInterface {
     @GET("/api/menu")
     Call<MenuResponse> menuList();
 
-    @POST("/api/menu/insert")
-    @FormUrlEncoded
-    Call<MenuResponse> insertMenu(@Field("name") String name,
-                                  @Field("price") String price,
-                                  @Field("type") String type,
-                                  @Field("photo") String photo);
-
-    @PUT("/api/menu/update/{id}")
-    @FormUrlEncoded
-    Call<MenuResponse> updateMenu(@Path("id") String id,
-                                  @Field("name") String name,
-                                  @Field("price") String price,
-                                  @Field("type") String type,
-                                  @Field("photo") String photo);
-
-    @POST("/api/menu/delete/{id}")
-    Call<MenuResponse> deleteMenu(@Path("id") String id);
-
     @GET("/api/carts/{username}")
     Call<CartResponse> getCartsByUsername(@Path("username") String username);
 
@@ -85,4 +67,27 @@ public interface ApiInterface {
 
     @GET
     Call<MessageResponse> verifyEmail(@Url String url);
+
+    @POST("/api/transaction/{username}")
+    @FormUrlEncoded
+    Call<MessageResponse> payTransaction(@Path("username") String username,
+                                         @Field("method") String method);
+
+    @POST("/api/menu/insert")
+    @FormUrlEncoded
+    Call<MessageResponse> insertMenu(@Field("name") String name,
+                                  @Field("price") String price,
+                                  @Field("type") String type,
+                                  @Field("photo") String photo);
+
+    @PUT("/api/menu/update/{id}")
+    @FormUrlEncoded
+    Call<MessageResponse> updateMenu(@Path("id") String id,
+                                  @Field("name") String name,
+                                  @Field("price") String price,
+                                  @Field("type") String type,
+                                  @Field("photo") String photo);
+
+    @POST("/api/menu/delete/{id}")
+    Call<MessageResponse> deleteMenu(@Path("id") String id);
 }

@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,6 +14,7 @@ import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.adapter.CartTransactionAdapter;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.RetrofitClient;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.response.CartResponse;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.response.MessageResponse;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.AppPreference;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.Keranjang;
 
@@ -41,6 +43,7 @@ public class PaymentActivity extends AppCompatActivity {
         rvCartTransaction.setHasFixedSize(true);
 
         tvTotal = findViewById(R.id.tvTotal);
+        btnBayar = findViewById(R.id.btnBayar);
 
         AppPreference appPreference = new AppPreference(getApplicationContext());
 
@@ -79,6 +82,29 @@ public class PaymentActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<CartResponse> call, Throwable t) {
                 Toast.makeText(PaymentActivity.this,"Failed",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        btnBayar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Call<MessageResponse> client = RetrofitClient.getRetrofit().payTransaction(appPreference.getLoginUsername(),"OVO");
+
+                client.enqueue(new Callback<MessageResponse>() {
+                    @Override
+                    public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
+                        if(response.isSuccessful()){
+                            Toast.makeText(PaymentActivity.this,"Pembayaran Berhasil!",Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<MessageResponse> call, Throwable t) {
+                        Toast.makeText(PaymentActivity.this,"Kesalahan Jaringan",Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
     }

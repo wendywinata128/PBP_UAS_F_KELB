@@ -22,6 +22,7 @@ import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.response.Messag
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.databinding.CartItemLayoutBinding;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.Keranjang;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -30,11 +31,18 @@ import retrofit2.Response;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
     private Context context;
-    private List<Keranjang> listKeranjang;
+    private List<Keranjang> listKeranjang = new ArrayList<>();
 
     public CartAdapter(Context context,List<Keranjang>listKeranjang) {
-        this.listKeranjang = listKeranjang;
+        this.listKeranjang.clear();
+        this.listKeranjang.addAll(listKeranjang);
         this.context = context;
+        notifyDataSetChanged();
+    }
+
+    public void refreshAdapter(){
+        this.listKeranjang.clear();
+        notifyDataSetChanged();
     }
 
     @NonNull

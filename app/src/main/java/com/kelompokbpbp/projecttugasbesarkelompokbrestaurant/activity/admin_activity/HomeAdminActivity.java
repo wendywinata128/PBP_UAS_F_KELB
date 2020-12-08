@@ -1,6 +1,7 @@
 package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.admin_activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +11,7 @@ import com.google.android.material.card.MaterialCardView;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
 
 public class HomeAdminActivity extends AppCompatActivity {
-    private MaterialCardView cvSetMenu;
+    private CardView cvSetMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

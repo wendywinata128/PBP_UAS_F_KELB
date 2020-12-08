@@ -129,11 +129,11 @@ public class SetMenuAdapter extends RecyclerView.Adapter<SetMenuAdapter.MenuView
     }
 
     private void deleteMenuById(String id, int position) {
-        Call<MenuResponse> delete = RetrofitClient.getRetrofit().deleteMenu(id);
+        Call<MessageResponse> delete = RetrofitClient.getRetrofit().deleteMenu(id);
 
-        delete.enqueue(new Callback<MenuResponse>() {
+        delete.enqueue(new Callback<MessageResponse>() {
             @Override
-            public void onResponse(Call<MenuResponse> call, Response<MenuResponse> response) {
+            public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
                 if(response.isSuccessful()) {
                     listMenu.remove(position);
                     notifyItemRemoved(position);
@@ -145,7 +145,7 @@ public class SetMenuAdapter extends RecyclerView.Adapter<SetMenuAdapter.MenuView
             }
 
             @Override
-            public void onFailure(Call<MenuResponse> call, Throwable t) {
+            public void onFailure(Call<MessageResponse> call, Throwable t) {
                 Toast.makeText(context, "Kesalahan Jaringan", Toast.LENGTH_SHORT).show();
             }
         });

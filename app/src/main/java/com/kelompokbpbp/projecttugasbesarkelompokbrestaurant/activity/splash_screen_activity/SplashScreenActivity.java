@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.admin_activity.HomeAdminActivity;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.first_time_activity.FirstTimeActivity;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.login_activity.LoginActivity;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.main_activity.MainActivity;
@@ -42,7 +43,13 @@ public class SplashScreenActivity extends AppCompatActivity {
                         Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
                         startActivity(intent);
                     }else{
-                        Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+                        Intent intent;
+                        if(!appPreference.getLoginUsername().equals("wendy128")){
+                            intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+                        }else{
+                            intent = new Intent(SplashScreenActivity.this, HomeAdminActivity.class);
+                        }
+
                         startActivity(intent);
                     }
                     finish();

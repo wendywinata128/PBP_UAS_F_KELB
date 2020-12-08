@@ -45,6 +45,7 @@ public class CartFragment extends Fragment{
     MaterialButton checkOut;
     CartAdapter adapter;
     private ProgressBar pbCart;
+    private int PAYMENT_REQUEST = 101;
 
     public CartFragment(){
         // Required empty public constructor
@@ -75,7 +76,7 @@ public class CartFragment extends Fragment{
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), PaymentActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent,PAYMENT_REQUEST);
             }
         });
 
@@ -105,5 +106,14 @@ public class CartFragment extends Fragment{
                 Toast.makeText(getContext(),"Kesalahan Jaringan ? ",Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == PAYMENT_REQUEST){
+            adapter.refreshAdapter();
+        }
     }
 }

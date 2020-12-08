@@ -96,7 +96,7 @@ public class Fragment_register_2 extends Fragment {
 
     private void registerUser(){
         User data = new User(fullName, email, tvUsername.getEditText().getText().toString(),
-                tvPassword.getEditText().getText().toString(), "-");
+                tvPassword.getEditText().getText().toString(), "-","user");
 
         Call<UserResponse> client = RetrofitClient.getRetrofit().userRegister(
                 data.getNama(),

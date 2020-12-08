@@ -34,6 +34,7 @@ import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.admin_activity.SetMenuActivity;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.RetrofitClient;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.response.MenuResponse;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.response.MessageResponse;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.response.UserResponse;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.Menu;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.User;
@@ -166,7 +167,11 @@ public class AddEditMenuFragment extends Fragment {
                 String menuName  = inputMenuName.getText().toString();
                 String menuPrice = inputMenuPrice.getText().toString();
                 String menuType = inputMenuType.getText().toString();
-                String photoMenu = imagetoString(bitmap);
+                String photoMenu;
+                if(bitmap != null)
+                    photoMenu = imagetoString(bitmap);
+                else
+                    photoMenu = null;
 
                 if(menuName.isEmpty() || menuPrice.isEmpty() || menuType.isEmpty())
                     Toast.makeText(getContext(), "Please fill the data!", Toast.LENGTH_SHORT).show();
@@ -177,6 +182,8 @@ public class AddEditMenuFragment extends Fragment {
                     else
                         updateMenu(idMenu,menuName, menuPrice, menuType, photoMenu);
                 }
+
+                getActivity().finish();
             }
         });
 
@@ -185,6 +192,7 @@ public class AddEditMenuFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), SetMenuActivity.class);
                 startActivity(intent);
+                getActivity().finish();
             }
         });
     }
@@ -264,10 +272,10 @@ public class AddEditMenuFragment extends Fragment {
     }
 
     private void addMenu(String name, String price, String type, String photo) {
-        Call<MenuResponse> addMenu = RetrofitClient.getRetrofit().insertMenu(name, price, type, photo);
-        addMenu.enqueue(new Callback<MenuResponse>() {
+        Call<MessageResponse> addMenu = RetrofitClient.getRetrofit().insertMenu(name, price, type, photo);
+        addMenu.enqueue(new Callback<MessageResponse>() {
             @Override
-            public void onResponse(Call<MenuResponse> call, Response<MenuResponse> response) {
+            public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
                 if(response.isSuccessful()){
                     Toast.makeText(getContext(),response.body().getMessage(),Toast.LENGTH_SHORT).show();
                 }else{
@@ -276,17 +284,17 @@ public class AddEditMenuFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<MenuResponse> call, Throwable t) {
+            public void onFailure(Call<MessageResponse> call, Throwable t) {
                 Toast.makeText(getContext(),"Network Failure? Try again!",Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void updateMenu(String id, String name, String price, String type, String photo) {
-        Call<MenuResponse> updateMenu = RetrofitClient.getRetrofit().updateMenu(id, name, price, type, photo);
-        updateMenu.enqueue(new Callback<MenuResponse>() {
+        Call<MessageResponse> updateMenu = RetrofitClient.getRetrofit().updateMenu(id, name, price, type, photo);
+        updateMenu.enqueue(new Callback<MessageResponse>() {
             @Override
-            public void onResponse(Call<MenuResponse> call, Response<MenuResponse> response) {
+            public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
                 if(response.isSuccessful()){
                     Toast.makeText(getContext(),response.body().getMessage(),Toast.LENGTH_SHORT).show();
                 }else{
@@ -295,7 +303,7 @@ public class AddEditMenuFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<MenuResponse> call, Throwable t) {
+            public void onFailure(Call<MessageResponse> call, Throwable t) {
                 Toast.makeText(getContext(),"Network Failure? Try again!",Toast.LENGTH_SHORT).show();
             }
         });
