@@ -28,6 +28,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.admin_activity.SetMenuActivity;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.RetrofitClient;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.response.UserResponse;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.User;
@@ -180,6 +181,8 @@ public class EditProfileFragment extends Fragment {
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if(response.isSuccessful()){
                     Toast.makeText(getContext(),response.body().getMessage(),Toast.LENGTH_SHORT).show();
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    transaction.replace(R.id.fragment_profile, new ProfilFragment()).commit();
                 }else{
                     Toast.makeText(getContext(),"Edit User Failed",Toast.LENGTH_SHORT).show();
                 }

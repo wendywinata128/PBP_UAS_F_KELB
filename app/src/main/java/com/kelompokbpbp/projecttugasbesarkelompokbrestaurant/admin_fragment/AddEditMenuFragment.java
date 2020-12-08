@@ -275,6 +275,9 @@ public class AddEditMenuFragment extends Fragment {
             public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
                 if(response.isSuccessful()){
                     Toast.makeText(getContext(),response.body().getMessage(),Toast.LENGTH_SHORT).show();
+                    Intent backToListMenu = new Intent(getContext(), SetMenuActivity.class);
+                    startActivity(backToListMenu);
+                    getActivity().finish();
                 }else{
                     Toast.makeText(getContext(),"Insert menu failed",Toast.LENGTH_SHORT).show();
                 }
@@ -294,6 +297,9 @@ public class AddEditMenuFragment extends Fragment {
             public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
                 if(response.isSuccessful()){
                     Toast.makeText(getContext(),response.body().getMessage(),Toast.LENGTH_SHORT).show();
+                    Intent backToListMenu = new Intent(getContext(), SetMenuActivity.class);
+                    startActivity(backToListMenu);
+                    getActivity().finish();
                 }else{
                     Toast.makeText(getContext(),"Edit menu failed",Toast.LENGTH_SHORT).show();
                 }

@@ -46,6 +46,7 @@ public class CartFragment extends Fragment{
     CartAdapter adapter;
     private ProgressBar pbCart;
     private int PAYMENT_REQUEST = 101;
+    private boolean emptyCart = true;
 
     public CartFragment(){
         // Required empty public constructor
@@ -75,6 +76,10 @@ public class CartFragment extends Fragment{
         checkOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(emptyCart) {
+                    Toast.makeText(getContext(), "Cart is still empty!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Intent intent = new Intent(getContext(), PaymentActivity.class);
                 startActivityForResult(intent,PAYMENT_REQUEST);
             }
@@ -91,6 +96,7 @@ public class CartFragment extends Fragment{
             public void onResponse(Call<CartResponse> call, Response<CartResponse> response) {
                 if(response.isSuccessful()){
                     if(response.body().getData() != null) {
+                        emptyCart = false;
                         pbCart.setVisibility(View.GONE);
                         adapter = new CartAdapter(getContext(),response.body().getData());
                         recyclerView.setAdapter(adapter);
