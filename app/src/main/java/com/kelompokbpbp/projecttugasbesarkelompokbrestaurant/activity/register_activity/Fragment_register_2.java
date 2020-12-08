@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,10 @@ import android.widget.Toast;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.UnitTest.ActivityUtil;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.UnitTest.RegisterPresenter;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.UnitTest.RegisterService;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.UnitTest.RegisterView;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.login_activity.LoginActivity;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.RetrofitClient;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.response.UserResponse;
@@ -31,13 +36,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class Fragment_register_2 extends Fragment {
+public class Fragment_register_2 extends Fragment implements RegisterView {
 
     private TextInputLayout tvUsername,tvPassword,tvMatchPassword;
     private String fullName,email;
     private MaterialButton btnRegister;
     private ProgressBar pbRegister;
-
+    private RegisterPresenter presenter;
 
     public Fragment_register_2() {
         // Required empty public constructor
@@ -55,6 +60,11 @@ public class Fragment_register_2 extends Fragment {
         btnRegister = view.findViewById(R.id.btnRegister);
         fullName = getArguments().getString("Full Name");
         email = getArguments().getString("Email");
+
+        Log.d("FULL NAME","FULL NAME : "+fullName+email);
+
+        presenter = new RegisterPresenter(this,new RegisterService());
+
         return view;
     }
 
@@ -64,14 +74,14 @@ public class Fragment_register_2 extends Fragment {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(checkValidation()) {
-                    registerUser();
-                }
+                //if(checkValidation()) {
+                    presenter.onRegisterClicked();
+                //}
             }
         });
     }
 
-    private boolean checkValidation(){
+    /*private boolean checkValidation(){
         boolean validation = true;
 
         if(tvUsername.getEditText().getText().toString().contains(" ") ||
@@ -92,11 +102,14 @@ public class Fragment_register_2 extends Fragment {
         }
 
         return validation;
-    }
+    }*/
 
     private void registerUser(){
+        Log.d("FULL NAME","Start Main 2");
         User data = new User(fullName, email, tvUsername.getEditText().getText().toString(),
                 tvPassword.getEditText().getText().toString(), "-","user");
+
+        Log.d("FULL NAME","FULL NAME : "+data.getNama());
 
         Call<UserResponse> client = RetrofitClient.getRetrofit().userRegister(
                 data.getNama(),
@@ -137,5 +150,110 @@ public class Fragment_register_2 extends Fragment {
                 pbRegister.setVisibility(View.GONE);
             }
         });
+    }
+
+    @Override
+    public String getNama() {
+        return null;
+    }
+
+    @Override
+    public void showNamaError(String message) {
+
+    }
+
+    @Override
+    public String getEmail() {
+        return null;
+    }
+
+    @Override
+    public void showEmailError(String message) {
+
+    }
+
+    @Override
+    public String getUsername() {
+        return tvUsername.getEditText().getText().toString();
+    }
+
+    @Override
+    public void showUsernameError(String message) {
+        tvUsername.getEditText().setError(message);
+    }
+
+    @Override
+    public String getPassword() {
+        return tvPassword.getEditText().getText().toString();
+    }
+
+    @Override
+    public void showPasswordError(String message) {
+        tvPassword.getEditText().setError(message);
+    }
+
+    @Override
+    public String getMatchPass() {
+        return tvMatchPassword.getEditText().getText().toString();
+    }
+
+    @Override
+    public void showMatchPassError(String message) {
+        tvMatchPassword.getEditText().setError(message);
+    }
+
+    @Override
+    public String getPhotoProfile() {
+        return null;
+    }
+
+    @Override
+    public void showPhotoError(String message) {
+
+    }
+
+    @Override
+    public String getAddress() {
+        return null;
+    }
+
+    @Override
+    public void showAddressError(String message) {
+
+    }
+
+    @Override
+    public void startMainActivity() {
+        Log.d("FULL NAME","Start Main Activity ");
+        registerUser();
+    }
+
+    @Override
+    public void startLoginActivity() {
+    }
+
+    @Override
+    public void startRegisterActivity() {
+
+    }
+
+    @Override
+    public void startUserProfileActivity(User user) {
+
+    }
+
+    @Override
+    public void showRegisterError(String message) {
+
+    }
+
+    @Override
+    public void showErrorResponse(String message) {
+
+    }
+
+    @Override
+    public void continueValidationSuccess() {
+
     }
 }

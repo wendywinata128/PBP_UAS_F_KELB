@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +16,17 @@ import android.view.ViewGroup;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.UnitTest.ActivityUtil;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.UnitTest.RegisterPresenter;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.UnitTest.RegisterService;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.UnitTest.RegisterView;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.login_activity.LoginActivity;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model.User;
 
-public class Fragment_Register_1 extends Fragment {
+public class Fragment_Register_1 extends Fragment implements RegisterView {
     private MaterialButton btnContinue,btnLogin;
     private TextInputLayout tvFullName,tvEmail;
+    private RegisterPresenter presenter;
 
     public Fragment_Register_1() {
         // Required empty public constructor
@@ -39,6 +46,9 @@ public class Fragment_Register_1 extends Fragment {
         tvFullName = view.findViewById(R.id.textInputFullName);
         tvEmail = view.findViewById(R.id.textInputEmail);
         btnLogin = view.findViewById(R.id.btnMoveLogin);
+
+        presenter = new RegisterPresenter(this,new RegisterService());
+
         return view;
     }
 
@@ -49,7 +59,8 @@ public class Fragment_Register_1 extends Fragment {
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(CheckValidation()){
+                presenter.onContinueClicked();
+                /*if(CheckValidation()){
                     Fragment fragment = new Fragment_register_2();
                     Bundle bundle = new Bundle();
                     bundle.putString("Full Name",tvFullName.getEditText().getText().toString());
@@ -57,7 +68,7 @@ public class Fragment_Register_1 extends Fragment {
                     fragment.setArguments(bundle);
                     getActivity().getSupportFragmentManager().beginTransaction().
                             replace(R.id.register_container,fragment).addToBackStack(null).commit();
-                }
+                }*/
             }
         });
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +79,7 @@ public class Fragment_Register_1 extends Fragment {
         });
     }
 
-    private boolean CheckValidation(){
+    /*private boolean CheckValidation(){
         boolean validation = true;
 
         if(tvFullName.getEditText().getText().toString().isEmpty()){
@@ -77,6 +88,114 @@ public class Fragment_Register_1 extends Fragment {
         }
 
         return validation;
+    }*/
+
+    @Override
+    public String getNama() {
+        return tvFullName.getEditText().getText().toString();
     }
 
+    @Override
+    public void showNamaError(String message) {
+        tvFullName.getEditText().setError(message);
+    }
+
+    @Override
+    public String getEmail() {
+        return tvEmail.getEditText().getText().toString();
+    }
+
+    @Override
+    public void showEmailError(String message) {
+        tvEmail.getEditText().setError(message);
+    }
+
+    @Override
+    public String getUsername() {
+        return null;
+    }
+
+    @Override
+    public void showUsernameError(String message) {
+
+    }
+
+    @Override
+    public String getPassword() {
+        return null;
+    }
+
+    @Override
+    public void showPasswordError(String message) {
+
+    }
+
+    @Override
+    public String getMatchPass() {
+        return null;
+    }
+
+    @Override
+    public void showMatchPassError(String message) {
+
+    }
+
+    @Override
+    public String getPhotoProfile() {
+        return null;
+    }
+
+    @Override
+    public void showPhotoError(String message) {
+
+    }
+
+    @Override
+    public String getAddress() {
+        return null;
+    }
+
+    @Override
+    public void showAddressError(String message) {
+
+    }
+
+    @Override
+    public void startMainActivity() {
+
+    }
+
+    @Override
+    public void startLoginActivity() {
+    }
+
+    @Override
+    public void startRegisterActivity() {
+    }
+
+    @Override
+    public void startUserProfileActivity(User user) {
+
+    }
+
+    @Override
+    public void showRegisterError(String message) {
+
+    }
+
+    @Override
+    public void showErrorResponse(String message) {
+
+    }
+
+    @Override
+    public void continueValidationSuccess() {
+        Fragment fragment = new Fragment_register_2();
+        Bundle bundle = new Bundle();
+        bundle.putString("Full Name",tvFullName.getEditText().getText().toString());
+        bundle.putString("Email",tvEmail.getEditText().getText().toString());
+        fragment.setArguments(bundle);
+        getActivity().getSupportFragmentManager().beginTransaction().
+                replace(R.id.register_container,fragment).addToBackStack(null).commit();
+    }
 }
