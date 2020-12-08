@@ -55,8 +55,8 @@
 
                         <ImageView
                             android:src="@drawable/ic_baseline_event_note_24"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"/>
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -91,8 +91,8 @@
 
                         <ImageView
                             android:src="@drawable/ic_baseline_account_balance_wallet_24"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"/>
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -127,8 +127,8 @@
 
                         <ImageView
                             android:src="@drawable/ic_baseline_supervisor_account_24"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"/>
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -140,6 +140,21 @@
                             android:textStyle="bold"/>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnLogoutAdmin"
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:layout_width="150dp"
+                    android:layout_height="60dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_gravity="center"
+                    android:text="LOGOUT"
+                    android:textStyle="bold"
+                    android:backgroundTint="#ED2B2A"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    app:cornerRadius="5dp" />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
