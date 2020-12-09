@@ -99,7 +99,7 @@ xmlns:tools="http://schemas.android.com/tools"
                     <ImageButton
                         android:id="@+id/deleteProductButton"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="25dp"
                         android:layout_gravity="end"
                         android:layout_marginStart="90dp"
                         android:background="?android:attr/selectableItemBackground"

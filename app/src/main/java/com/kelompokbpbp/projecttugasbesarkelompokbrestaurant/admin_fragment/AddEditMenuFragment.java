@@ -270,6 +270,11 @@ public class AddEditMenuFragment extends Fragment {
     }
 
     private void addMenu(String name, String price, String type, String photo) {
+        if(photo == null){
+            Toast.makeText(getContext(),"Photo must be uploaded",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         Call<MessageResponse> addMenu = RetrofitClient.getRetrofit().insertMenu(name, price, type, photo);
         addMenu.enqueue(new Callback<MessageResponse>() {
             @Override

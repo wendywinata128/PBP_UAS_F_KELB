@@ -65,6 +65,7 @@
                 app:helperText="Enter your username">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ti_username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text" />
@@ -81,6 +82,7 @@
                 app:helperText="Minimum 6 characters">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ti_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword" />

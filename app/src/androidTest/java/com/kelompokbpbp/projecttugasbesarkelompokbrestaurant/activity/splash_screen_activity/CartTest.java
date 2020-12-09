@@ -5,7 +5,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 
+import androidx.test.espresso.UiController;
+import androidx.test.espresso.ViewAction;
 import androidx.test.espresso.ViewInteraction;
+import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.rule.GrantPermissionRule;
@@ -27,6 +30,7 @@ import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -47,8 +51,27 @@ public class CartTest {
                     "android.permission.ACCESS_FINE_LOCATION",
                     "android.permission.CAMERA");
 
+    public static ViewAction waitFor(long delay) {
+        return new ViewAction() {
+            @Override public Matcher<View> getConstraints() {
+                return isRoot();
+            }
+
+            @Override public String getDescription() {
+                return "wait for " + delay + "milliseconds";
+            }
+
+            @Override public void perform(UiController uiController, View view) {
+                uiController.loopMainThreadForAtLeast(delay);
+            }
+        };
+    }
+
     @Test
     public void cartTest() {
+
+        onView(isRoot()).perform(waitFor(5000));
+
         ViewInteraction materialCheckBox = onView(
                 allOf(withId(R.id.cbCamera), withText("Yes , you can access my camera"),
                         childAtPosition(
