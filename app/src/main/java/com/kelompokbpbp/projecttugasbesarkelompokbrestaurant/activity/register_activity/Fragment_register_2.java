@@ -74,35 +74,10 @@ public class Fragment_register_2 extends Fragment implements RegisterView {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //if(checkValidation()) {
-                    presenter.onRegisterClicked();
-                //}
+                presenter.onRegisterClicked();
             }
         });
     }
-
-    /*private boolean checkValidation(){
-        boolean validation = true;
-
-        if(tvUsername.getEditText().getText().toString().contains(" ") ||
-            tvUsername.getEditText().getText().toString().isEmpty()){
-            tvUsername.setError("Username cannot contains space");
-            validation = false;
-        }
-
-        if(tvPassword.getEditText().getText().toString().length() < 6){
-            tvPassword.setError("Password must be at least 6 digit");
-            validation = false;
-        }
-
-        if(!(tvPassword.getEditText().getText().toString()
-                .equals(tvMatchPassword.getEditText().getText().toString()))){
-            tvMatchPassword.setError("Password is not same");
-            validation = false;
-        }
-
-        return validation;
-    }*/
 
     private void registerUser(){
         Log.d("FULL NAME","Start Main 2");

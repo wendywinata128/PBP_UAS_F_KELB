@@ -19,7 +19,7 @@ public class RegisterPresenter {
         } else if (view.getEmail().isEmpty()) {
             view.showEmailError("Email tidak boleh kosong");
             return;
-        }else{
+        } else{
             view.continueValidationSuccess();
         }
     }
