@@ -40,7 +40,7 @@ import static org.hamcrest.Matchers.is;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class TestTest {
+public class TransactionTest {
 
     @Rule
     public ActivityTestRule<SplashScreenActivity> mActivityTestRule = new ActivityTestRule<>(SplashScreenActivity.class);
@@ -91,9 +91,11 @@ public class TestTest {
 
         //Tambahkan 3 menu ke dalam keranjang dan tunggu 3 detik untuk aplikasi melakukan processnya
         onView(withId(R.id.recycler_view_menu)).perform(RecyclerViewActions.actionOnItemAtPosition(0,clickChildViewWithId(R.id.orderbtn)));
+        onView(isRoot()).perform(waitFor(1000));
         onView(withId(R.id.recycler_view_menu)).perform(RecyclerViewActions.actionOnItemAtPosition(2,clickChildViewWithId(R.id.orderbtn)));
+        onView(isRoot()).perform(waitFor(1000));
         onView(withId(R.id.recycler_view_menu)).perform(RecyclerViewActions.actionOnItemAtPosition(3,clickChildViewWithId(R.id.orderbtn)));
-        onView(isRoot()).perform(waitFor(3000));
+        onView(isRoot()).perform(waitFor(1000));
 
         //Pilih Bottom Navigation Cart dan tunggu 3 detik , untuk aplikasi melakukan process loading cart
         onView(withId(R.id.navigation_cart)).perform(click());
@@ -108,9 +110,9 @@ public class TestTest {
         onView(isRoot()).perform(waitFor(3000));
 
         //Check apakah total yang keluar sesuai dengan yang di inginkan , jika sesuai klik bayar dan tunggu processnya selesai
-        onView(withId(R.id.tvTotal)).check(matches(withText("Total : Rp. 32.000,00")));
+        onView(withId(R.id.tvTotal)).check(matches(withText("Total : Rp. 50.000,00")));
         onView(withId(R.id.btnBayar)).perform(click());
-        onView(isRoot()).perform(waitFor(2000));
+        onView(isRoot()).perform(waitFor(5000));
 
     }
 

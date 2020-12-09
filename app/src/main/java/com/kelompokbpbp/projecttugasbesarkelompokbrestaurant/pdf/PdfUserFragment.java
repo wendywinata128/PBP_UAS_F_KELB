@@ -77,6 +77,7 @@ public class PdfUserFragment extends Fragment {
     private int count = 0;
 
     public void generateDataList(List<User> userList) {
+        this.userList = userList;
         recyclerView = root.findViewById(R.id.rv_user_pdf);
         userAdapter = new UserAdapter(root.getContext(), userList);
         recyclerView.setHasFixedSize(true);

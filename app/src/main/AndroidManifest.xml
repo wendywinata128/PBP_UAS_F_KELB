@@ -20,7 +20,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:icon">
-        <activity android:name=".activity.admin_activity.ReportTransactionActivity"></activity>
+        <activity android:name=".activity.admin_activity.ReportTransactionActivity"/>
         <activity android:name=".activity.admin_activity.SetMenuActivity" />
         <activity android:name=".activity.admin_activity.HomeAdminActivity" />
         <activity android:name=".payment.PaymentActivity" />
