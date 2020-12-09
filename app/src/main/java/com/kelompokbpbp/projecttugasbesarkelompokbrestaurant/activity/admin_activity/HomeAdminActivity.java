@@ -18,7 +18,7 @@ import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.login_acti
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.AppPreference;
 
 public class HomeAdminActivity extends AppCompatActivity {
-    private CardView cvSetMenu;
+    private CardView cvSetMenu,cvReportTransaction;
     private MaterialButton btnLogoutAdmin;
 
     @Override
@@ -27,12 +27,21 @@ public class HomeAdminActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home_admin);
 
         cvSetMenu = findViewById(R.id.cvSetMenu);
+        cvReportTransaction = findViewById(R.id.cvReportTransaction);
         btnLogoutAdmin = findViewById(R.id.btnLogoutAdmin);
 
         cvSetMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomeAdminActivity.this, SetMenuActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        cvReportTransaction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeAdminActivity.this, ReportTransactionActivity.class);
                 startActivity(intent);
             }
         });

@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.kelompokbpbp.projecttugasbesarkelompokbrestaurant"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -93,4 +93,7 @@ dependencies {
     implementation 'com.github.Shashank02051997:FancyToast-Android:0.1.8'
     implementation 'com.github.Bleoo:WindowImageView:1.0.2'
     implementation 'com.facebook.fresco:fresco:1.5.0'
+
+    implementation 'com.android.volley:volley:1.1.0'
+    implementation 'androidx.wear:wear:1.0.0'
 }

@@ -20,7 +20,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:icon">
-        <activity android:name=".activity.admin_activity.SetMenuActivity"/>
+        <activity android:name=".activity.admin_activity.ReportTransactionActivity"></activity>
+        <activity android:name=".activity.admin_activity.SetMenuActivity" />
         <activity android:name=".activity.admin_activity.HomeAdminActivity" />
         <activity android:name=".payment.PaymentActivity" />
         <activity android:name=".activity.geo_location_activity.GeoLocationActivity" />
@@ -56,7 +57,15 @@
         </activity>
         <activity android:name=".activity.first_time_activity.FirstTimeActivity" />
         <activity android:name=".activity.main_activity.MainActivity" />
-
+        <provider
+            android:name=".GenericFileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
     </application>
 
 </manifest>

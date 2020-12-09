@@ -1,0 +1,220 @@
+Index: app/src/main/java/com/kelompokbpbp/projecttugasbesarkelompokbrestaurant/model/Transaksi.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model;\r\n\r\npublic class Transaksi {\r\n    private int id;\r\n    private String username;\r\n    private String totalHarga;\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/kelompokbpbp/projecttugasbesarkelompokbrestaurant/model/Transaksi.java	(revision aa04e09baa710017b4299354f7ed8bb5c87caaff)
++++ app/src/main/java/com/kelompokbpbp/projecttugasbesarkelompokbrestaurant/model/Transaksi.java	(date 1607484702064)
+@@ -1,8 +1,59 @@
+ package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.model;
+ 
+-public class Transaksi {
++import com.google.gson.annotations.SerializedName;
++
++import java.io.Serializable;
++
++public class Transaksi implements Serializable {
++
++    @SerializedName("id")
+     private int id;
+-    private String username;
+-    private String totalHarga;
++
++    @SerializedName("customer_name")
++    private String customerName;
++
++    @SerializedName("total_price")
++    private String totalPrice;
++
++    @SerializedName("status")
++    private String status;
++
++    public Transaksi(int id, String customerName, String totalPrice, String status){
++        this.id = id;
++        this.customerName = customerName;
++        this.totalPrice = totalPrice;
++        this.status = status;
++    }
+ 
++    public int getId() {
++        return id;
++    }
++
++    public void setId(int id) {
++        this.id = id;
++    }
++
++    public String getCustomerName() {
++        return customerName;
++    }
++
++    public void setCustomerName(String customerName) {
++        this.customerName = customerName;
++    }
++
++    public String getTotalPrice() {
++        return totalPrice;
++    }
++
++    public void setTotalPrice(String totalPrice) {
++        this.totalPrice = totalPrice;
++    }
++
++    public String getStatus() {
++        return status;
++    }
++
++    public void setStatus(String status) {
++        this.status = status;
++    }
+ }
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    package=\"com.kelompokbpbp.projecttugasbesarkelompokbrestaurant\">\r\n\r\n    <uses-permission android:name=\"android.permission.INTERNET\" />\r\n    <uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />\r\n    <uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />\r\n    <uses-permission android:name=\"android.permission.CAMERA\" />\r\n    <uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />\r\n    <uses-permission android:name=\"android.permission.SYSTEM_ALERT_WINDOW\" />\r\n    <uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:icon=\"@drawable/logo_restoku\"\r\n        android:label=\"@string/app_name\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/AppTheme\"\r\n        android:usesCleartextTraffic=\"true\"\r\n        tools:replace=\"android:icon\">\r\n        <activity android:name=\".activity.admin_activity.SetMenuActivity\"/>\r\n        <activity android:name=\".activity.admin_activity.HomeAdminActivity\" />\r\n        <activity android:name=\".payment.PaymentActivity\" />\r\n        <activity android:name=\".activity.geo_location_activity.GeoLocationActivity\" />\r\n\r\n        <service\r\n            android:name=\".service.FireBaseMessagingService\"\r\n            android:exported=\"false\">\r\n            <intent-filter>\r\n                <action android:name=\"com.google.firebase.MESSAGING_EVENT\" />\r\n            </intent-filter>\r\n        </service>\r\n\r\n        <activity android:name=\".activity.login_activity.LoginActivity\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.VIEW\" />\r\n\r\n                <category android:name=\"android.intent.category.DEFAULT\" />\r\n                <category android:name=\"android.intent.category.BROWSABLE\" />\r\n\r\n                <data\r\n                    android:host=\"pbp.dbappz.top\"\r\n                    android:scheme=\"https\" />\r\n            </intent-filter>\r\n        </activity>\r\n        <activity android:name=\".activity.edit_add_address_activity.EditAddAddressActivity\" />\r\n        <activity android:name=\".activity.register_activity.RegisterActivity\" />\r\n        <activity android:name=\".activity.splash_screen_activity.SplashScreenActivity\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity>\r\n        <activity android:name=\".activity.first_time_activity.FirstTimeActivity\" />\r\n        <activity android:name=\".activity.main_activity.MainActivity\" />\r\n\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(revision aa04e09baa710017b4299354f7ed8bb5c87caaff)
++++ app/src/main/AndroidManifest.xml	(date 1607485421576)
+@@ -20,7 +20,8 @@
+         android:theme="@style/AppTheme"
+         android:usesCleartextTraffic="true"
+         tools:replace="android:icon">
+-        <activity android:name=".activity.admin_activity.SetMenuActivity"/>
++        <activity android:name=".activity.admin_activity.ReportTransactionActivity"></activity>
++        <activity android:name=".activity.admin_activity.SetMenuActivity" />
+         <activity android:name=".activity.admin_activity.HomeAdminActivity" />
+         <activity android:name=".payment.PaymentActivity" />
+         <activity android:name=".activity.geo_location_activity.GeoLocationActivity" />
+@@ -56,7 +57,6 @@
+         </activity>
+         <activity android:name=".activity.first_time_activity.FirstTimeActivity" />
+         <activity android:name=".activity.main_activity.MainActivity" />
+-
+     </application>
+ 
+ </manifest>
+\ No newline at end of file
+Index: app/src/main/java/com/kelompokbpbp/projecttugasbesarkelompokbrestaurant/payment/PdfViewModel.java
+===================================================================
+--- app/src/main/java/com/kelompokbpbp/projecttugasbesarkelompokbrestaurant/payment/PdfViewModel.java	(revision aa04e09baa710017b4299354f7ed8bb5c87caaff)
++++ app/src/main/java/com/kelompokbpbp/projecttugasbesarkelompokbrestaurant/payment/PdfViewModel.java	(revision aa04e09baa710017b4299354f7ed8bb5c87caaff)
+@@ -1,19 +0,0 @@
+-package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.payment;
+-
+-import androidx.lifecycle.LiveData;
+-import androidx.lifecycle.MutableLiveData;
+-import androidx.lifecycle.ViewModel;
+-
+-public class PdfViewModel extends ViewModel {
+-
+-    private MutableLiveData<String> mText;
+-
+-    public PdfViewModel() {
+-        mText = new MutableLiveData<>();
+-        mText.setValue("This is pdf fragment");
+-    }
+-
+-    public LiveData<String> getText() {
+-        return mText;
+-    }
+-}
+\ No newline at end of file
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>apply plugin: 'com.android.application'\r\napply plugin: 'com.google.gms.google-services'\r\n\r\nandroid {\r\n    compileSdkVersion 30\r\n    buildToolsVersion \"30.0.2\"\r\n\r\n    defaultConfig {\r\n        applicationId \"com.kelompokbpbp.projecttugasbesarkelompokbrestaurant\"\r\n        minSdkVersion 21\r\n        targetSdkVersion 30\r\n        versionCode 1\r\n        versionName \"1.0\"\r\n\r\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\r\n    }\r\n\r\n    buildTypes {\r\n        release {\r\n            minifyEnabled false\r\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n\r\n    compileOptions {\r\n        sourceCompatibility JavaVersion.VERSION_1_8\r\n        targetCompatibility JavaVersion.VERSION_1_8\r\n    }\r\n\r\n    //data binding\r\n    buildFeatures {\r\n        dataBinding true\r\n    }\r\n}\r\n\r\ndependencies {\r\n    implementation fileTree(dir: \"libs\", include: [\"*.jar\"])\r\n    implementation 'androidx.appcompat:appcompat:1.2.0'\r\n    implementation 'androidx.constraintlayout:constraintlayout:2.0.2'\r\n    implementation 'androidx.legacy:legacy-support-v4:1.0.0'\r\n    implementation 'com.google.firebase:firebase-messaging:20.3.0'\r\n    implementation 'com.google.firebase:firebase-core:17.5.1'\r\n    testImplementation 'junit:junit:4.12'\r\n    androidTestImplementation 'androidx.test.ext:junit:1.1.2'\r\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'\r\n\r\n    implementation 'de.hdodenhof:circleimageview:3.1.0'\r\n    implementation 'androidx.recyclerview:recyclerview:1.1.0'\r\n    androidTestImplementation 'androidx.test:rules:1.3.1-alpha02'\r\n\r\n    def room_version = \"2.2.5\"\r\n\r\n    implementation \"androidx.room:room-runtime:$room_version\"\r\n    annotationProcessor \"androidx.room:room-compiler:$room_version\"\r\n\r\n    implementation 'com.google.android.material:material:1.2.1'\r\n\r\n    //noinspection GradleCompatible\r\n    implementation 'com.android.support:design:28.0.0'\r\n\r\n    //bottom navigation\r\n    implementation 'androidx.navigation:navigation-fragment:2.3.0'\r\n    implementation 'androidx.navigation:navigation-ui:2.3.0'\r\n\r\n    //glide for image loading and caching\r\n    implementation 'com.github.bumptech.glide:glide:4.11.0'\r\n    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'\r\n\r\n    implementation 'com.romandanylyk:pageindicatorview:1.0.3'\r\n\r\n    //elegant number\r\n    implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'\r\n\r\n    //Geo Location\r\n    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:9.2.0'\r\n    implementation 'com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.6'\r\n    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-places-v9:0.12.0'\r\n\r\n    //Api\r\n    implementation 'com.squareup.retrofit2:retrofit:2.4.0'\r\n    implementation 'com.google.code.gson:gson:2.8.2'\r\n    implementation 'com.squareup.retrofit2:converter-gson:2.0.2'\r\n    implementation \"com.squareup.okhttp3:logging-interceptor:4.9.0\"\r\n\r\n    //testing\r\n    testCompile 'org.mockito:mockito-all:1.10.19'\r\n\r\n    //pdf\r\n    implementation 'com.itextpdf:itextg:5.5.10'\r\n    implementation 'com.mindorks.android:prdownloader:0.6.0'\r\n    implementation 'com.github.Shashank02051997:FancyToast-Android:0.1.8'\r\n    implementation 'com.github.Bleoo:WindowImageView:1.0.2'\r\n    implementation 'com.facebook.fresco:fresco:1.5.0'\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/build.gradle	(revision aa04e09baa710017b4299354f7ed8bb5c87caaff)
++++ app/build.gradle	(date 1607488515323)
+@@ -7,7 +7,7 @@
+ 
+     defaultConfig {
+         applicationId "com.kelompokbpbp.projecttugasbesarkelompokbrestaurant"
+-        minSdkVersion 21
++        minSdkVersion 23
+         targetSdkVersion 30
+         versionCode 1
+         versionName "1.0"
+@@ -91,4 +91,7 @@
+     implementation 'com.github.Shashank02051997:FancyToast-Android:0.1.8'
+     implementation 'com.github.Bleoo:WindowImageView:1.0.2'
+     implementation 'com.facebook.fresco:fresco:1.5.0'
++
++    implementation 'com.android.volley:volley:1.1.0'
++    implementation 'androidx.wear:wear:1.0.0'
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/kelompokbpbp/projecttugasbesarkelompokbrestaurant/activity/admin_activity/HomeAdminActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.admin_activity;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.cardview.widget.CardView;\r\n\r\nimport android.app.Dialog;\r\nimport android.content.DialogInterface;\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\n\r\nimport com.google.android.material.button.MaterialButton;\r\nimport com.google.android.material.card.MaterialCardView;\r\nimport com.google.android.material.dialog.MaterialAlertDialogBuilder;\r\nimport com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.ProfilFragment;\r\nimport com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;\r\nimport com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.login_activity.LoginActivity;\r\nimport com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.AppPreference;\r\n\r\npublic class HomeAdminActivity extends AppCompatActivity {\r\n    private CardView cvSetMenu;\r\n    private MaterialButton btnLogoutAdmin;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_home_admin);\r\n\r\n        cvSetMenu = findViewById(R.id.cvSetMenu);\r\n        btnLogoutAdmin = findViewById(R.id.btnLogoutAdmin);\r\n\r\n        cvSetMenu.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(HomeAdminActivity.this, SetMenuActivity.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        btnLogoutAdmin.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                alertForLogout().show();\r\n            }\r\n        });\r\n    }\r\n\r\n    public Dialog alertForLogout() {\r\n        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);\r\n\r\n        builder.setMessage(R.string.confirmation)\r\n                .setNegativeButton(\"No\", new DialogInterface.OnClickListener() {\r\n                    @Override\r\n                    public void onClick(DialogInterface dialog, int which) {\r\n                    }\r\n                })\r\n                .setPositiveButton(\"Yes\", new DialogInterface.OnClickListener() {\r\n                    @Override\r\n                    public void onClick(DialogInterface dialog, int id) {\r\n                        AppPreference appPreference = new AppPreference(HomeAdminActivity.this);\r\n                        appPreference.setLoginUsername(null);\r\n                        appPreference.setUserToken(null);\r\n                        Intent toLogin = new Intent(HomeAdminActivity.this, LoginActivity.class);\r\n                        toLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);\r\n                        startActivity(toLogin);\r\n                        finish();\r\n                    }\r\n                });\r\n        return builder.create();\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/kelompokbpbp/projecttugasbesarkelompokbrestaurant/activity/admin_activity/HomeAdminActivity.java	(revision aa04e09baa710017b4299354f7ed8bb5c87caaff)
++++ app/src/main/java/com/kelompokbpbp/projecttugasbesarkelompokbrestaurant/activity/admin_activity/HomeAdminActivity.java	(date 1607487977167)
+@@ -18,7 +18,7 @@
+ import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.AppPreference;
+ 
+ public class HomeAdminActivity extends AppCompatActivity {
+-    private CardView cvSetMenu;
++    private CardView cvSetMenu,cvReportTransaction;
+     private MaterialButton btnLogoutAdmin;
+ 
+     @Override
+@@ -27,6 +27,7 @@
+         setContentView(R.layout.activity_home_admin);
+ 
+         cvSetMenu = findViewById(R.id.cvSetMenu);
++        cvReportTransaction = findViewById(R.id.cvReportTransaction);
+         btnLogoutAdmin = findViewById(R.id.btnLogoutAdmin);
+ 
+         cvSetMenu.setOnClickListener(new View.OnClickListener() {
+@@ -36,6 +37,14 @@
+                 startActivity(intent);
+             }
+         });
++
++        cvReportTransaction.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View view) {
++                Intent intent = new Intent(HomeAdminActivity.this, ReportTransactionActivity.class);
++                startActivity(intent);
++            }
++        });
+ 
+         btnLogoutAdmin.setOnClickListener(new View.OnClickListener() {
+             @Override
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\r\n    <string name=\"app_name\">Project Tugas Besar Kelompok B Restaurant</string>\r\n    <string name=\"home\">Home</string>\r\n    <string name=\"menu\">Menu</string>\r\n    <string name=\"cart\">Cart</string>\r\n    <string name=\"profile\">Profile</string>\r\n    <string name=\"hello\">Hello</string>\r\n    <string name=\"logo_restoku\">Logo_Restoku</string>\r\n    <string name=\"slogan\">Quality Over Quantity</string>\r\n    <string name=\"menu_restoku\">Menu Restoku</string>\r\n    <string name=\"order\">Order</string>\r\n    <string name=\"greetings\">Hello, since its your first time open Restoku, we want to setting our app to match your comfort</string>\r\n\r\n    //Cart\r\n    <string name=\"total_cost\">Total Cost</string>\r\n    <string name=\"cost_number\">0</string>\r\n    <string name=\"checkout\">CheckOut</string>\r\n\r\n    //Register and Login\r\n    <string name=\"hello_blank_fragment\">Hello blank fragment</string>\r\n    <string name=\"terms_and_condition\">Condition</string>\r\n    <string name=\"would_you_like_to_get_any_notification_about_food_from_us_optional\">Would you like to get any notification about food from us (Optional)</string>\r\n    <string name=\"yes_please_send_me_a_notification\">Yes , please send me a notification</string>\r\n    <string name=\"yes_you_can_access_my_location\">Yes , you can access my location</string>\r\n    <string name=\"would_you_let_us_to_access_your_location_so_we_can_offer_a_better_service_required\">Would you let us to access your location so we can offer a better service (Required)</string>\r\n    <string name=\"would_you_let_us_to_access_your_camera_so_we_can_offer_a_smooth_service_required\">Would you let us to access your camera so we can offer a smooth service (Required)</string>\r\n    <string name=\"yes_you_can_access_my_camera\">Yes , you can access my camera</string>\r\n    <string name=\"register_account\">Register Account</string>\r\n    <string name=\"username\">Username</string>\r\n    <string name=\"password\">Password</string>\r\n    <string name=\"register\">I DO NOT HAVE ACCOUNT YET</string>\r\n    <string name=\"i_already_have_account\">I already have account</string>\r\n    <string name=\"full_name\">Full Name</string>\r\n    <string name=\"handphone_number\">Handphone Number</string>\r\n    <string name=\"continue_hint\">Continue</string>\r\n    <string name=\"match_password\">Match Password</string>\r\n    <string name=\"check_all\">Check All</string>\r\n    <string name=\"logo_register_account\">Logo Register Account</string>\r\n    <string name=\"login\">LOGIN</string>\r\n    <string name=\"login_account\">Login Account</string>\r\n    <string name=\"gambar_logo_login\">Gambar Logo Login</string>\r\n    <string name=\"register_hint\">Register</string>\r\n    <string name=\"phone_number\">Phone number</string>\r\n    <string name=\"nama\">Nama</string>\r\n    <string name=\"my_profile\">My Profile</string>\r\n\r\n    //Edit Profile\r\n    <string name=\"edit_profile\">Edit Profile</string>\r\n    <string name=\"input_your_name\">Input your name</string>\r\n    <string name=\"input_your_username\">Input your username</string>\r\n    <string name=\"input_your_phone_number\">Input your phone number</string>\r\n    <string name=\"logout\">Logout</string>\r\n    <string name=\"edit_profile_picture\">Edit Profile Picture</string>\r\n    <string name=\"cancel\">Cancel</string>\r\n    <string name=\"update_profile\">Update Profile</string>\r\n\r\n    //Address\r\n    <string name=\"my_address\">My Address</string>\r\n    <string name=\"nama_alamat\">Nama Alamat</string>\r\n    <string name=\"number\">1</string>\r\n    <string name=\"add_new_address\">ADD NEW ADDRESS</string>\r\n\r\n    //Confirmation for Logout\r\n    <string name=\"confirmation\">Are you sure you want to logout?</string>\r\n\r\n    //Mapbox\r\n    <string name=\"mapbox_access_token\">pk.eyJ1Ijoid2VuZHl3aW5hdGExMjgiLCJhIjoiY2tmcXc0c2pmMDdncDJ3bnBvOWZnYjh3ZCJ9.307pDJYClbUBVuy3I_Iy0Q</string>\r\n\r\n    //GeoLocation\r\n    <string name=\"set_my_location\">SET MY LOCATION</string>\r\n    <string name=\"set_location\">Set Location</string>\r\n    <string name=\"add_address\">Add Address</string>\r\n    <string name=\"address_name\">Address Name</string>\r\n    <string name=\"address_detail\">Address Detail</string>\r\n    <string name=\"add\">Add</string>\r\n    <string name=\"delete_address\">DELETE</string>\r\n    <string name=\"update_address\">UPDATE</string>\r\n    <string name=\"edit_address\">Edit Address</string>\r\n    <string name=\"email\">Email</string>\r\n    <string name=\"input_your_email\">Input your Email</string>\r\n\r\n    <string-array name=\"quantity_string_array\">\r\n        <item>1</item>\r\n        <item>2</item>\r\n        <item>3</item>\r\n        <item>4</item>\r\n        <item>5(Max)</item>\r\n    </string-array>\r\n\r\n\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/strings.xml	(revision aa04e09baa710017b4299354f7ed8bb5c87caaff)
++++ app/src/main/res/values/strings.xml	(date 1607481894322)
+@@ -79,13 +79,9 @@
+     <string name="email">Email</string>
+     <string name="input_your_email">Input your Email</string>
+ 
+-    <string-array name="quantity_string_array">
+-        <item>1</item>
+-        <item>2</item>
+-        <item>3</item>
+-        <item>4</item>
+-        <item>5(Max)</item>
+-    </string-array>
++    //PdfTransaksi
++    <string name="data_transaksi">Data Transaksi</string>
++    <string name="cetak">CETAK PDF</string>
+ 
+ 
+ </resources>
+\ No newline at end of file
