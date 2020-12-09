@@ -340,7 +340,7 @@ public class PdfUserFragment extends Fragment {
             public void onResponse(Call<AllUserResponse> call, Response<AllUserResponse> response) {
                 if(response.isSuccessful()){
                     generateDataList(response.body().getData());
-                    Toast.makeText(root.getContext(),"Load user data success",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(root.getContext(),"Load user data success "+response.body().getData().size(),Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(root.getContext(),"Data Gagal Di Loaded",Toast.LENGTH_SHORT).show();
                 }

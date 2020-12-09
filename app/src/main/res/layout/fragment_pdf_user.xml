@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/frame_layout_menu"
+    android:background="@android:color/white"
     tools:context=".pdf.PdfUserFragment">
 
     <LinearLayout

@@ -44,6 +44,7 @@ public class HomeAdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeAdminActivity.this, ReportTransactionActivity.class);
+                intent.putExtra("choice",1);
                 startActivity(intent);
             }
         });
@@ -51,9 +52,9 @@ public class HomeAdminActivity extends AppCompatActivity {
         cvReportUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = new PdfUserFragment();
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.container_home_admin, fragment).commit();
+                Intent intent = new Intent(HomeAdminActivity.this, ReportTransactionActivity.class);
+                intent.putExtra("choice",2);
+                startActivity(intent);
             }
         });
 
