@@ -220,9 +220,9 @@ public class PdfFragment extends Fragment {
                 if(i==0){
                     tableData.addCell(String.valueOf(listTransaksi.get(x).getCustomerName()));
                 }else if(i==1){
-                    tableData.addCell(listTransaksi.get(x).getTotalPrice());
+                    tableData.addCell("Rp. " + String.valueOf(listTransaksi.get(x).getTotalPrice()));
                 }else{
-                    tableData.addCell("Rp. " + String.valueOf(listTransaksi.get(x).getStatus()));
+                    tableData.addCell(listTransaksi.get(x).getStatus());
                 }
             }
         }
