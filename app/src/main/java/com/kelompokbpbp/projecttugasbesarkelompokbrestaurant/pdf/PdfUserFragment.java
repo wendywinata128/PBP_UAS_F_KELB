@@ -74,7 +74,7 @@ public class PdfUserFragment extends Fragment {
     private RecyclerView recyclerView;
     private View root;
     private UserAdapter userAdapter;
-    private int count = 0;
+    private int count = 1;
 
     public void generateDataList(List<User> userList) {
         this.userList = userList;
