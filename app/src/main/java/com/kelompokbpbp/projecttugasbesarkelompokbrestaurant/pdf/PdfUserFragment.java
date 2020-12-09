@@ -88,8 +88,6 @@ public class PdfUserFragment extends Fragment {
         pdfViewModel = new ViewModelProvider(this).get(PdfViewModel.class);
         root = inflater.inflate(R.layout.fragment_pdf_user, container, false);
 
-        getUser();
-
         btnBack = root.findViewById(R.id.ibBack);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -325,7 +323,7 @@ public class PdfUserFragment extends Fragment {
             pdfIntent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
             pdfIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             //TODO 2.6 - Sesuaikan package dengan package yang anda buat
-            getContext().grantUriPermission("com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.admin_fragment", uri,
+            getContext().grantUriPermission("com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.pdf", uri,
                     Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
             startActivity(pdfIntent);
         } else {
