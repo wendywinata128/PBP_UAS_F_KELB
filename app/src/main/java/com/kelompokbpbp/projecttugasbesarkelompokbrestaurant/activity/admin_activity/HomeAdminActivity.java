@@ -2,6 +2,8 @@ package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.admin_act
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -10,15 +12,14 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.ProfilFragment;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.R;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.login_activity.LoginActivity;
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.pdf.PdfUserFragment;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.database.AppPreference;
 
 public class HomeAdminActivity extends AppCompatActivity {
-    private CardView cvSetMenu,cvReportTransaction;
+    private CardView cvSetMenu,cvReportTransaction,cvReportUser;
     private MaterialButton btnLogoutAdmin;
 
     @Override
@@ -28,6 +29,7 @@ public class HomeAdminActivity extends AppCompatActivity {
 
         cvSetMenu = findViewById(R.id.cvSetMenu);
         cvReportTransaction = findViewById(R.id.cvReportTransaction);
+        cvReportUser = findViewById(R.id.cvReportUser);
         btnLogoutAdmin = findViewById(R.id.btnLogoutAdmin);
 
         cvSetMenu.setOnClickListener(new View.OnClickListener() {
@@ -43,6 +45,15 @@ public class HomeAdminActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(HomeAdminActivity.this, ReportTransactionActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        cvReportUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new PdfUserFragment();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.container_home_admin, fragment).commit();
             }
         });
 

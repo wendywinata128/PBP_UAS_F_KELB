@@ -1,5 +1,6 @@
 package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api;
 
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.response.AllUserResponse;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.response.CartResponse;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.response.MenuResponse;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.response.MessageResponse;
@@ -33,6 +34,9 @@ public interface ApiInterface {
 
     @GET("/api/user")
     Call<UserResponse> userDetails(@Header("Authorization") String header);
+
+    @GET("/api/users")
+    Call<AllUserResponse> getUserList();
 
     @GET("/api/menu")
     Call<MenuResponse> menuList();

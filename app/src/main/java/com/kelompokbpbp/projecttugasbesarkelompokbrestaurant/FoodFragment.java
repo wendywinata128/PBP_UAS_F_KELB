@@ -1,5 +1,6 @@
 package com.kelompokbpbp.projecttugasbesarkelompokbrestaurant;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.activity.admin_activity.SetMenuActivity;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.adapter.GridFoodAdapter;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.response.MenuResponse;
 import com.kelompokbpbp.projecttugasbesarkelompokbrestaurant.api.RetrofitClient;
@@ -53,6 +55,10 @@ public class FoodFragment extends Fragment {
         recyclerView = fragmentFoodBinding.recyclerViewMenu;
         gridFoodAdapter = new GridFoodAdapter(getContext(), ListMenu);
         gridLayoutManager = new GridLayoutManager(getContext(), 2);
+        int orientation = getResources().getConfiguration().orientation;
+        if(orientation == Configuration.ORIENTATION_LANDSCAPE){
+            gridLayoutManager = new GridLayoutManager(getContext(), 3);
+        }
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(gridFoodAdapter);

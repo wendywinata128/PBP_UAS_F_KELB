@@ -107,10 +107,6 @@ public class SetMenuActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.rv_menu_admin);
         setMenuAdapter = new SetMenuAdapter(this, menuList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(SetMenuActivity.this);
-        int orientation = getResources().getConfiguration().orientation;
-        if(orientation == Configuration.ORIENTATION_LANDSCAPE){
-            layoutManager = new GridLayoutManager(SetMenuActivity.this, 2);
-        }
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(setMenuAdapter);
